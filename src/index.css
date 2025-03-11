@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+/* don't touch this css code without "Walidur tanjim's" permission (starting code) */
+*{
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  /* font-weight: 400;
+  font-style: normal; */
+}
+li{
+  list-style: none;
+}
+a, a:hover{
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6, p, ul{
+  margin: 0;
+}
+/* don't touch this css code without "Walidur tanjim's" permission (ending code) */
+
