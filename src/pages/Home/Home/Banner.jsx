@@ -7,6 +7,7 @@ import img2 from "../../../assets/banner_photo/futuristic-technology-concept.jpg
 import img3 from "../../../assets/banner_photo/lush-green-farmland-being-surveyed-by-drone-precision-agriculture.jpg";
 import img4 from "../../../assets/banner_photo/robot-spraying-fertilizer-vegetable-garden.jpg";
 import img5 from "../../../assets/banner_photo/smart-agriculture-iot-with-hand-planting-tree-background.jpg";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   const captions = [
@@ -51,13 +52,16 @@ const Banner = () => {
               >
                 Connecting Farmers with Technology for a Sustainable Future
               </motion.p>
-              <motion.button
+
+             <Link to="/aboutus">
+             <motion.button
                 className="mt-6 px-6 py-3 bg-green-500 text-white text-lg font-semibold rounded-full shadow-md hover:bg-green-600 transition-all"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
                 Explore More
               </motion.button>
+             </Link>
             </div>
           </div>
         ))}
