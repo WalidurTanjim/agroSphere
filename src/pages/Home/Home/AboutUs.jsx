@@ -26,7 +26,7 @@ const AboutUs = () => {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-3xl md:text-4xl font-bold text-green-700 mb-4">
-            About Our AgroSphere
+            About Our AgroSphere Saikat Ahmed
           </h2>
           <p className="text-gray-700 text-lg mb-6">
             We are committed to revolutionizing modern farming by connecting farmers with technology. Our e-farming platform helps farmers manage crops efficiently, sell produce directly, and promote sustainable agriculture.
