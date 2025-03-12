@@ -1,10 +1,8 @@
 
 import React from "react";
-
-// react icons
 import {FaArrowLeftLong} from "react-icons/fa6";
 
-const Page404 = () => {
+const NotFound = () => {
 
     return (
         <div className="boxShadow px-10 w-full flex items-center flex-col justify-center py-20 rounded-xl bg-[#00543A]">
@@ -21,5 +19,5 @@ const Page404 = () => {
     );
 };
 
-export default Page404;
+export default NotFound;
                     
