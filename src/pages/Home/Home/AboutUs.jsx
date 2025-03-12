@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 
 const AboutUs = () => {
   return (
-    <section className="bg-green-100 py-16 my-16 px-6 md:px-16">
+    <section className="py-16 my-16 px-6 md:px-16">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10">
-        {/* Image Section */}
+   
         <motion.div
           className="w-full md:w-1/2"
           initial={{ opacity: 0, x: -50 }}
@@ -18,7 +18,7 @@ const AboutUs = () => {
           />
         </motion.div>
         
-        {/* Text Section */}
+ 
         <motion.div
           className="w-full md:w-1/2 text-center md:text-left"
           initial={{ opacity: 0, x: 50 }}
