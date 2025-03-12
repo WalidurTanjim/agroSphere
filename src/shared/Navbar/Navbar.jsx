@@ -6,7 +6,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed w-full top-0 left-0 z-50 p-4 shadow-lg bg-green-300 text-gray-900 transition-all duration-300">
+    <nav className="fixed w-full top-0 left-0 z-50 p-4 shadow-lg bg-green-900 text-white transition-all duration-300">
       <div className="container mx-auto flex justify-between items-center px-4 md:px-8">
         <Link to="/" className="text-2xl font-bold tracking-wide flex items-center gap-2">
           <FaLeaf className="text-green-600" size={28} /> AgroSphere
