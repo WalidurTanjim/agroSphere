@@ -3,7 +3,7 @@ import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaLeaf } from "react-ic
 
 const Footer = () => {
   return (
-    <footer className="bg-green-900 text-white py-10 mt-16">
+    <footer className="bg-green-900 text-white py-10">
       <div className="container mx-auto px-6 grid md:grid-cols-3 gap-8">
      
         <div>
