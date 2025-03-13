@@ -6,14 +6,90 @@ import { FaGoogle, FaFacebookF, FaLeaf } from "react-icons/fa";
 import Lottie from "lottie-react";
 import animationData from "../../../../public/Animation - 1741840482951.json";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = async (data) => {
     console.log(data);
+     const {
+      email,
+      Name,
+      password,
+    } = data;
+    // console.log(data.image[0]);
+    // console.log(data);
+    // Add loading state
+    setLoading(true);
+
+    try {
+      const passwordValidation =
+        password.length >= 6 &&
+        /[A-Z]/.test(password) &&
+        /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+      if (!passwordValidation) {
+        return toast.error(
+          "Password must be 6 characters, include a capital letter, and a special character."
+        );
+      }
+      // Upload photo to imgbb
+      if (data.image[0]) {
+        const photoData = new FormData();
+        photoData.append("image", data.image[0]);
+
+        console.log("Uploading photo to ImgBB...");
+
+        const imgbbResponse = await axios.post(
+          `https://api.imgbb.com/1/upload?key=${
+            import.meta.env.VITE_IMGBB_API_KEY
+          }`,
+          photoData
+        );
+
+        const photo = imgbbResponse.data.data.display_url;
+        // console.log("Photo uploaded to ImgBB:", photo);
+
+        if (!imgbbResponse.data.success) {
+          throw new Error("Failed to upload image to ImgBB");
+        }
+
+        // Rest of the authentication code...
+        const userCredential = await createUser(email, password);
+        const user = userCredential.user;
+
+        updateUserProfile(Name, photo).then((res) => {
+          const userInfo = {
+            email: email,
+            Name: Name,
+            password: password,
+            photo: photo,
+          };
+        //   post user data backend
+
+
+        });
+      } else {
+        toast.error("Please select a photo");
+        return;
+      }
+    } catch (error) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: error.message || "Failed to register",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } finally {
+      setLoading(false);
+    }
+  
   };
 
   return (
@@ -65,6 +141,13 @@ const SignUp = () => {
               </button>
             </div>
             {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
+           
+              <div class="space-y-2">
+                <label class="text-sm font-medium text-gray-700">Profile Photo</label>
+                <input type="file" name="image" class="w-full p-3 rounded-lg bg-green-100 border text-gray-900 file:bg-green-200 file:text-gray-700 file:border-0 file:p-2 file:rounded-md file:mr-4 file:cursor-pointer" {...register("image", { required: "Image is required" })}
+                  accept="image/*" />
+                
+              </div>
 
             <button 
               type="submit" 
