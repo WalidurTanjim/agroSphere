@@ -19,3 +19,11 @@ h1, h2, h3, h4, h5, h6, p, ul{
 }
 /* don't touch this css code without "Walidur tanjim's" permission (ending code) */
 
+.dark{
+  background-color: black;
+}
+
+.light{
+  background-color: white;
+}
+
