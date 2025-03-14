@@ -1,6 +1,6 @@
 import React from 'react';
 import Banner from './Banner';
-import AgroFarm from './AgroFarm';
+import AgroFarm from './NewsLatter';
 
 const Home = () => {
     return (
