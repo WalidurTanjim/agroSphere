@@ -4,11 +4,12 @@ import { useState } from "react";
 import { AiOutlineLoading3Quarters, AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FaGoogle, FaFacebookF, FaLeaf } from "react-icons/fa";
 import Lottie from "lottie-react";
-import animationData from "../../../../public/Animation - 1741840482951.json";
+import animationData from "../../../assets/SignIn/SignUp_Json/SignUp.json";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 import toast from "react-hot-toast";
+import SocialLogin from "../../../Components/SocileLogin";
 
 const SignUp = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -43,7 +44,7 @@ const SignUp = () => {
         const photoData = new FormData();
         photoData.append("image", data.image[0]);
 
-        console.log("Uploading photo to ImgBB...");
+        // console.log("Uploading photo to ImgBB...");
 
         const imgbbResponse = await axios.post(
           `https://api.imgbb.com/1/upload?key=${
@@ -53,7 +54,7 @@ const SignUp = () => {
         );
 
         const photo = imgbbResponse.data.data.display_url;
-        // console.log("Photo uploaded to ImgBB:", photo);
+        console.log("Photo uploaded to ImgBB:", photo);
 
         if (!imgbbResponse.data.success) {
           throw new Error("Failed to upload image to ImgBB");
@@ -72,7 +73,7 @@ const SignUp = () => {
           };
         //   post user data backend
 
-
+          reset()
         });
       } else {
         toast.error("Please select a photo");
@@ -93,7 +94,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-8 justify-center items-center min-h-screen overflow-x-hidden bg-green-100 p-4 pb-16 ">
+    <div className="flex flex-col md:flex-row gap-8 justify-center items-center min-h-screen overflow-x-hidden bg-green-100 p-4 py-10 ">
       <div className="flex-1">
         <Lottie animationData={animationData} loop={true} className="px-4" />
       </div>
@@ -102,11 +103,11 @@ const SignUp = () => {
           onSubmit={handleSubmit(onSubmit)} 
           className="backdrop-blur-3xl  rounded-lg p-6 w-full max-w-lg shadow-2xl"
         >
-          <h2 className="text-3xl font-bold text-center mb-6">Register</h2>
+          <h2 className="text-3xl font-bold text-center mb-6">Sign Up</h2>
           <p className="text-base md:text-xl font-bold tracking-wide flex items-center justify-center py-2 md:py-4 ">
             Welcome to <FaLeaf className="text-green-600 mx-2" size={28} /> AgroSphere
           </p>
-
+          {/* Name */}
           <div>
             <label className="block text-sm">Full Name</label>
             <input 
@@ -115,7 +116,7 @@ const SignUp = () => {
               placeholder="John Doe"
             />
             {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
-
+            {/* Email */}
             <label className="block text-sm">Email</label>
             <input 
               {...register("email", { required: "Email is required", pattern: { value: /^\S+@\S+\.\S+$/, message: "Invalid email" } })} 
@@ -123,7 +124,7 @@ const SignUp = () => {
               placeholder="you@example.com"
             />
             {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
-
+            {/* Password */}
             <label className="block text-sm">Password</label>
             <div className="relative">
               <input 
@@ -141,36 +142,25 @@ const SignUp = () => {
               </button>
             </div>
             {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
-           
+            {/* Profile Photo */}
               <div class="space-y-2">
                 <label class="text-sm font-medium text-gray-700">Profile Photo</label>
                 <input type="file" name="image" class="w-full p-3 rounded-lg bg-green-100 border text-gray-900 file:bg-green-200 file:text-gray-700 file:border-0 file:p-2 file:rounded-md file:mr-4 file:cursor-pointer" {...register("image", { required: "Image is required" })}
                   accept="image/*" />
                 
               </div>
-
+              {/* Submit Button */}
             <button 
               type="submit" 
               className="w-full bg-green-700 text-white py-2 rounded-lg mt-3 flex justify-center items-center cursor-pointer"
               disabled={loading}
             >
-              {loading ? <AiOutlineLoading3Quarters className="animate-spin" /> : "Register"}
+              {loading ? <AiOutlineLoading3Quarters className="animate-spin" /> : "Sign Up"}
             </button>
-            <p className="text-sm pt-4">If Already Have Account? <Link to={"/signin"} className="text-blue-600 font-medium">Please Login</Link></p>
+            <p className="text-sm pt-4">If Already Have An Account? <Link to={"/signin"} className="text-blue-600 font-medium">Please Login</Link></p>
                 <div className="divider">or</div>
             <div className="flex flex-col gap-2 mt-4">
-              <button 
-                type="button" 
-                className="w-full bg-red-600 text-white py-2 rounded-lg flex justify-center items-center gap-2"
-              >
-                <FaGoogle /> Sign up with Google
-              </button>
-              <button 
-                type="button" 
-                className="w-full bg-blue-600 text-white py-2 rounded-lg flex justify-center items-center gap-2"
-              >
-                <FaFacebookF /> Sign up with Facebook
-              </button>
+              <SocialLogin />
             </div>
           </div>
         </form>
