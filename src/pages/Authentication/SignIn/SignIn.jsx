@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { AiOutlineLoading3Quarters, AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { FaGoogle, FaFacebookF, FaLeaf } from "react-icons/fa";
+import { FaGoogle, FaLeaf } from "react-icons/fa";
 import Lottie from "lottie-react";
 import animationData from "../../../assets/SignIn/SignUp_Json/Login.json";
 import { Link } from "react-router-dom";
