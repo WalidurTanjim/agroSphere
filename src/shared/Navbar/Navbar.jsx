@@ -25,7 +25,7 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/community" className="hover:text-green-700 flex items-center gap-2">
+            <NavLink to="/forum" className="hover:text-green-700 flex items-center gap-2">
               <FaUsers /> Community
             </NavLink>
           </li>
@@ -35,7 +35,7 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/events" className="hover:text-green-700 flex items-center gap-2">
+            <NavLink to="/community" className="hover:text-green-700 flex items-center gap-2">
               <FaCalendarAlt /> Events
             </NavLink>
           </li>

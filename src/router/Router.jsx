@@ -5,6 +5,8 @@ import Home from "../pages/Home/Home/Home";
 import AboutUs from "../pages/Home/Home/AboutUs";
 import SignUp from "../pages/Authentication/SignUp/SignUp";
 import SignIn from "../pages/Authentication/SignIn/SignIn";
+import AddForum from "../DashBoard/Forum/AddForum";
+import Community from "../pages/Community/Community";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
         {
           path: "/signin",
           element: <SignIn/>
+        },
+        {
+          path:"/forum",
+          element: <AddForum></AddForum>
+        },
+        {
+          path:"/community",
+          element: <Community>co</Community>
         }
      
 
