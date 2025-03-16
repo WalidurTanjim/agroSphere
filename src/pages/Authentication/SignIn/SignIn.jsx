@@ -5,29 +5,99 @@ import { AiOutlineLoading3Quarters, AiOutlineEye, AiOutlineEyeInvisible } from "
 import { FaGoogle, FaLeaf } from "react-icons/fa";
 import Lottie from "lottie-react";
 import animationData from "../../../assets/SignIn/SignUp_Json/Login.json";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import axios from "axios";
 import toast from "react-hot-toast";
-import SocialLogin from "../../../Components/SocileLogin";
+import SocialLogin from "../../../Components/SocialLogin";
+import useAuth from "../../../Hooks/useAuth";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const SignIn = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
-  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { signIn, logOut } = useAuth();
+  const axiosPublic = useAxiosPublic()
+  const from = location?.state || "/";
 
   const onSubmit = async (data) => {
+    setLoading(true)
+    
     console.log(data);
      const {
       email,
       password,
     } = data;
-    setLoading(true);
+    // Firebase auth
+    await signIn(email, password);
+
+    // Get JWT and set cookie
+    await axiosPublic.post(
+      `/jwt`,
+      { email },
+      { withCredentials: true }
+    )
+    .then((res) => {
+      console.log(res)
+      if (res.data) {
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful",
+          timer: 1500,
+          showConfirmButton: false
+        });
+        navigate(from);
+      } else {
+        toast.error("Invalid credentials");
+      }
+    })
 
     console.log("submit form")
   
   };
 
+
+// const onSubmit = async (data) => {
+//     setLoading(true);
+//     console.log(data)
+//     const { email, password } = data;
+//     try {
+//         await signIn(email, password);
+
+//         // Get JWT and set cookie
+//         const res = await axiosPublic.post(
+//           `/jwt`,
+//           { email },
+//           { withCredentials: true }
+//         );
+//         Swal.fire({
+//           icon: "success",
+//           title: "Login Successful",
+//           timer: 1500,
+//           showConfirmButton: false
+//         });
+
+//         console.log(res?.data?.token);
+//         // if (res.data?.token) {
+//         //   Swal.fire({
+//         //     icon: "success",
+//         //     title: "Login Successful",
+//         //     timer: 1500,
+//         //     showConfirmButton: false
+//         //   });
+//         //   navigate(from);
+//         // } else {
+//         //   toast.error("Invalid credentials");
+//         // }
+//     } catch (error) {
+//         console.error("Sign in error:", error);
+//         toast.error(error.message || "Sign in failed. Please check your credentials.");
+//     } finally {
+//         setLoading(false);
+//     }
+// };
   return (
     <div className="flex flex-col md:flex-row-reverse gap-8 justify-center items-center min-h-[calc(100vh-200px)] overflow-x-hidden bg-green-100 p-4 py-10 ">
       <div className="flex-1">

@@ -1,6 +1,5 @@
-
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AiOutlineLoading3Quarters, AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FaGoogle, FaFacebookF, FaLeaf } from "react-icons/fa";
 import Lottie from "lottie-react";
@@ -9,12 +8,14 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 import toast from "react-hot-toast";
-import SocialLogin from "../../../Components/SocileLogin";
+import SocialLogin from "../../../Components/SocialLogin";
+import { AuthContext } from "../../../context/AuthProvider";
 
 const SignUp = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const {updateUserProfile, createUser} = useContext(AuthContext)
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -23,9 +24,6 @@ const SignUp = () => {
       Name,
       password,
     } = data;
-    // console.log(data.image[0]);
-    // console.log(data);
-    // Add loading state
     setLoading(true);
 
     try {
@@ -54,7 +52,7 @@ const SignUp = () => {
         );
 
         const photo = imgbbResponse.data.data.display_url;
-        console.log("Photo uploaded to ImgBB:", photo);
+        // console.log("Photo uploaded to ImgBB:", photo);
 
         if (!imgbbResponse.data.success) {
           throw new Error("Failed to upload image to ImgBB");
@@ -64,16 +62,28 @@ const SignUp = () => {
         const userCredential = await createUser(email, password);
         const user = userCredential.user;
 
-        updateUserProfile(Name, photo).then((res) => {
+        updateUserProfile(Name, photo)
+        .then((res) => {
           const userInfo = {
             email: email,
             Name: Name,
             password: password,
             photo: photo,
+            role: "user",
           };
+          console.log(userInfo)
         //   post user data backend
-
+        axios.post("http://localhost:5000/users", userInfo)
+        .then((res) => {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Registered successfully",
+            showConfirmButton: false,
+            timer: 2000,
+          });
           reset()
+        });
         });
       } else {
         toast.error("Please select a photo");
@@ -87,6 +97,7 @@ const SignUp = () => {
         showConfirmButton: false,
         timer: 2000,
       });
+      console.log(error.message);
     } finally {
       setLoading(false);
     }
