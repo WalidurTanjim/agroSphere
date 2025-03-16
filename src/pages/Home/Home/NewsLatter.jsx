@@ -11,7 +11,7 @@ const NewsLatter = () => {
     };
 
     return (
-        <section className="bg-green-100 py-16 px-6 flex flex-col items-center text-center w-full">
+        <section className="bg-green-100 mt-10 py-16 px-6 flex flex-col items-center text-center w-full">
             <motion.div
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}

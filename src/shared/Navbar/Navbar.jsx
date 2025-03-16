@@ -26,16 +26,16 @@ const Navbar = () => {
           <FaLeaf className="text-green-500" size={28} /> AgroSphere
         </NavLink>
 
-        {/* Desktop Navigation */}
+
         <ul className="hidden lg:flex gap-6 text-lg items-center">
-          <li><NavLink to="/dashboard" className="hover:text-green-400 flex items-center gap-2"><FaHome /> Dashboard</NavLink></li>
+          <li><NavLink to="/" className="hover:text-green-400 flex items-center gap-2"><FaHome /> Home</NavLink></li>
           <li><NavLink to="/market" className="hover:text-green-400 flex items-center gap-2"><FaStore /> Market</NavLink></li>
           <li><NavLink to="/community" className="hover:text-green-400 flex items-center gap-2"><FaUsers /> Community</NavLink></li>
           <li><NavLink to="/aboutus" className="hover:text-green-400 flex items-center gap-2"><FaInfoCircle /> About Us</NavLink></li>
           <li><NavLink to="/events" className="hover:text-green-400 flex items-center gap-2"><FaCalendarAlt /> Events</NavLink></li>
         </ul>
 
-        {/* Right-side: Theme Toggle + Buttons */}
+
         <div className="hidden lg:flex items-center gap-4">
           {/* Dark Mode Toggle */}
           <button
@@ -63,22 +63,22 @@ const Navbar = () => {
           </>}
         </div>
 
-        {/* Mobile Menu Toggle */}
+
         <div className="lg:hidden" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </div>
       </div>
 
-      {/* Mobile Menu */}
+
       {isOpen && (
         <ul className={`lg:hidden absolute left-0 top-16 w-full ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-green-800 text-white'} flex flex-col items-center space-y-4 py-4 transition-all duration-300`}>
-          <li><NavLink to="/dashboard" className="flex items-center gap-2" onClick={() => setIsOpen(false)}><FaHome /> Dashboard</NavLink></li>
+          <li><NavLink to="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}><FaHome /> Home</NavLink></li>
           <li><NavLink to="/market" className="flex items-center gap-2" onClick={() => setIsOpen(false)}><FaStore /> Market</NavLink></li>
           <li><NavLink to="/community" className="flex items-center gap-2" onClick={() => setIsOpen(false)}><FaUsers /> Community</NavLink></li>
           <li><NavLink to="/aboutus" className="flex items-center gap-2" onClick={() => setIsOpen(false)}><FaInfoCircle /> About Us</NavLink></li>
           <li><NavLink to="/events" className="flex items-center gap-2" onClick={() => setIsOpen(false)}><FaCalendarAlt /> Events</NavLink></li>
 
-          {/* Dark Mode Toggle for Mobile */}
+
           <button onClick={toggleTheme} className="p-2 rounded-full border border-white">
             {theme === 'dark' ? <FaSun className="text-yellow-500 w-6 h-6" /> : <FaMoon className="text-gray-700 w-6 h-6" />}
           </button>
