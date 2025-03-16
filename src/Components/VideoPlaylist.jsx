@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const VideoPlaylist = () => {
   const [videos, setVideos] = useState([]);
-  const [filteredVideos, setFilteredVideos] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [showSuggestions, setShowSuggestions] = useState(false);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -14,73 +12,19 @@ const VideoPlaylist = () => {
       .then((res) => res.json())
       .then((data) => {
         setVideos(data);
-        setFilteredVideos(data);
-        setCategories(["All", ...new Set(data.map((video) => video.category))]);
         setLoading(false);
       })
       .catch(() => setLoading(false));
   }, []);
 
-  // Search & filter function
-  const handleSearchChange = (e) => {
-    const value = e.target.value;
-    setSearchTerm(value);
-    setShowSuggestions(value.trim() !== "");
-
-    // Live filtering videos based on category name match
-    if (value === "") {
-      setFilteredVideos(videos);
-    } else {
-      const matchedVideos = videos.filter((video) =>
-        video.category.toLowerCase().includes(value.toLowerCase())
-      );
-      setFilteredVideos(matchedVideos);
-    }
-  };
-
-  // Apply filter when selecting a suggestion
-  const handleSuggestionClick = (category) => {
-    setSearchTerm(category);
-    setFilteredVideos(videos.filter((video) => video.category === category));
-    setShowSuggestions(false);
-  };
-
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-green-50 to-green-100 py-10">
+    <div className="w-full min-h-screen py-16">
       <div className="w-11/12 mx-auto">
-        <h2 className="text-3xl font-bold text-green-700 text-center pb-6">
+        <h2 className="text-4xl font-bold text-green-700 text-center pb-10">
           Farming Video Tutorials 🎥
         </h2>
 
-        {/* Search Box */}
-        <div className="relative w-full md:w-1/3 mx-auto mb-6">
-          <input
-            type="text"
-            placeholder="Search category..."
-            value={searchTerm}
-            onChange={handleSearchChange}
-            onFocus={() => setShowSuggestions(true)}
-            onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
-          />
-          {showSuggestions && (
-            <ul className="absolute left-0 w-full bg-white shadow-lg rounded-lg mt-1 z-10">
-              {categories
-                .filter((cat) => cat.toLowerCase().includes(searchTerm.toLowerCase()))
-                .map((suggestion) => (
-                  <li
-                    key={suggestion}
-                    onClick={() => handleSuggestionClick(suggestion)}
-                    className="px-4 py-2 cursor-pointer hover:bg-green-100"
-                  >
-                    {suggestion}
-                  </li>
-                ))}
-            </ul>
-          )}
-        </div>
-
-        {/* Video Grid */}
+        {/* Video Grid - Showing only 6 videos */}
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
           {loading ? (
             Array.from({ length: 6 }).map((_, index) => (
@@ -90,25 +34,31 @@ const VideoPlaylist = () => {
                 <div className="h-4 bg-gray-400 rounded mt-2 w-5/6"></div>
               </div>
             ))
-          ) : filteredVideos.length > 0 ? (
-            filteredVideos.map((video) => (
-              <div
-                key={video._id}
-                className="bg-green-50 shadow-md border border-green-300 rounded-lg p-4 transition hover:shadow-lg"
-              >
-                <iframe
-                  className="w-full h-56 rounded-lg"
-                  src={video.url}
-                  title={video.title}
-                  allowFullScreen
-                ></iframe>
-                <h3 className="text-xl font-semibold mt-3 text-green-800">{video.title}</h3>
-                <p className="text-gray-600">{video.description}</p>
-              </div>
-            ))
-          ) : (
-            <p className="text-center text-gray-600 col-span-3">No videos found.</p>
-          )}
+          ) : videos.slice(0, 6).map((video) => (
+            <div
+              key={video._id}
+              className="w-full bg-green-50 p-5 relative overflow-hidden group cursor-pointer rounded-md before:bg-green-800 before:w-[38px] before:h-[38px] before:absolute before:top-0 before:right-0 before:rounded-bl-[29px] before:z-[-1] hover:before:scale-[38] before:transition-all before:ease-out before:duration-[300ms] z-[0]"
+            >
+              <iframe
+                className="w-full h-56 rounded-lg"
+                src={video.url}
+                title={video.title}
+                allowFullScreen
+              ></iframe>
+              <h3 className="pt-3 text-green-600 text-xl font-bold transition-all duration-500 group-hover:text-white ease-out text-left">{video.title}</h3>
+              <p className="text-sm text-gray-500 transition-all ease-out duration-500 mt-1 group-hover:text-white text-left">{video.description}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* See All Videos Button */}
+        <div className="text-center mt-16">
+          <button
+            onClick={() => navigate("/all-videos")}
+            className="btn border-none shadow-none bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 transition"
+          >
+            See All Videos
+          </button>
         </div>
       </div>
     </div>
@@ -116,3 +66,85 @@ const VideoPlaylist = () => {
 };
 
 export default VideoPlaylist;
+
+
+
+// import { useEffect, useState } from "react";
+
+// const VideoPlaylist = () => {
+//   const [videos, setVideos] = useState([]);
+//   const [filteredVideos, setFilteredVideos] = useState([]);
+//   const [categories, setCategories] = useState([]);
+//   const [activeCategory, setActiveCategory] = useState("All");
+
+//   useEffect(() => {
+//     fetch("http://localhost:5000/videos")
+//       .then((res) => res.json())
+//       .then((data) => {
+//         setVideos(data);
+//         setFilteredVideos(data);
+
+//         // Extract unique categories from videos
+//         const uniqueCategories = ["All", ...new Set(data.map((video) => video.category))];
+//         setCategories(uniqueCategories);
+//       });
+//   }, []);
+
+//   // Filter videos based on selected category
+//   const filterVideos = (category) => {
+//     setActiveCategory(category);
+//     if (category === "All") {
+//       setFilteredVideos(videos);
+//     } else {
+//       setFilteredVideos(videos.filter((video) => video.category === category));
+//     }
+//   };
+
+//   return (
+//     <div className="w-full min-h-screen py-10">
+//       <div className="w-11/12 mx-auto">
+//         <h2 className="text-3xl font-bold text-green-700 text-center pb-6">
+//           Farming Video Tutorials 🎥
+//         </h2>
+
+//         {/* Category Buttons */}
+//         <div className="flex flex-wrap justify-center gap-3 mb-6">
+//           {categories.map((category) => (
+//             <button
+//               key={category}
+//               onClick={() => filterVideos(category)}
+//               className={`px-4 py-2 rounded-lg font-semibold transition ${
+//                 activeCategory === category
+//                   ? "bg-green-600 text-white"
+//                   : "bg-gray-200 hover:bg-green-500 hover:text-white"
+//               }`}
+//             >
+//               {category}
+//             </button>
+//           ))}
+//         </div>
+
+//         {/* Video Grid */}
+//         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
+//           {filteredVideos.map((video) => (
+//             <div
+//               key={video._id}
+//               className="bg-green-50 shadow-md border border-green-300 rounded-lg p-4 transition hover:shadow-lg"
+//             >
+//               <iframe
+//                 className="w-full h-56 rounded-lg"
+//                 src={video.url}
+//                 title={video.title}
+//                 allowFullScreen
+//               ></iframe>
+//               <h3 className="text-xl font-semibold mt-3 text-green-800">{video.title}</h3>
+//               <p className="text-gray-600">{video.description}</p>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default VideoPlaylist;

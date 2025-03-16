@@ -5,33 +5,38 @@ import Home from "../pages/Home/Home/Home";
 import AboutUs from "../pages/Home/Home/AboutUs";
 import SignUp from "../pages/Authentication/SignUp/SignUp";
 import SignIn from "../pages/Authentication/SignIn/SignIn";
+import AllVideos from "../pages/Tutorial/AllVideos";
 
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <MainLayout/>,
-      errorElement: <NotFound/>,
-      children: [
-        {
-            path: "/",
-            element: <Home/>
-        },
-        {
-            path: "/aboutus",
-            element: <AboutUs/>
-        },
-        {
-          path: "/signup",
-          element: <SignUp/>
-        },
-        {
-          path: "/signin",
-          element: <SignIn/>
-        }
-     
+  {
+    path: "/",
+    element: <MainLayout />,
+    errorElement: <NotFound />,
+    children: [
+      {
+        path: "/",
+        element: <Home />
+      },
+      {
+        path: "/aboutus",
+        element: <AboutUs />
+      },
+      {
+        path: "/signup",
+        element: <SignUp />
+      },
+      {
+        path: "/signin",
+        element: <SignIn />
+      },
+      {
+        path: "/all-videos",
+        element: <AllVideos></AllVideos>
+      },
 
-      ]
-    },
-  ]);
 
-  export default router;
+    ]
+  },
+]);
+
+export default router;
