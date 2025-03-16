@@ -1,48 +1,79 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { FaBars, FaTimes, FaLeaf } from "react-icons/fa";
+import { useState, useContext } from "react";
+import { NavLink } from "react-router-dom";
+import { FaBars, FaTimes, FaLeaf, FaHome, FaStore, FaUsers, FaInfoCircle, FaCalendarAlt } from "react-icons/fa";
+
+import { FaSun, FaMoon } from "react-icons/fa";
+import { ThemeContext } from "../../context/ThemeProvider";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <nav className="sticky w-full top-0 left-0 z-50 p-4 shadow-lg bg-green-900 text-white transition-all duration-300">
+    <nav className={`sticky top-0 left-0 w-full z-50 p-4 shadow-lg transition-all duration-300 ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-green-900 text-white'}`}>
       <div className="container mx-auto flex justify-between items-center px-4 md:px-8">
-        <Link to="/" className="text-2xl font-bold tracking-wide flex items-center gap-2">
-          <FaLeaf className="text-green-600" size={28} /> AgroSphere
-        </Link>
-        
-     
-        <ul className="hidden md:flex gap-6 text-lg">
-          <li><Link to="/dashboard" className="hover:text-green-700">Dashboard</Link></li>
-          <li><Link to="/market" className="hover:text-green-700">Market</Link></li>
-          <li><Link to="/community" className="hover:text-green-700">Community</Link></li>
-          <li><Link to="/aboutus" className="hover:text-green-700">About Us</Link></li>
-          <li><Link to="/events" className="hover:text-green-700">Events</Link></li>
+        <NavLink to="/" className="text-2xl font-bold tracking-wide flex items-center gap-2">
+          <FaLeaf className="text-green-500" size={28} /> AgroSphere
+        </NavLink>
+
+        {/* Desktop Navigation */}
+        <ul className="hidden lg:flex gap-6 text-lg items-center">
+          <li><NavLink to="/dashboard" className="hover:text-green-400 flex items-center gap-2"><FaHome /> Dashboard</NavLink></li>
+          <li><NavLink to="/market" className="hover:text-green-400 flex items-center gap-2"><FaStore /> Market</NavLink></li>
+          <li><NavLink to="/community" className="hover:text-green-400 flex items-center gap-2"><FaUsers /> Community</NavLink></li>
+          <li><NavLink to="/aboutus" className="hover:text-green-400 flex items-center gap-2"><FaInfoCircle /> About Us</NavLink></li>
+          <li><NavLink to="/events" className="hover:text-green-400 flex items-center gap-2"><FaCalendarAlt /> Events</NavLink></li>
         </ul>
-        
-     
-        <div className="hidden md:flex gap-4">
-          <Link to="/signin" className="px-4 py-2 border border-green-600 text-green-600 rounded-full hover:bg-green-600 hover:text-white transition">Sign In</Link>
-          <Link to="/signup" className="px-4 py-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition">Sign Up</Link>
+
+        {/* Right-side: Theme Toggle + Buttons */}
+        <div className="hidden lg:flex items-center gap-4">
+          {/* Dark Mode Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full border-2 border-gray-300 focus:outline-none focus:ring-2 transition-transform duration-300 transform hover:scale-110 shadow-md"
+            aria-label="Toggle Theme"
+          >
+            {theme === 'dark' ? (
+              <FaSun className="text-yellow-500 w-6 h-6 transition-transform duration-500 rotate-180" />
+            ) : (
+              <FaMoon className="text-gray-700 w-6 h-6 transition-transform duration-500 rotate-180" />
+            )}
+          </button>
+
+          <NavLink to="/signin" className="px-4 py-2 border border-green-400 text-green-400 rounded-full hover:bg-green-500 hover:text-white transition">
+            Sign In
+          </NavLink>
+          <NavLink to="/signup" className="px-4 py-2 bg-green-500 text-white rounded-full hover:bg-green-600 transition">
+            Sign Up
+          </NavLink>
         </div>
 
-
-        <div className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+        {/* Mobile Menu Toggle */}
+        <div className="lg:hidden" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </div>
       </div>
 
-     
+      {/* Mobile Menu */}
       {isOpen && (
-        <ul className="md:hidden absolute left-0 top-16 w-full bg-green-800 text-white flex flex-col items-center space-y-4 py-4 transition-all duration-300 overflow-hidden">
-          <li><Link to="/dashboard" onClick={() => setIsOpen(false)}>Dashboard</Link></li>
-          <li><Link to="/market" onClick={() => setIsOpen(false)}>Market</Link></li>
-          <li><Link to="/community" onClick={() => setIsOpen(false)}>Community</Link></li>
-          <li><Link to="/learning" onClick={() => setIsOpen(false)}>Learning</Link></li>
-          <li><Link to="/events" onClick={() => setIsOpen(false)}>Events</Link></li>
-          <Link to="/signin" className="px-4 py-2 border border-white rounded-full hover:bg-white hover:text-green-900 transition" onClick={() => setIsOpen(false)}>Sign In</Link>
-          <Link to="/signup" className="px-4 py-2 bg-white text-green-900 rounded-full hover:bg-green-700 hover:text-white transition" onClick={() => setIsOpen(false)}>Sign Up</Link>
+        <ul className={`lg:hidden absolute left-0 top-16 w-full ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-green-800 text-white'} flex flex-col items-center space-y-4 py-4 transition-all duration-300`}>
+          <li><NavLink to="/dashboard" className="flex items-center gap-2" onClick={() => setIsOpen(false)}><FaHome /> Dashboard</NavLink></li>
+          <li><NavLink to="/market" className="flex items-center gap-2" onClick={() => setIsOpen(false)}><FaStore /> Market</NavLink></li>
+          <li><NavLink to="/community" className="flex items-center gap-2" onClick={() => setIsOpen(false)}><FaUsers /> Community</NavLink></li>
+          <li><NavLink to="/aboutus" className="flex items-center gap-2" onClick={() => setIsOpen(false)}><FaInfoCircle /> About Us</NavLink></li>
+          <li><NavLink to="/events" className="flex items-center gap-2" onClick={() => setIsOpen(false)}><FaCalendarAlt /> Events</NavLink></li>
+
+          {/* Dark Mode Toggle for Mobile */}
+          <button onClick={toggleTheme} className="p-2 rounded-full border border-white">
+            {theme === 'dark' ? <FaSun className="text-yellow-500 w-6 h-6" /> : <FaMoon className="text-gray-700 w-6 h-6" />}
+          </button>
+
+          <NavLink to="/signin" className="px-4 py-2 border border-white rounded-full hover:bg-white hover:text-green-900 transition" onClick={() => setIsOpen(false)}>
+            Sign In
+          </NavLink>
+          <NavLink to="/signup" className="px-4 py-2 bg-white text-green-900 rounded-full hover:bg-green-700 hover:text-white transition" onClick={() => setIsOpen(false)}>
+            Sign Up
+          </NavLink>
         </ul>
       )}
     </nav>

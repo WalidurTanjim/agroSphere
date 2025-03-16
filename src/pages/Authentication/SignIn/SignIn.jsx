@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { AiOutlineLoading3Quarters, AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { FaGoogle, FaFacebookF, FaLeaf } from "react-icons/fa";
+import { FaGoogle, FaLeaf } from "react-icons/fa";
 import Lottie from "lottie-react";
 import animationData from "../../../assets/SignIn/SignUp_Json/Login.json";
 import { Link } from "react-router-dom";
@@ -81,7 +81,7 @@ const SignIn = () => {
             >
               {loading ? <AiOutlineLoading3Quarters className="animate-spin" /> : "Sign In"}
             </button>
-            <p className="text-sm pt-4">New Here? <Link to={"/signin"} className="text-blue-600 font-medium">Create An Account</Link></p>
+            <p className="text-sm pt-4">New Here? <Link to={"/signup"} className="text-blue-600 font-medium">Create An Account</Link></p>
                 <div className="divider">or</div>
             <div className="flex flex-col gap-2 mt-4">
               <SocialLogin />

@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaFacebook, FaGoogle, } from 'react-icons/fa';
+import { AuthContext } from '../context/AuthProvider';
+
+
 const SocialLogin = () => {
 
+    const { signInWithGoogle} = useContext(AuthContext);
+
     const handleGoogleSignin =async () => {
-       console.log('google sign')
+       signInWithGoogle()
+       .then((result) => {
+      
+        const userInfo = {
+            email: result.user.email,
+            name: result.user.displayName,
+        }})
+       
     }
     
-    const handleFacebookSignin = () => {
-        console.log("Facebook sign")
-    }
+   
     
   
     return (
@@ -17,9 +27,7 @@ const SocialLogin = () => {
                  <button onClick={handleGoogleSignin} type="button" className="w-full bg-red-600 text-white py-2 rounded-lg flex justify-center items-center gap-2">
                      <FaGoogle /> Sign up with Google
                   </button>
-                  <button onClick={handleFacebookSignin} type="button" className="w-full bg-blue-600 text-white py-2 rounded-lg flex justify-center items-center gap-2"                                        >
-                      <FaFacebook /> Sign up with Facebook
-                  </button>
+                
              </div>
         </div>
     );
