@@ -18,6 +18,7 @@
     "localforage": "^1.10.0",
     "lottie-react": "^2.4.1",
     "match-sorter": "^8.0.0",
+    "prettier": "3.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",
