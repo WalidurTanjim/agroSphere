@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 import toast from "react-hot-toast";
-import SocialLogin from "../../../Components/SocileLogin";
+import SocialLogin from "../../../Components/SocialLogin";
 
 const SignIn = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();

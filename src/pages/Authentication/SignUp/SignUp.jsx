@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 import toast from "react-hot-toast";
-import SocialLogin from "../../../Components/SocileLogin";
+import SocialLogin from "../../../Components/SocialLogin";
 import { AuthContext } from "../../../context/AuthProvider";
 
 const SignUp = () => {
