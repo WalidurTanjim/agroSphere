@@ -4,11 +4,21 @@ import { FaBars, FaTimes, FaLeaf, FaHome, FaStore, FaUsers, FaInfoCircle, FaCale
 
 import { FaSun, FaMoon } from "react-icons/fa";
 import { ThemeContext } from "../../context/ThemeProvider";
+import useAuth from "../../Hooks/useAuth";
+import { IoIosLogOut } from "react-icons/io";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, toggleTheme } = useContext(ThemeContext);
-
+  const {user, logOut} = useAuth()
+  const handleLogOut = () => {
+    logOut()
+    .then(res=>{
+      toast.success("User logged out successfully")
+    })
+  }
+// console.log(user)
   return (
     <nav className={`sticky top-0 left-0 w-full z-50 p-4 shadow-lg transition-all duration-300 ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-green-900 text-white'}`}>
       <div className="container mx-auto flex justify-between items-center px-4 md:px-8">
@@ -40,12 +50,17 @@ const Navbar = () => {
             )}
           </button>
 
-          <NavLink to="/signin" className="px-4 py-2 border border-green-400 text-green-400 rounded-full hover:bg-green-500 hover:text-white transition">
+          {user ? <>
+          <button onClick={handleLogOut} className="flex justify-center items-center cursor-pointer"><IoIosLogOut className="mr-3"/> LogOut</button>
+          <img referrerPolicy="no-referrer" src={user.photoURL} alt="User Photo" className="rounded-full w-10"/>
+          </> : <>
+            <NavLink to="/signin" className="px-4 py-2 border border-green-400 text-green-400 rounded-full hover:bg-green-500 hover:text-white transition">
             Sign In
           </NavLink>
           <NavLink to="/signup" className="px-4 py-2 bg-green-500 text-white rounded-full hover:bg-green-600 transition">
             Sign Up
           </NavLink>
+          </>}
         </div>
 
         {/* Mobile Menu Toggle */}
