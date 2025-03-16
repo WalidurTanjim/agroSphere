@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaLeaf } from "react-icons/fa";
 
@@ -18,10 +18,10 @@ const NewsLatter = () => {
                 transition={{ duration: 1 }}
                 className="max-w-4xl w-full"
             >
-                <h1 className="text-4xl md:text-5xl font-bold mb-4 text-green-800 flex items-center justify-center py-2 gap-3 flex-wrap">
+                <h1 className="text-4xl md:text-5xl font-bold mb-4 flex items-center justify-center py-2 gap-3 flex-wrap text-green-800 dark:text-green-300">
                     <FaLeaf className="shrink-0" /> Smart E-Farming
                 </h1>
-                <p className="text-gray-700 text-lg md:text-xl mt-4 w-full px-4">
+                <p className="text-gray-700 dark:text-gray-300 text-lg md:text-xl mt-4 w-full px-4">
                     Subscribe to our newsletter and get the latest updates on smart e-farming innovations.
                 </p>
             </motion.div>
@@ -38,11 +38,15 @@ const NewsLatter = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Enter your email"
-                        className="w-full px-5 py-3 border border-green-400 rounded-xl text-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+                        className="w-full px-5 py-3 border border-green-400 rounded-xl text-lg 
+                        focus:outline-none focus:ring-2 focus:ring-green-600 dark:border-green-500 
+                        dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 transition-all duration-300"
                     />
                     <button
                         onClick={handleSubscribe}
-                        className="bg-green-600 text-white px-6 py-3 rounded-xl text-lg hover:bg-green-700 transition-all w-full md:w-auto"
+                        className="bg-green-600 text-white px-6 py-3 rounded-xl text-lg 
+                        hover:bg-green-700 transition-all w-full md:w-auto dark:bg-green-500 
+                        dark:hover:bg-green-600"
                     >
                         Subscribe
                     </button>

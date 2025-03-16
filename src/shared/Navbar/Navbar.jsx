@@ -32,7 +32,7 @@ const Navbar = () => {
           <li><NavLink to="/market" className="hover:text-green-400 flex items-center gap-2"><FaStore /> Market</NavLink></li>
           <li><NavLink to="/community" className="hover:text-green-400 flex items-center gap-2"><FaUsers /> Community</NavLink></li>
           <li><NavLink to="/aboutus" className="hover:text-green-400 flex items-center gap-2"><FaInfoCircle /> About Us</NavLink></li>
-          <li><NavLink to="/events" className="hover:text-green-400 flex items-center gap-2"><FaCalendarAlt /> Events</NavLink></li>
+          <li><NavLink to="/forum" className="hover:text-green-400 flex items-center gap-2"><FaCalendarAlt /> Events</NavLink></li>
         </ul>
 
 
