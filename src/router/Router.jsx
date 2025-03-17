@@ -8,6 +8,7 @@ import SignIn from "../pages/Authentication/SignIn/SignIn";
 import AddForum from "../DashBoard/Forum/AddForum";
 import Community from "../pages/Community/Community";
 import AllVideos from "../pages/Tutorial/AllVideos";
+import Events from "../pages/Home/Events";
 
 const router = createBrowserRouter([
   {
@@ -43,8 +44,10 @@ const router = createBrowserRouter([
         path: "/all-videos",
         element: <AllVideos></AllVideos>
       },
-
-
+      {
+        path: '/events',
+        element: <Events />
+      }
 
     ]
   },

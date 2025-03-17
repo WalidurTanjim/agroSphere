@@ -4,6 +4,7 @@ import NewsLatter from './NewsLatter';
 import VideoPlaylist from '../../../Components/VideoPlaylist';
 import Trainers from './Trainers/Trainers';
 import AICropAdvisory from '../../../AI Intrigate/AICropAdvisory';
+import LatestForum from './LatestForum';
 
 
 const Home = () => {
@@ -11,7 +12,7 @@ const Home = () => {
         <div>
             <Banner></Banner>
             <VideoPlaylist></VideoPlaylist>
-            <Trainers />
+            <LatestForum></LatestForum>
             <NewsLatter></NewsLatter>
             <AICropAdvisory></AICropAdvisory>
         </div>
