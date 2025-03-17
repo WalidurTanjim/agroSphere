@@ -9,7 +9,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import SocialLogin from "../../../Components/SocialLogin";
-import useAuth from "../../../Hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const SignIn = () => {
