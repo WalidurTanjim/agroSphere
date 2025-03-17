@@ -53,7 +53,7 @@ const SignUp = () => {
         );
 
         const photo = imgbbResponse.data.data.display_url;
-        // console.log("Photo uploaded to ImgBB:", photo);
+        console.log("Photo uploaded to ImgBB:", photo);
 
         if (!imgbbResponse.data.success) {
           throw new Error("Failed to upload image to ImgBB");
@@ -93,7 +93,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-8 justify-center items-center min-h-screen overflow-x-hidden bg-green-100 p-4 pb-16 ">
+    <div className="flex flex-col md:flex-row gap-8 justify-center items-center min-h-screen overflow-x-hidden bg-green-100 p-4 py-16 ">
       <div className="flex-1">
         <Lottie animationData={animationData} loop={true} className="px-4" />
       </div>
