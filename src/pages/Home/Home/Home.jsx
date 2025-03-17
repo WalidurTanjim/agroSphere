@@ -13,7 +13,6 @@ const Home = () => {
             <VideoPlaylist></VideoPlaylist>
             <LatestForum></LatestForum>
             <NewsLatter></NewsLatter>
-          <AICropAdvisory></AICropAdvisory>
         </div>
     );
 };

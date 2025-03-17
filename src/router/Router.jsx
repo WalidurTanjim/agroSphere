@@ -7,41 +7,47 @@ import SignUp from "../pages/Authentication/SignUp/SignUp";
 import SignIn from "../pages/Authentication/SignIn/SignIn";
 import AddForum from "../DashBoard/Forum/AddForum";
 import Community from "../pages/Community/Community";
+import AllVideos from "../pages/Tutorial/AllVideos";
 
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <MainLayout/>,
-      errorElement: <NotFound/>,
-      children: [
-        {
-            path: "/",
-            element: <Home/>
-        },
-        {
-            path: "/aboutus",
-            element: <AboutUs/>
-        },
-        {
-          path: "/signup",
-          element: <SignUp/>
-        },
-        {
-          path: "/signin",
-          element: <SignIn/>
-        },
-        {
-          path:"/forum",
-          element: <AddForum></AddForum>
-        },
-        {
-          path:"/community",
-          element: <Community>co</Community>
-        }
-     
+  {
+    path: "/",
+    element: <MainLayout />,
+    errorElement: <NotFound />,
+    children: [
+      {
+        path: "/",
+        element: <Home />
+      },
+      {
+        path: "/aboutus",
+        element: <AboutUs />
+      },
+      {
+        path: "/signup",
+        element: <SignUp />
+      },
+      {
+        path: "/signin",
+        element: <SignIn />
+      },
+      {
+        path: "/forum",
+        element: <AddForum></AddForum>
+      },
+      {
+        path: "/community",
+        element: <Community>co</Community>
+      },
+      {
+        path: "/all-videos",
+        element: <AllVideos></AllVideos>
+      },
 
-      ]
-    },
-  ]);
 
-  export default router;
+
+    ]
+  },
+]);
+
+export default router;

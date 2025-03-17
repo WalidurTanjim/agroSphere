@@ -10,12 +10,14 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import SocialLogin from "../../../Components/SocialLogin";
 import { AuthContext } from "../../../context/AuthProvider";
+import { ThemeContext } from "../../../context/ThemeProvider";
 
 const SignUp = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const {updateUserProfile, createUser} = useContext(AuthContext)
+  const {theme} = useContext(ThemeContext)
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -52,7 +54,7 @@ const SignUp = () => {
         );
 
         const photo = imgbbResponse.data.data.display_url;
-        // console.log("Photo uploaded to ImgBB:", photo);
+        console.log("Photo uploaded to ImgBB:", photo);
 
         if (!imgbbResponse.data.success) {
           throw new Error("Failed to upload image to ImgBB");
@@ -105,14 +107,14 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-8 justify-center items-center min-h-screen overflow-x-hidden bg-green-100 p-4 py-10 ">
+    <div className={`flex flex-col md:flex-row gap-8 justify-center items-center min-h-screen overflow-x-hidden ${theme == "light" ? "bg-green-100" : "bg-gray-800"}  p-4 py-16`}>
       <div className="flex-1">
         <Lottie animationData={animationData} loop={true} className="px-4" />
       </div>
       <div className="flex justify-center items-center flex-1">
         <form 
           onSubmit={handleSubmit(onSubmit)} 
-          className="backdrop-blur-3xl  rounded-lg p-6 w-full max-w-lg shadow-2xl"
+          className="backdrop-blur-3xl bg-slate-100  rounded-lg p-6 w-full max-w-lg shadow-2xl"
         >
           <h2 className="text-3xl font-bold text-center mb-6">Sign Up</h2>
           <p className="text-base md:text-xl font-bold tracking-wide flex items-center justify-center py-2 md:py-4 ">
@@ -134,6 +136,7 @@ const SignUp = () => {
               className="w-full p-2 border rounded-lg mb-2" 
               placeholder="you@example.com"
             />
+
             {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
             {/* Password */}
             <label className="block text-sm">Password</label>
