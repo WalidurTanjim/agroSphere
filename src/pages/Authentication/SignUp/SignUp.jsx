@@ -114,7 +114,7 @@ const SignUp = () => {
       <div className="flex justify-center items-center flex-1">
         <form 
           onSubmit={handleSubmit(onSubmit)} 
-          className="backdrop-blur-3xl bg-slate-100  rounded-lg p-6 w-full max-w-lg shadow-2xl"
+          className="backdrop-blur-3xl bg-green-100  rounded-lg p-6 w-full max-w-lg shadow-2xl"
         >
           <h2 className="text-3xl font-bold text-center mb-6">Sign Up</h2>
           <p className="text-base md:text-xl font-bold tracking-wide flex items-center justify-center py-2 md:py-4 ">
