@@ -5,7 +5,7 @@ import { FaThumbsUp, FaThumbsDown, FaStar } from "react-icons/fa";
 const Community = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 6; // Updated to 6 posts per page
+  const postsPerPage = 8;
 
   useEffect(() => {
     fetch("http://localhost:5000/forum")
@@ -15,7 +15,6 @@ const Community = () => {
 
   const handleVote = async (id, type) => {
     const endpoint = type === "upvote" ? "upvote" : "downvote";
-
     const response = await fetch(`http://localhost:5000/forum/${endpoint}/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -36,7 +35,6 @@ const Community = () => {
     }
   };
 
-  // Pagination Logic
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
@@ -50,48 +48,50 @@ const Community = () => {
   };
 
   return (
-    <section className="max-w-6xl mx-auto p-6">
+    <section className="max-w-6xl mx-auto p-6 bg-green-50 dark:bg-gray-900 rounded-lg shadow-lg">
       <motion.h2
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-4xl font-bold text-center text-green-700 mb-8"
+        className="text-4xl font-extrabold text-center text-green-700 dark:text-green-300 mb-8"
       >
         Community Discussions
       </motion.h2>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {currentPosts.map((post) => (
           <motion.div
             key={post._id}
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="bg-green-100 dark:bg-gray-900 shadow-lg rounded-xl p-6 overflow-hidden transition-all duration-300"
+            className="bg-white dark:bg-gray-800 shadow-md rounded-xl p-5 transform hover:scale-105 transition-all"
           >
-            <h3 className="text-xl font-semibold text-green-800 dark:text-green-300 mb-2">{post.topic}</h3>
-            
-            <p className="text-gray-800 dark:text-gray-300 text-md">{post.review}</p>
-            
-            <div className="flex items-center mt-3">
+            <img
+              src={post.photoURL || "https://via.placeholder.com/150"}
+              alt="User"
+              className="w-full h-40 object-cover rounded-md shadow-sm border-2 border-green-500"
+            />
+            <p className="text-gray-600 dark:text-gray-400 text-sm mt-2 font-semibold">{post.name}</p>
+            <h3 className="text-lg font-semibold text-green-800 dark:text-green-300 mt-2">{post.topic}</h3>
+            <p className="text-gray-700 dark:text-gray-400 text-sm mt-1">
+              {post.review.split(" ").slice(0, 20).join(" ")} {post.review.split(" ").length > 20 ? "..." : ""}
+            </p>
+            <div className="flex justify-center items-center mt-2">
               {[...Array(post.rating)].map((_, i) => (
-                <FaStar key={i} className="text-yellow-500 text-lg" />
+                <FaStar key={i} className="text-yellow-500 text-sm" />
               ))}
             </div>
-            
-            <p className="text-gray-600 dark:text-gray-400 text-sm mt-3">By: {post.name}</p>
-            
-            <div className="flex items-center gap-4 mt-4">
+            <div className="flex items-center justify-between mt-4">
               <button
                 onClick={() => handleVote(post._id, "upvote")}
-                className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-all"
+                className="flex items-center gap-2 bg-green-600 text-white px-3 py-1 rounded-lg hover:bg-green-700 transition-all"
               >
                 <FaThumbsUp /> {post.upVote || 0}
               </button>
-              
               <button
                 onClick={() => handleVote(post._id, "downvote")}
-                className="flex items-center gap-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-all"
+                className="flex items-center gap-2 bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition-all"
               >
                 <FaThumbsDown /> {post.downVote || 0}
               </button>
@@ -100,7 +100,6 @@ const Community = () => {
         ))}
       </div>
 
-      {/* Pagination - Visible only if posts > 6 */}
       {posts.length > postsPerPage && (
         <div className="flex justify-center gap-4 mt-8">
           <button
@@ -112,7 +111,6 @@ const Community = () => {
           >
             Previous
           </button>
-
           <button
             onClick={nextPage}
             disabled={indexOfLastPost >= posts.length}

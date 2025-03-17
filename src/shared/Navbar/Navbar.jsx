@@ -24,7 +24,7 @@ const Navbar = () => {
     { to: "/market", label: "Market", icon: <FaStore /> },
     { to: "/community", label: "Community", icon: <FaUsers /> },
     { to: "/aboutus", label: "About Us", icon: <FaInfoCircle /> },
-    { to: "/events", label: "Events", icon: <FaCalendarAlt /> },
+    { to: "/forum", label: "Events", icon: <FaCalendarAlt /> },
   ];
 
   return (
