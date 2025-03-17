@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import useAuth from "./useAuth";
+import useAuth from "./useAuth"
 
 const axiosSecure = axios.create({
-    baseURL: 'https://assignment-12-server-ten-kohl.vercel.app',
+    baseURL: 'http://localhost:5000',
     withCredentials: true,
 })
 const useAxiosSecure = () => {
