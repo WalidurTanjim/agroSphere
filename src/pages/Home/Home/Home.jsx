@@ -5,6 +5,7 @@ import VideoPlaylist from '../../../Components/VideoPlaylist';
 import Trainers from './Trainers/Trainers';
 import AICropAdvisory from '../../../AI Intrigate/AICropAdvisory';
 import LatestForum from './LatestForum';
+import SuccessStory from '../../../Components/SuccessStory/SuccessStory';
 
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
             <LatestForum></LatestForum>
             <NewsLatter></NewsLatter>
             <AICropAdvisory></AICropAdvisory>
+            <SuccessStory></SuccessStory>
         </div>
     );
 };
