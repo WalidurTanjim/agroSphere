@@ -1,6 +1,6 @@
 
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AiOutlineLoading3Quarters, AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FaGoogle, FaLeaf } from "react-icons/fa";
 import Lottie from "lottie-react";
@@ -9,8 +9,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import SocialLogin from "../../../Components/SocialLogin";
-import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import useAuth from "../../../Hooks/useAuth";
+import { ThemeContext } from "../../../context/ThemeProvider";
 
 const SignIn = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -21,6 +22,7 @@ const SignIn = () => {
   const { signIn, logOut } = useAuth();
   const axiosPublic = useAxiosPublic()
   const from = location?.state || "/";
+  const {theme} = useContext(ThemeContext)
 
   const onSubmit = async (data) => {
     setLoading(true)
@@ -59,54 +61,16 @@ const SignIn = () => {
   };
 
 
-// const onSubmit = async (data) => {
-//     setLoading(true);
-//     console.log(data)
-//     const { email, password } = data;
-//     try {
-//         await signIn(email, password);
 
-//         // Get JWT and set cookie
-//         const res = await axiosPublic.post(
-//           `/jwt`,
-//           { email },
-//           { withCredentials: true }
-//         );
-//         Swal.fire({
-//           icon: "success",
-//           title: "Login Successful",
-//           timer: 1500,
-//           showConfirmButton: false
-//         });
-
-//         console.log(res?.data?.token);
-//         // if (res.data?.token) {
-//         //   Swal.fire({
-//         //     icon: "success",
-//         //     title: "Login Successful",
-//         //     timer: 1500,
-//         //     showConfirmButton: false
-//         //   });
-//         //   navigate(from);
-//         // } else {
-//         //   toast.error("Invalid credentials");
-//         // }
-//     } catch (error) {
-//         console.error("Sign in error:", error);
-//         toast.error(error.message || "Sign in failed. Please check your credentials.");
-//     } finally {
-//         setLoading(false);
-//     }
-// };
   return (
-    <div className="flex flex-col md:flex-row-reverse gap-8 justify-center items-center min-h-[calc(100vh-200px)] overflow-x-hidden bg-green-100 p-4 py-10 ">
+    <div className={`flex flex-col md:flex-row-reverse gap-8 justify-center items-center min-h-[calc(100vh-200px)] overflow-x-hidden ${theme == "light" ? "bg-green-100" : "bg-gray-800"} p-4 py-10 `}>
       <div className="flex-1">
         <Lottie animationData={animationData} loop={true} className="px-4" />
       </div>
       <div className="flex justify-center items-center flex-1">
         <form 
           onSubmit={handleSubmit(onSubmit)} 
-          className="backdrop-blur-3xl  rounded-lg p-6 w-full max-w-lg shadow-2xl"
+          className="backdrop-blur-3xl bg-green-100  rounded-lg p-6 w-full max-w-lg shadow-2xl"
         >
           <h2 className="text-3xl font-bold text-center mb-6">Sign In</h2>
           <p className="text-base md:text-xl font-bold tracking-wide flex items-center justify-center py-2 md:py-4 ">
