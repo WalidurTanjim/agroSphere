@@ -50,7 +50,7 @@ const router = createBrowserRouter([
         element: <Events />
       },
       {
-        path: '/trainer_profile',
+        path: '/trainer_profile/:id',
         element: <TrainerProfile />
       }
 
