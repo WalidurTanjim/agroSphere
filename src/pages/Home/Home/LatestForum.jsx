@@ -13,14 +13,14 @@ const LatestForum = () => {
   }, []);
 
   return (
-    <section className="max-w-full mx-auto p-6 bg-green-100 dark:bg-gray-900 rounded-lg shadow-lg">
+    <section className="max-w-full mx-auto p-6  ">
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="text-5xl font-extrabold text-center py-4 text-green-700 dark:text-green-300 mb-10"
       >
-       <h1 className="text-4xl md:text-5xl font-bold mb-4 flex items-center justify-center py-2 gap-3 flex-wrap text-green-800 dark:text-green-300">
+       <h1 className="text-4xl md:text-5xl font-bold mb-4 flex items-center  justify-center py-2 gap-3 flex-wrap text-green-800 dark:text-green-300">
                     <FaLeaf className="shrink-0" /> Latest Discussions
                 </h1>
       </motion.h2>
@@ -32,12 +32,12 @@ const LatestForum = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="bg-white dark:bg-gray-800 shadow-md rounded-xl p-5 transform hover:scale-105 transition-all"
+            className="bg-green-100 dark:bg-gray-800 shadow-md rounded-xl p-5 transform hover:scale-105 transition-all"
           >
             <img
               src={post.photoURL || "https://via.placeholder.com/150"}
               alt="User"
-              className="w-full h-40 object-cover rounded-md shadow-sm border-2 border-green-500"
+              className="w-full h-40 object-cover rounded-sm shadow-sm border-2 border-green-500"
             />
             <h3 className="text-lg font-semibold text-green-800 dark:text-green-300 mt-3">
               {post.topic}
@@ -58,7 +58,7 @@ const LatestForum = () => {
       <div className="flex justify-center mt-8">
         <NavLink
           to="community"
-          className="px-6 py-3 text-white bg-green-600 hover:bg-green-700 rounded-full text-lg font-semibold shadow-md transition-all"
+          className="px-6 py-2 text-white bg-green-600 hover:bg-green-700 rounded-lg text-lg font-semibold shadow-md transition-all"
         >
           See More
         </NavLink>
