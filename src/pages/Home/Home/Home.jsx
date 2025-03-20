@@ -6,6 +6,7 @@ import Trainers from './Trainers/Trainers';
 import AICropAdvisory from '../../../AI Intrigate/AICropAdvisory';
 import LatestForum from './LatestForum';
 import SuccessStory from '../../../Components/SuccessStory/SuccessStory';
+import FAQSection from '../../../Components/FAQ/FAQSection';
 
 
 const Home = () => {
@@ -14,9 +15,10 @@ const Home = () => {
             <Banner></Banner>
             <VideoPlaylist></VideoPlaylist>
             <LatestForum></LatestForum>
-            <NewsLatter></NewsLatter>
             <AICropAdvisory></AICropAdvisory>
             <SuccessStory></SuccessStory>
+            <FAQSection></FAQSection>
+            <NewsLatter></NewsLatter>
         </div>
     );
 };

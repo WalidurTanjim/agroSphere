@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@custom-variant dark (&:where(.dark, .dark *));
 
 /* don't touch this css code without "Walidur tanjim's" permission (starting code) */
 *{
@@ -26,4 +27,5 @@ h1, h2, h3, h4, h5, h6, p, ul{
 .light{
   background-color: white;
 }
+
 
