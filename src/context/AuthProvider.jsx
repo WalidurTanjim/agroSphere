@@ -10,7 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import auth from "../firebase/firebase.config";
-import useAxiosPublic from "../Hooks/useAxiosPublic";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 import axios from "axios";
 
 export const AuthContext = createContext(null);
