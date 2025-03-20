@@ -34,11 +34,11 @@ const Trainers = () => {
             <div className='all-trainers'>
                 <MapContainer center={[23.8759, 90.3795]} zoom={14} style={{ height: '500px', width: '100%' }} className='rounded-md'>
                     <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                    
+
                     {filteredTrainers.map(trainer => (
                         <Marker key={trainer._id} position={[trainer.latitude, trainer.longitude]}>
                             <Popup>
-                                <Link to="/trainer_profile"><strong className='text-cyan-500 hover:underline font-medium'>{trainer?.trainer?.name}</strong></Link>
+                                <Link to={`/trainer_profile/${trainer._id}`}><strong className='text-cyan-500 hover:underline font-medium'>{trainer?.trainer?.name}</strong></Link>
                                 <br />
                                 <a href={trainer.videoUrl} target="_blank" rel="noopener noreferrer" className='text-sm underline'>Watch Training</a>
                             </Popup>
