@@ -9,6 +9,7 @@ import AddForum from "../DashBoard/Forum/AddForum";
 import Community from "../pages/Community/Community";
 import AllVideos from "../pages/Tutorial/AllVideos";
 import Events from "../pages/Home/Events";
+import TrainerProfile from "../pages/Home/TrainerProfile/TrainerProfile";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: '/events',
         element: <Events />
+      },
+      {
+        path: '/trainer_profile',
+        element: <TrainerProfile />
       }
 
     ]
