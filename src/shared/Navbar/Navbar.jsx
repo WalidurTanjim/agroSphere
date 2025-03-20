@@ -84,7 +84,7 @@ const Navbar = () => {
               </NavLink>
             </li>
           ))}
-          
+
           {user ? (
             <div className="flex flex-col items-center space-y-2">
               <img referrerPolicy="no-referrer" src={user.photoURL} alt="User" className="rounded-full w-12 border border-white" />
