@@ -3,12 +3,13 @@ import React, { useState } from "react"
 import { Link, useRouteError } from "react-router-dom";
 import logo from '../assets/logo.png'
 import useUserRole from "../hooks/useUserRole";
+import useAuth from "../hooks/useAuth";
 
 const DashboardRoutes = () => {
     const [isSideNavOpen, setIsSideNavOpen] = useState(false);
-
+    const { user } = useAuth();
+    console.log(user?.photoURL);
     const { userRole } = useUserRole();
-    console.log(userRole.userRole)
 
     return (
         <>
@@ -23,14 +24,23 @@ const DashboardRoutes = () => {
             </button>
 
             {/*  <!-- Side Navigation --> */}
-            <aside id="nav-menu-2" aria-label="Side navigation" className={`fixed top-0 bottom-0 left-0 z-40 flex w-72 flex-col border-r border-r-slate-200 bg-white transition-transform ${isSideNavOpen ? "translate-x-0" : " -translate-x-full"}`}>
+            <aside id="nav-menu-2" aria-label="Side navigation" className={`fixed top-0 bottom-0 left-0 z-40 flex w-72 flex-col border-r border-r-slate-200 bg-[#222E3C] transition-transform ${isSideNavOpen ? "translate-x-0" : " -translate-x-full"}`}>
                 {/* dashboard routes logo */}
-                <Link to="/" aria-label="WindUI logo" className="flex items-center gap-2 whitespace-nowrap p-6 text-xl font-medium focus:outline-none">
+                <Link to="/" aria-label="WindUI logo" className="flex items-center gap-2 whitespace-nowrap p-6 text-xl text-white font-medium focus:outline-none">
                     <img src={logo} className="w-8 h-8" /> AgroSphere
                 </Link>
 
                 {/* all routes in here */}
-                <nav aria-label="side navigation" className="flex-1 divide-y divide-slate-100 overflow-auto">
+                <nav aria-label="side navigation" className="flex-1 divide-y divide-slate-400 overflow-auto">
+                    {/* user profile */}
+                    <div className="user_profile flex gap-2 px-6 py-3">
+                        <img src={user?.photoURL} className="rounded-md w-[30px] h-[30px]" alt="User Avatar" />
+                        <div className="mb-5">
+                            <h1 className="text-sm font-medium text-white">{user?.displayName}</h1>
+                        </div>
+                    </div>
+
+
                     {/* dashboard routes */}
                     <div>
                         <ul className="flex flex-1 flex-col gap-1 py-3">
@@ -38,7 +48,7 @@ const DashboardRoutes = () => {
                                 userRole.userRole === "admin" ?
                                     <>
                                         <li className="px-3">
-                                            <Link to='/dashboard/admin-dashboard' className="flex items-center gap-3 rounded p-3 text-slate-600 transition-colors hover:bg-gray-100 hover:text-slate-700 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-emerald-500 ">
+                                            <Link to='/dashboard/admin-dashboard' className="flex items-center gap-3 rounded p-3 text-gray-400 transition-colors hover:bg-gray-100  hover:text-gray-600 active:bg-gray-100 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-gray-400">
                                                 <div className="flex items-center self-center"><LayoutDashboard size={20} /></div>
 
                                                 <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">Admin Dashboard</div>
@@ -48,7 +58,7 @@ const DashboardRoutes = () => {
                                     userRole.userRole === "farmer" ?
                                         <>
                                             <li className="px-3">
-                                                <Link to='/dashboard/farmer-dashboard' className="flex items-center gap-3 rounded p-3 text-slate-600 transition-colors hover:bg-gray-100 hover:text-slate-700 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-emerald-500 ">
+                                                <Link to='/dashboard/farmer-dashboard' className="flex items-center gap-3 rounded p-3 text-gray-400 transition-colors hover:bg-gray-100  hover:text-gray-600 active:bg-gray-100 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-gray-400">
                                                     <div className="flex items-center self-center"><LayoutDashboard size={20} /></div>
 
                                                     <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">Farmer Dashboard</div>
@@ -58,7 +68,7 @@ const DashboardRoutes = () => {
                                         userRole.userRole === "seller" ?
                                             <>
                                                 <li className="px-3">
-                                                    <Link to='/dashboard/seller-dashboard' className="flex items-center gap-3 rounded p-3 text-slate-600 transition-colors hover:bg-gray-100 hover:text-slate-700 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-emerald-500 ">
+                                                    <Link to='/dashboard/seller-dashboard' className="flex items-center gap-3 rounded p-3 text-gray-400 transition-colors hover:bg-gray-100  hover:text-gray-600 active:bg-gray-100 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-gray-400">
                                                         <div className="flex items-center self-center"><LayoutDashboard size={20} /></div>
 
                                                         <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">Seller Dashboard</div>
@@ -67,7 +77,7 @@ const DashboardRoutes = () => {
                                             </> :
                                             <>
                                                 <li className="px-3">
-                                                    <Link to='/dashboard/trainer-dashboard' className="flex items-center gap-3 rounded p-3 text-slate-600 transition-colors hover:bg-gray-100 hover:text-slate-700 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-emerald-500 ">
+                                                    <Link to='/dashboard/trainer-dashboard' className="flex items-center gap-3 rounded p-3 text-gray-400 transition-colors hover:bg-gray-100  hover:text-gray-600 active:bg-gray-100 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-gray-400">
                                                         <div className="flex items-center self-center"><LayoutDashboard size={20} /></div>
 
                                                         <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">Trainer Dashboard</div>
@@ -83,7 +93,7 @@ const DashboardRoutes = () => {
                         <ul className="flex flex-1 flex-col gap-1 py-3">
                             {/* home route */}
                             <li className="px-3">
-                                <Link to='/' className="flex items-center gap-3 rounded p-3 text-slate-600 transition-colors hover:bg-gray-100  hover:text-slate-700 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-emerald-500 ">
+                                <Link to='/' className="flex items-center gap-3 rounded p-3 text-gray-400 transition-colors hover:bg-gray-100  hover:text-gray-600 active:bg-gray-100 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-gray-400">
                                     <div className="flex items-center self-center"><Home size={20} /></div>
 
                                     <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">Home</div>
