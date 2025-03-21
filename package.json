@@ -23,6 +23,7 @@
     "localforage": "^1.10.0",
     "lodash": "^4.17.21",
     "lottie-react": "^2.4.1",
+    "lucide-react": "^0.483.0",
     "match-sorter": "^8.0.0",
     "prettier": "3.5.3",
     "react": "^19.0.0",
