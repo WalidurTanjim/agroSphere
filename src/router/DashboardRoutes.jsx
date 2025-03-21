@@ -1,16 +1,20 @@
 import { ArrowLeft, Home, LayoutDashboard } from "lucide-react";
 import React, { useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useRouteError } from "react-router-dom";
 import logo from '../assets/logo.png'
+import useUserRole from "../hooks/useUserRole";
 
 const DashboardRoutes = () => {
-    const [isSideNavOpen, setIsSideNavOpen] = useState(false)
+    const [isSideNavOpen, setIsSideNavOpen] = useState(false);
+
+    const { userRole } = useUserRole();
+    console.log(userRole.userRole)
 
     return (
         <>
             {/*  <!-- Component: Side navigation menu with content separator --> */}
             {/*  <!-- Mobile trigger --> */}
-            <button title="Side navigation" type="button" className={`visible fixed right-6 top-6 z-40 order-10 block h-10 w-10 self-center rounded bg-white opacity-100 ${isSideNavOpen ? "visible opacity-100 [&_span:nth-child(1)]:w-6 [&_span:nth-child(1)]:translate-y-0 [&_span:nth-child(1)]:rotate-45 [&_span:nth-child(3)]:w-0 [&_span:nth-child(2)]:-rotate-45" : ""}`} aria-haspopup="menu" aria-label="Side navigation" aria-expanded={isSideNavOpen ? " true" : "false"} aria-controls="nav-menu-2" onClick={() => setIsSideNavOpen(!isSideNavOpen)}>
+            <button title="Side navigation" type="button" className={`cursor-pointer visible fixed right-6 top-6 z-40 order-10 block h-10 w-10 self-center rounded bg-white opacity-100 ${isSideNavOpen ? "visible opacity-100 [&_span:nth-child(1)]:w-6 [&_span:nth-child(1)]:translate-y-0 [&_span:nth-child(1)]:rotate-45 [&_span:nth-child(3)]:w-0 [&_span:nth-child(2)]:-rotate-45" : ""}`} aria-haspopup="menu" aria-label="Side navigation" aria-expanded={isSideNavOpen ? " true" : "false"} aria-controls="nav-menu-2" onClick={() => setIsSideNavOpen(!isSideNavOpen)}>
                 <div className="absolute top-1/2 left-1/2 w-6 -translate-x-1/2 -translate-y-1/2 transform">
                     <span aria-hidden="true" className="absolute block h-0.5 w-9/12 -translate-y-2 transform rounded-full bg-slate-700 transition-all duration-300"></span>
                     <span aria-hidden="true" className="absolute block h-0.5 w-6 transform rounded-full bg-slate-900 transition duration-300"></span>
@@ -30,13 +34,47 @@ const DashboardRoutes = () => {
                     {/* dashboard routes */}
                     <div>
                         <ul className="flex flex-1 flex-col gap-1 py-3">
-                            <li className="px-3">
-                                <Link to='/' className="flex items-center gap-3 rounded p-3 text-slate-600 transition-colors hover:bg-gray-100 hover:text-slate-700 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-emerald-500 ">
-                                    <div className="flex items-center self-center"><LayoutDashboard size={20} /></div>
+                            {
+                                userRole.userRole === "admin" ?
+                                    <>
+                                        <li className="px-3">
+                                            <Link to='/dashboard/admin-dashboard' className="flex items-center gap-3 rounded p-3 text-slate-600 transition-colors hover:bg-gray-100 hover:text-slate-700 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-emerald-500 ">
+                                                <div className="flex items-center self-center"><LayoutDashboard size={20} /></div>
 
-                                    <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">Admin Dashboard</div>
-                                </Link>
-                            </li>
+                                                <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">Admin Dashboard</div>
+                                            </Link>
+                                        </li>
+                                    </> :
+                                    userRole.userRole === "farmer" ?
+                                        <>
+                                            <li className="px-3">
+                                                <Link to='/dashboard/farmer-dashboard' className="flex items-center gap-3 rounded p-3 text-slate-600 transition-colors hover:bg-gray-100 hover:text-slate-700 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-emerald-500 ">
+                                                    <div className="flex items-center self-center"><LayoutDashboard size={20} /></div>
+
+                                                    <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">Farmer Dashboard</div>
+                                                </Link>
+                                            </li>
+                                        </> :
+                                        userRole.userRole === "seller" ?
+                                            <>
+                                                <li className="px-3">
+                                                    <Link to='/dashboard/seller-dashboard' className="flex items-center gap-3 rounded p-3 text-slate-600 transition-colors hover:bg-gray-100 hover:text-slate-700 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-emerald-500 ">
+                                                        <div className="flex items-center self-center"><LayoutDashboard size={20} /></div>
+
+                                                        <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">Seller Dashboard</div>
+                                                    </Link>
+                                                </li>
+                                            </> :
+                                            <>
+                                                <li className="px-3">
+                                                    <Link to='/dashboard/trainer-dashboard' className="flex items-center gap-3 rounded p-3 text-slate-600 transition-colors hover:bg-gray-100 hover:text-slate-700 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-emerald-500 ">
+                                                        <div className="flex items-center self-center"><LayoutDashboard size={20} /></div>
+
+                                                        <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">Trainer Dashboard</div>
+                                                    </Link>
+                                                </li>
+                                            </>
+                            }
                         </ul>
                     </div>
 

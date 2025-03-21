@@ -10,6 +10,11 @@ import Community from "../pages/Community/Community";
 import AllVideos from "../pages/Tutorial/AllVideos";
 import Events from "../pages/Home/Events";
 import TrainerProfile from "../pages/Home/TrainerProfile/TrainerProfile";
+import DashboardLayout from "../layout/DashboardLayout";
+import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard/AdminDashboard";
+import FarmerDashboard from "../pages/Dashboard/Farmer/FarmerDashboard/FarmerDashboard";
+import SellerDashboard from "../pages/Dashboard/Seller/SellerDashboard/SellerDashboard";
+import TrainerDashboard from "../pages/Dashboard/Trainer/TrainerDashboard/TrainerDashboard";
 
 const router = createBrowserRouter([
   {
@@ -22,38 +27,62 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path: "/aboutus",
+        path: "aboutus",
         element: <AboutUs />
       },
       {
-        path: "/signup",
+        path: "signup",
         element: <SignUp />
       },
       {
-        path: "/signin",
+        path: "signin",
         element: <SignIn />
       },
       {
-        path: "/forum",
+        path: "forum",
         element: <AddForum></AddForum>
       },
       {
-        path: "/community",
+        path: "community",
         element: <Community>co</Community>
       },
       {
-        path: "/all-videos",
+        path: "all-videos",
         element: <AllVideos></AllVideos>
       },
       {
-        path: '/events',
+        path: 'events',
         element: <Events />
       },
       {
-        path: '/trainer_profile/:id',
+        path: 'trainer_profile/:id',
         element: <TrainerProfile />
       }
 
+    ]
+  },{
+    path: 'dashboard',
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: 'admin-dashboard',
+        element: <AdminDashboard />
+      },
+
+      {
+        path: 'farmer-dashboard',
+        element: <FarmerDashboard />
+      },
+
+      {
+        path: 'seller-dashboard',
+        element: <SellerDashboard />
+      },
+
+      {
+        path: 'trainer-dashboard',
+        element: <TrainerDashboard />
+      }
     ]
   },
 ]);
