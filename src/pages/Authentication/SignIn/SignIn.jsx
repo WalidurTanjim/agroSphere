@@ -9,8 +9,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import SocialLogin from "../../../Components/SocialLogin";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
-import useAuth from "../../../Hooks/useAuth";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useAuth from "../../../hooks/useAuth";
 import { ThemeContext } from "../../../context/ThemeProvider";
 
 const SignIn = () => {

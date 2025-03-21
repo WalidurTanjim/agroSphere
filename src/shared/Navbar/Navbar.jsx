@@ -8,11 +8,12 @@ import { IoIosLogOut } from "react-icons/io";
 import toast from "react-hot-toast";
 import useUserRole from "../../hooks/useUserRole";
 import { LayoutDashboard } from "lucide-react";
+import LoadingSpinner from "../../secure/LoadingSpinner";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const { user, logOut } = useAuth();
+  const { user, logOut, loading } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { userRole } = useUserRole();
 
@@ -31,8 +32,12 @@ const Navbar = () => {
     { to: "/events", label: "Events", icon: <FaCalendarAlt /> },
   ];
 
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
   return (
-    <nav className={`sticky top-0 left-0 w-full z-50 p-4 shadow-lg transition-all duration-300 ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-green-900 text-white'}`}>
+    <nav className={`sticky top-0 left-0 w-full z-50 p-4 shadow-lg backdrop-blur-md transition-all duration-300 ${theme === 'dark' ? 'bg-gray-900/80 text-white' : 'bg-white/70 text-gray-900'}`}>
       <div className="container mx-auto flex justify-between items-center px-4 md:px-8">
         <NavLink to="/" className="text-2xl font-bold tracking-wide flex items-center gap-2">
           <FaLeaf className="text-green-500" size={28} /> AgroSphere
