@@ -105,7 +105,7 @@ const DashboardRoutes = () => {
 
                 {/* footer button */}
                 <footer className="border-t border-slate-200 p-3 cursor-default">
-                    <p className="flex items-center gap-3 rounded p-3 text-slate-600 hover:text-slate-700 transition-colors ">
+                    <p className="flex items-center gap-3 rounded p-3 text-gray-400 transition-colors hover:bg-gray-100  hover:text-gray-600 active:bg-gray-100">
                         <div className="flex items-center self-center"><ArrowLeft size={20} /></div>
 
                         <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm font-medium">Sign out</div>
