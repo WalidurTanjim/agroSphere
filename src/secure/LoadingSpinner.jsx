@@ -12,7 +12,7 @@ const LoadingSpinner = () => {
         <GiSprout className="text-yellow-400 text-5xl animate-pulse" />
       </motion.div>
       <p className="mt-4 text-lg font-semibold flex items-center gap-2">
-        <GiFarmer className="text-xl" /> Growing Your Experience..<GiFruitTree className="text-xl" />
+        <GiFarmer className="text-xl" /> Growing Your Experience...//<GiFruitTree className="text-xl" />
       </p>
     </div>
   );
