@@ -1,17 +1,20 @@
 import { useState, useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { FaBars, FaTimes, FaLeaf, FaHome, FaStore, FaUsers, FaInfoCircle, FaCalendarAlt } from "react-icons/fa";
 import { FaSun, FaMoon } from "react-icons/fa";
 import { ThemeContext } from "../../context/ThemeProvider";
-import useAuth from "../../Hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import { IoIosLogOut } from "react-icons/io";
 import toast from "react-hot-toast";
+import useUserRole from "../../hooks/useUserRole";
+import { LayoutDashboard } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { user, logOut } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { userRole } = useUserRole();
 
   const handleLogOut = () => {
     logOut().then(() => {
@@ -54,9 +57,21 @@ const Navbar = () => {
             <div className="relative">
               <img referrerPolicy="no-referrer" src={user.photoURL} alt="User" className="rounded-full w-10 cursor-pointer" onClick={() => setDropdownOpen(!dropdownOpen)} />
               {dropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-lg py-2">
-                  <p className="px-4 py-2 border-b">{user.displayName}</p>
-                  <button onClick={handleLogOut} className="w-full text-left px-4 py-2 hover:bg-gray-200 flex items-center gap-2">
+                <div className="absolute right-0 mt-6 w-48 bg-white text-black rounded-lg shadow-lg p-2">
+                  <p className="px-4 py-2 cursor-not-allowed border-gray-500 text-center text-sm bg-blue-50 rounded-md text-gray-600 mb-2">{user.displayName}</p>
+
+                  <div className="mt-2">
+                    {
+                      userRole.userRole === "admin" ?
+                        <Link to="/dashboard/admin-dashboard"><p className="w-full hover:bg-blue-50 mb-1 rounded-md py-2 px-4 flex gap-2 mt-3 text-sm items-center"><LayoutDashboard size={16} /> Dashboard</p></Link> :
+                        userRole.userRole === "farmer" ?
+                          <Link to="/dashboard/farmer-dashboard"><p className="w-full hover:bg-blue-50 mb-1 rounded-md py-2 px-4 flex gap-2 mt-3 text-sm items-center"><LayoutDashboard size={16} /> Dashboard</p></Link> :
+                          userRole.userRole === "seller" ?
+                            <Link to="/dashboard/seller-dashboard"><p className="w-full hover:bg-blue-50 mb-1 rounded-md py-2 px-4 flex gap-2 mt-3 text-sm items-center"><LayoutDashboard size={16} /> Dashboard</p></Link> :
+                            <Link to="/dashboard/trainer-dashboard"><p className="w-full hover:bg-blue-50 mb-1 rounded-md py-2 px-4 flex gap-2 mt-3 text-sm items-center"><LayoutDashboard size={16} /> Dashboard</p></Link>
+                    }
+                  </div>
+                  <button onClick={handleLogOut} className="w-full text-left px-4 py-2 hover:bg-blue-50 rounded-md flex items-center text-sm gap-2">
                     <IoIosLogOut /> LogOut
                   </button>
                 </div>
