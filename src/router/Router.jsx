@@ -16,6 +16,7 @@ import FarmerDashboard from "../pages/Dashboard/Farmer/FarmerDashboard/FarmerDas
 import SellerDashboard from "../pages/Dashboard/Seller/SellerDashboard/SellerDashboard";
 import TrainerDashboard from "../pages/Dashboard/Trainer/TrainerDashboard/TrainerDashboard";
 import VideoUpload from "../pages/Dashboard/Admin/VideoUpload/VideoUpload";
+import AllUsers from "../pages/Dashboard/Admin/AllUsers/AllUsers";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
       {
         path: 'video-upload',
         element: <VideoUpload />
+      },
+      {
+        path: 'all-users',
+        element: <AllUsers />
       },
 
       {
