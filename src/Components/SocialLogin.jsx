@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
 import { FaFacebook, FaGoogle, } from 'react-icons/fa';
 import { AuthContext } from '../context/AuthProvider';
-import useAxiosPublic from '../Hooks/useAxiosPublic';
 import { useNavigate } from 'react-router-dom';
-import useAuth from '../Hooks/useAuth';
 import Swal from 'sweetalert2';
+import useAxiosPublic from '../hooks/useAxiosPublic';
 
 
 const SocialLogin = () => {
@@ -32,7 +31,7 @@ const SocialLogin = () => {
             name: res.user?.displayName,
             email: res.user?.email,
             photoURL: res.user?.photoURL,
-            role: "user",
+            role: "farmer",
         }
         axiosPublic.post('/users', userInfo)
          .then(res=>{
@@ -44,8 +43,6 @@ const SocialLogin = () => {
     }
     
    
-    
-  
     return (
         <div>
              <div  className="space-y-4">

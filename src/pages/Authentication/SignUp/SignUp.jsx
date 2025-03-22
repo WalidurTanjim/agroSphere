@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 import SocialLogin from "../../../Components/SocialLogin";
 import { AuthContext } from "../../../context/AuthProvider";
 import { ThemeContext } from "../../../context/ThemeProvider";
+import LoadingSpinner from "../../../secure/LoadingSpinner";
 
 const SignUp = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -71,14 +72,14 @@ const SignUp = () => {
             Name: Name,
             password: password,
             photo: photo,
-            role: "user",
+            role: "farmer",
           };
           console.log(userInfo)
         //   post user data backend
         axios.post("http://localhost:5000/users", userInfo)
         .then((res) => {
           Swal.fire({
-            position: "top-end",
+            position: "center",
             icon: "success",
             title: "Registered successfully",
             showConfirmButton: false,
@@ -105,6 +106,9 @@ const SignUp = () => {
     }
   
   };
+  if(loading) {
+    return <LoadingSpinner />
+  }
 
   return (
     <div className={`flex flex-col md:flex-row gap-8 justify-center items-center min-h-screen overflow-x-hidden ${theme == "light" ? "bg-green-100" : "bg-gray-800"}  p-4 py-16`}>

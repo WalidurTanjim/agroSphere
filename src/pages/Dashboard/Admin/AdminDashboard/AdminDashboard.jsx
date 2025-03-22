@@ -7,7 +7,7 @@ const AdminDashboard = () => {
         <section className='admin_dashboard w-full min-h-screen bg-gray-100'>
             <DashboardRoutes />
 
-            <div className='admin_dashboard_inner container mx-auto px-6 py-14 w-full h-full '>
+            <div className='admin_dashboard_inner container mx-auto px-6 py-14 w-full h-full'>
                 <h1 className='text-xl md:text-2xl lg:text-3xl text-slate-700'>Admin <span className='text-slate-600'>Dashboard</span></h1>
                 
                 {/* cards to display total quantity of specific topic */}
