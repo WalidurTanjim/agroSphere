@@ -57,6 +57,7 @@ const SignIn = () => {
     })
 
     console.log("submit form")
+    setLoading(false)
   
   };
 

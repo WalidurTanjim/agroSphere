@@ -1,14 +1,11 @@
 import React from "react";
 import useAuth from "../../hooks/useAuth";
 
-const SuccessCard = () => {
+const SuccessCard = ({story}) => {
   const { user } = useAuth();
-  const title = "Success Story Title";
-  const description =
-    "This is a brief description of the success story. It highlights the key achievements and milestones.";
 
   return (
-    <div className="max-w-sm rounded-lg overflow-hidden z-0 bg-white p-6 m-10 shadow-xl hover:scale-105 transition-transform duration-500 ease-in-out">
+    <div className="max-w-sm rounded-lg overflow-hidden z-0 backdrop-blur-3xl bg-white/80 p-6 m-10 shadow-xl hover:scale-105 transition-transform duration-500 ease-in-out">
       <div className="flex justify-center mb-4">
         <div className="tooltip tooltip-left" data-tip={user?.displayName}>
           <img
@@ -20,8 +17,8 @@ const SuccessCard = () => {
         </div>
       </div>
       <div className="text-center">
-        <div className="font-bold text-xl mb-2 text-green-700">{title}</div>
-        <p className="text-gray-700 text-base">{description}</p>
+        <div className="font-bold text-lg mb-2  text-justify">{story?.title.slice(0, 60)} ...</div>
+        <p className="text-gray-900 text-base text-justify">{story?.description.slice(0, 189)}...</p>
       </div>
     </div>
   );

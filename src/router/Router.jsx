@@ -17,6 +17,7 @@ import SellerDashboard from "../pages/Dashboard/Seller/SellerDashboard/SellerDas
 import TrainerDashboard from "../pages/Dashboard/Trainer/TrainerDashboard/TrainerDashboard";
 import VideoUpload from "../pages/Dashboard/Admin/VideoUpload/VideoUpload";
 import AllUsers from "../pages/Dashboard/Admin/AllUsers/AllUsers";
+import SuccessStory from "../pages/Dashboard/Farmer/SuccessStory/SuccessStory";
 
 const router = createBrowserRouter([
   {
@@ -79,6 +80,11 @@ const router = createBrowserRouter([
       {
         path: 'farmer-dashboard',
         element: <FarmerDashboard />
+              
+      },
+      {
+        path: 'success-story',
+        element: <SuccessStory />
       },
       {
         path: "addForum",
