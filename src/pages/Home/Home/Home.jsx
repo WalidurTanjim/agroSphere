@@ -15,8 +15,10 @@ const Home = () => {
             <Banner></Banner>
             <VideoPlaylist></VideoPlaylist>
             <AICropAdvisory></AICropAdvisory>
+            <LatestForum></LatestForum>
             <SuccessStory></SuccessStory>
             <FAQSection></FAQSection>
+
             <NewsLatter></NewsLatter>
         </div>
     );
