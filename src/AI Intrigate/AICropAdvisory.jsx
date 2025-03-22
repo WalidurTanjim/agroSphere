@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaRobot, FaPaperPlane, FaUser } from "react-icons/fa";
 import axios from "axios";
-import useAuth from "../Hooks/useAuth";
+import useAuth from "../hooks/useAuth";
 
 const AICropAdvisory = () => {
   const {user} = useAuth();

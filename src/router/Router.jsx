@@ -40,10 +40,7 @@ const router = createBrowserRouter([
         path: "signin",
         element: <SignIn />
       },
-      {
-        path: "forum",
-        element: <AddForum></AddForum>
-      },
+      
       {
         path: "community",
         element: <Community>co</Community>
@@ -82,6 +79,10 @@ const router = createBrowserRouter([
       {
         path: 'farmer-dashboard',
         element: <FarmerDashboard />
+      },
+      {
+        path: "addForum",
+        element: <AddForum></AddForum>
       },
 
       {

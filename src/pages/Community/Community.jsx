@@ -48,7 +48,7 @@ const Community = () => {
   };
 
   return (
-    <section className="max-w-6xl mx-auto p-6 bg-green-50 dark:bg-gray-900 rounded-lg shadow-lg">
+    <section className="max-w-6xl mx-auto p-6  dark:bg-gray-900 rounded-lg shadow-lg">
       <motion.h2
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
