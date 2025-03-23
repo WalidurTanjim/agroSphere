@@ -3,6 +3,7 @@ import { AuthContext } from "../../context/AuthProvider";
 import { motion } from "framer-motion";
 import { FaStar } from "react-icons/fa";
 import Swal from "sweetalert2";
+import DashboardRoutes from "../../router/DashboardRoutes";
 
 const AddForum = () => {
   const { user } = useContext(AuthContext);
@@ -26,7 +27,7 @@ const AddForum = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/forum", {
+      const response = await fetch("https://agro-sphere-server.vercel.app/forum", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -65,49 +66,27 @@ const AddForum = () => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="max-w-lg mx-auto p-8 bg-gradient-to-r from-green-500 to-teal-600 text-white shadow-xl rounded-lg mt-10"
+      className="max-w-lg mx-auto p-8 bg-gradient-to-r from-green-500 to-teal-600 text-white shadow-xl rounded-lg mt-10 mb-16"
     >
-      {/* Profile Picture */}
-      {user?.photoURL && (
-        <div className="flex justify-center">
+      {/* Profile Picture and User Info */}
+      <div className="flex items-center gap-4 mb-6">
+        {user?.photoURL && (
           <img
             src={user.photoURL}
             alt="Profile"
-            className="w-16 h-16 rounded-full border-2 border-white shadow-md mb-4"
+            className="w-16 h-16 rounded-full border-2 border-white shadow-md"
           />
+        )}
+        <div>
+          <h3 className="text-xl font-bold">{anonymous ? "Anonymous" : user?.displayName || "Anonymous"}</h3>
+          <p className="text-sm">{user?.email || "No Email Provided"}</p>
         </div>
-      )}
-
-      {/* Top Input Field */}
-      <div className="mb-4">
-        <input
-          type="text"
-          className="w-full px-4 py-2 border rounded-md bg-white text-gray-900 shadow-sm"
-          placeholder="Write something here..."
-        />
       </div>
 
+      <DashboardRoutes></DashboardRoutes>
       <h2 className="text-3xl font-bold mb-6 text-center">Share Your Thoughts</h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div>
-          <label className="block text-lg">Name</label>
-          <input
-            type="text"
-            value={anonymous ? "Anonymous" : user?.displayName || ""}
-            readOnly
-            className="w-full px-4 py-2 border rounded-md bg-white text-gray-900 shadow-sm"
-          />
-        </div>
-        <div>
-          <label className="block text-lg">Email</label>
-          <input
-            type="email"
-            value={user?.email || "No Email Provided"}
-            readOnly
-            className="w-full px-4 py-2 border rounded-md bg-white text-gray-900 shadow-sm"
-          />
-        </div>
         <div>
           <label className="block text-lg">Topic</label>
           <input
@@ -119,20 +98,7 @@ const AddForum = () => {
             placeholder="Enter discussion topic"
           />
         </div>
-        <div>
-          <label className="block text-lg">Rating</label>
-          <div className="flex gap-1">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <FaStar
-                key={star}
-                className={`cursor-pointer text-2xl ${
-                  star <= rating ? "text-yellow-400" : "text-gray-300"
-                }`}
-                onClick={() => setRating(star)}
-              />
-            ))}
-          </div>
-        </div>
+
         <div>
           <label className="block text-lg">Review</label>
           <textarea
@@ -142,6 +108,19 @@ const AddForum = () => {
             className="w-full px-4 py-2 border rounded-md bg-white text-gray-900 shadow-sm"
             placeholder="Write your review..."
           ></textarea>
+        </div>
+        <div>
+          <label className="block text-lg">Rating</label>
+          <div className="flex gap-1">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <FaStar
+                key={star}
+                className={`cursor-pointer text-2xl ${star <= rating ? "text-yellow-400" : "text-gray-300"
+                  }`}
+                onClick={() => setRating(star)}
+              />
+            ))}
+          </div>
         </div>
         <div className="flex items-center">
           <input

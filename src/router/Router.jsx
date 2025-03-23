@@ -15,6 +15,9 @@ import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard/AdminDashboa
 import FarmerDashboard from "../pages/Dashboard/Farmer/FarmerDashboard/FarmerDashboard";
 import SellerDashboard from "../pages/Dashboard/Seller/SellerDashboard/SellerDashboard";
 import TrainerDashboard from "../pages/Dashboard/Trainer/TrainerDashboard/TrainerDashboard";
+import VideoUpload from "../pages/Dashboard/Admin/VideoUpload/VideoUpload";
+import AllUsers from "../pages/Dashboard/Admin/AllUsers/AllUsers";
+import SuccessStory from "../pages/Dashboard/Farmer/SuccessStory/SuccessStory";
 
 const router = createBrowserRouter([
   {
@@ -38,10 +41,7 @@ const router = createBrowserRouter([
         path: "signin",
         element: <SignIn />
       },
-      {
-        path: "forum",
-        element: <AddForum></AddForum>
-      },
+      
       {
         path: "community",
         element: <Community>co</Community>
@@ -68,10 +68,27 @@ const router = createBrowserRouter([
         path: 'admin-dashboard',
         element: <AdminDashboard />
       },
+      {
+        path: 'video-upload',
+        element: <VideoUpload />
+      },
+      {
+        path: 'all-users',
+        element: <AllUsers />
+      },
 
       {
         path: 'farmer-dashboard',
         element: <FarmerDashboard />
+              
+      },
+      {
+        path: 'success-story',
+        element: <SuccessStory />
+      },
+      {
+        path: "addForum",
+        element: <AddForum></AddForum>
       },
 
       {

@@ -12,7 +12,7 @@ const AllVideos = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch("http://localhost:5000/videos")
+        fetch("https://agro-sphere-server.vercel.app/videos")
             .then((res) => res.json())
             .then((data) => {
                 setVideos(data);
@@ -38,7 +38,8 @@ const AllVideos = () => {
 
     const filterVideos = (search, category) => {
         const filtered = videos.filter((video) => {
-            const matchesSearch = video.title.toLowerCase().includes(search.toLowerCase());
+            const title = video.title || ""; // Ensure title is always a string
+            const matchesSearch = title.toLowerCase().includes(search.toLowerCase());
             const matchesCategory = category ? video.category === category : true;
             return matchesSearch && matchesCategory;
         });
