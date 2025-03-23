@@ -5,12 +5,12 @@ const SuccessCard = ({story}) => {
   const { user } = useAuth();
 
   return (
-    <div className="max-w-sm rounded-lg overflow-hidden z-0 backdrop-blur-3xl bg-white/80 p-6 m-10 shadow-xl hover:scale-105 transition-transform duration-500 ease-in-out">
+    <div className="max-w-sm rounded-lg overflow-hidden z-0 backdrop-blur-3xl bg-slate-50 p-6 m-10 shadow-xl hover:scale-105 transition-transform duration-500 ease-in-out">
       <div className="flex justify-center mb-4">
-        <div className="tooltip tooltip-left" data-tip={user?.displayName}>
+        <div className="tooltip tooltip-bottom" data-tip={story?.name}>
           <img
             className="w-24 h-24 rounded-full object-cover"
-            src="https://i.ibb.co.com/ymwp0HbY/image.jpg"
+            src={story?.image}
             alt="Success Story"
           />
           

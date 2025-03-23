@@ -9,6 +9,7 @@ const SuccessStory = () => {
      const { register, handleSubmit, formState: { errors } , reset} = useForm();
       const {user} = useAuth()
       const axiosPublic = useAxiosPublic()
+      // console.log(user)
     
       const onSubmit = (data) => {
         console.log(data);
