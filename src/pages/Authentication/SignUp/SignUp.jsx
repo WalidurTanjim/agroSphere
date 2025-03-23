@@ -4,7 +4,7 @@ import { AiOutlineLoading3Quarters, AiOutlineEye, AiOutlineEyeInvisible } from "
 import { FaGoogle, FaFacebookF, FaLeaf } from "react-icons/fa";
 import Lottie from "lottie-react";
 import animationData from "../../../assets/SignIn/SignUp_Json/SignUp.json";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -19,6 +19,7 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const {updateUserProfile, createUser} = useContext(AuthContext)
   const {theme} = useContext(ThemeContext)
+  const navigation = useNavigate();
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -86,6 +87,7 @@ const SignUp = () => {
             timer: 2000,
           });
           reset()
+          navigation("/");
         });
         });
       } else {
