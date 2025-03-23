@@ -1,6 +1,6 @@
 import React from 'react';
 import DashboardRoutes from '../../../../router/DashboardRoutes';
-import { DollarSign, ShieldUser, StickyNote, Tractor, Truck, Users } from 'lucide-react';
+import {DollarSign, ShieldUser, StickyNote, Tractor, Truck, Users, Video} from 'lucide-react';
 
 const AdminDashboard = () => {
     return (
@@ -54,6 +54,15 @@ const AdminDashboard = () => {
                             <h1 className='text-gray-500 font-medium'>Posts</h1>
                             
                             <div className='p-2 rounded-full bg-blue-100'><StickyNote className='text-blue-600' size={18} /></div>
+                        </div>
+                    </div>
+
+                    {/* total_videos card */}
+                    <div className='card total_videos bg-white border border-gray-300 rounded-md p-3'>
+                        <div className='flex items-center justify-between'>
+                            <h1 className='text-gray-500 font-medium'>Videos</h1>
+
+                            <div className='p-2 rounded-full bg-blue-100'><Video className='text-blue-600' size={18} /></div>
                         </div>
                     </div>
 

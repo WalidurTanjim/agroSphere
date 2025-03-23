@@ -23,7 +23,7 @@ const UserRow = ({ user }) => {
                 </div>
             </td>
 
-            <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{user?.role}</td>
+            <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap"><span className={`px-2 border border-gray-200 rounded-full ${user?.role === "admin" ? 'text-green-500 bg-green-50 border-green-200' : user?.role === "farmer" ? 'text-orange-500 bg-orange-50 border-orange-200' : user?.role === "seller" ? "text-yellow-500 bg-yellow-50 border-yellow-200" : "text-purple-500 bg-purple-50 border-purple-200"}`}>{user?.role}</span></td>
 
             <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{user?.email}</td>
 
@@ -42,9 +42,7 @@ const UserRow = ({ user }) => {
                     </button>
 
                     <button className="text-gray-500 transition-colors duration-200 dark:hover:text-green-500 dark:text-gray-300 hover:text-green-500 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                            <ShieldCheck className="w-5 h-5" />
-                        </svg>
+                        <ShieldCheck className="w-5 h-5" />
                     </button>
                 </div>
             </td>
