@@ -2,15 +2,39 @@ import { Camera, Link2, Mail, MessageSquareText, User, Video } from "lucide-reac
 import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
 import useAuth from "../../../../hooks/useAuth";
 import DashboardRoutes from "../../../../router/DashboardRoutes";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic.jsx";
+import Swal from "sweetalert2";
 
 const VideoUpload = () => {
     const { user } = useAuth();
-    console.log(user);
+    const axiosPublic = useAxiosPublic();
+    // console.log(user);
 
     // handleSubmit handler
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
-        console.log("Form submitted");
+
+        const form = e.target;
+        const videoLink = form.video_link.value;
+        const videoTitle = form.video_title.value;
+        const videoDescription = form.video_description.value;
+        const videoInfo= { name: user?.displayName, email: user?.email, videoLink, videoTitle, videoDescription };
+
+        try{
+            const res = await axiosPublic.post("/videos", videoInfo);
+            const data = await res.data;
+
+            if(data?.insertedId){
+                Swal.fire({
+                    title: "Good job!",
+                    text: "You have added a new video successfully!",
+                    icon: "success"
+                });
+                form.reset()
+            }
+        }catch(err){
+            console.error(err);
+        }
     }
 
     return (
@@ -39,21 +63,21 @@ const VideoUpload = () => {
                     <div className="video_link relative flex items-center mt-4">
                         <span className="absolute"><Link2 className="w-5 h-5 mx-3 text-gray-400 dark:text-gray-500" /></span>
 
-                        <input type="text" className="block w-full py-3 text-gray-700 bg-white outline-none border border-gray-300 rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-zinc-400 dark:focus:border-zinc-300 focus:ring-zinc-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Video Link" required />
+                        <input type="text" name="video_link" className="block w-full py-3 text-gray-700 bg-white outline-none border border-gray-300 rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-zinc-400 dark:focus:border-zinc-300 focus:ring-zinc-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Video Link" required />
                     </div>
 
                     {/* video_title */}
                     <div className="video_title relative flex items-center mt-4">
                         <span className="absolute"><Video className="w-5 h-5 mx-3 text-gray-400 dark:text-gray-500" /></span>
 
-                        <input type="text" className="block w-full py-3 text-gray-700 bg-white outline-none border border-gray-300 rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-zinc-400 dark:focus:border-zinc-300 focus:ring-zinc-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Video Title" required />
+                        <input type="text" name="video_title" className="block w-full py-3 text-gray-700 bg-white outline-none border border-gray-300 rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-zinc-400 dark:focus:border-zinc-300 focus:ring-zinc-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Video Title" required />
                     </div>
 
                     {/* video_description */}
                     <div className="video_description relative flex items-start mt-4">
                         <span className="absolute"><MessageSquareText className="w-5 h-5 mx-3 mt-4 text-gray-400 dark:text-gray-500" /></span>
 
-                        <textarea type="text" className="block w-full py-3 text-gray-700 bg-white outline-none border border-gray-300 rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-zinc-400 dark:focus:border-zinc-300 focus:ring-zinc-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Video Description" required />
+                        <textarea type="text" name="video_description" className="block w-full py-3 text-gray-700 bg-white outline-none border border-gray-300 rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-zinc-400 dark:focus:border-zinc-300 focus:ring-zinc-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Video Description" required />
                     </div>
 
                     {/* upload button */}
