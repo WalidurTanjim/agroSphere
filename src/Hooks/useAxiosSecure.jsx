@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import useAuth from "./useAuth"
 
 const axiosSecure = axios.create({
-    baseURL: 'https://agro-sphere-server.vercel.app',
+    baseURL: 'https://agro-sphere-server-phi.vercel.app',
     withCredentials: true,
 })
 const useAxiosSecure = () => {
