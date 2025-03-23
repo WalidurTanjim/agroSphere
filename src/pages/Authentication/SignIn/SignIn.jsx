@@ -12,6 +12,7 @@ import SocialLogin from "../../../Components/SocialLogin";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAuth from "../../../hooks/useAuth";
 import { ThemeContext } from "../../../context/ThemeProvider";
+import LoadingSpinner from "../../../secure/LoadingSpinner";
 
 const SignIn = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -61,17 +62,19 @@ const SignIn = () => {
   
   };
 
-
+if(loading){
+  return <LoadingSpinner />
+}
 
   return (
-    <div className={`flex flex-col md:flex-row-reverse gap-8 justify-center items-center min-h-[calc(100vh-200px)] overflow-x-hidden ${theme == "light" ? "bg-green-100" : "bg-gray-800"} p-4 py-10 `}>
+    <div className={`flex flex-col md:flex-row-reverse gap-8 justify-center items-center min-h-[calc(100vh-200px)] overflow-x-hidden ${theme == "light" ? "from-blue-50 to-indigo-50" : "bg-gray-800"} p-4 py-10 `}>
       <div className="flex-1">
         <Lottie animationData={animationData} loop={true} className="px-4" />
       </div>
       <div className="flex justify-center items-center flex-1">
         <form 
           onSubmit={handleSubmit(onSubmit)} 
-          className="backdrop-blur-3xl bg-green-100  rounded-lg p-6 w-full max-w-lg shadow-2xl"
+          className={`backdrop-blur-3xl ${theme === "light" ? "bg-white" : "bg-blue-100"} rounded-lg p-6 w-full max-w-lg shadow-2xl`}
         >
           <h2 className="text-3xl font-bold text-center mb-6">Sign In</h2>
           <p className="text-base md:text-xl font-bold tracking-wide flex items-center justify-center py-2 md:py-4 ">
@@ -111,7 +114,7 @@ const SignIn = () => {
 
             <button 
               type="submit" 
-              className="w-full bg-green-700 text-white py-2 rounded-lg mt-3 flex justify-center items-center cursor-pointer"
+              className="w-full bg-slate-600 hover:bg-slate-800 hover:transition text-white py-2 rounded-lg mt-3 flex justify-center items-center cursor-pointer"
               disabled={loading}
             >
               {loading ? <AiOutlineLoading3Quarters className="animate-spin" /> : "Sign In"}
