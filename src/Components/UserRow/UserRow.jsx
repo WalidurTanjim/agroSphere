@@ -44,7 +44,7 @@ const UserRow = ({ user }) => {
                     <button className="text-gray-500 transition-colors duration-200 dark:hover:text-green-500 dark:text-gray-300 hover:text-green-500 focus:outline-none">
                         <ShieldCheck className="w-5 h-5" />
                     </button>
-                </div>
+                </div>user's role color changed based on role
             </td>
         </tr>
     );
