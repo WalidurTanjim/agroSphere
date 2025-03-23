@@ -1,5 +1,6 @@
 import React from 'react';
 import DashboardRoutes from '../../../../router/DashboardRoutes';
+import SuccessStory from '../SuccessStory/SuccessStory';
 
 const FarmerDashboard = () => {
     return (
@@ -9,7 +10,10 @@ const FarmerDashboard = () => {
             <div className='admin_dashboard_inner container mx-auto px-6 py-14 w-full h-full'>
                 <h1 className='text-xl md:text-2xl lg:text-3xl text-slate-700'>Farmer <span className='text-slate-600'>Dashboard</span></h1>
 
-                <div className='my-10'></div>
+                    {/* work here */}
+                <div className='my-10'>
+                    <SuccessStory/>
+                </div>
             </div>
         </section>
     );
