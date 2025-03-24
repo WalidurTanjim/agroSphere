@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import gif from "../../assets/images/plant.gif"
 
 const AllVideos = () => {
     const [videos, setVideos] = useState([]);
@@ -55,8 +56,8 @@ const AllVideos = () => {
     const totalPages = Math.ceil(filteredVideos.length / videosPerPage);
 
     return (
-        <div className="w-full min-h-screen py-16">
-            <div className="w-11/12 mx-auto">
+        <div className="w-full min-h-screen">
+            <div className="w-11/12 mx-auto py-10">
                 <h2 className="text-4xl font-bold text-green-700 text-center pb-10">
                     All Farming Video Tutorials 🎥
                 </h2>
@@ -93,14 +94,15 @@ const AllVideos = () => {
                         ))
                     ) : currentVideos.length > 0 ? (
                         currentVideos.map((video) => (
-                            <div key={video._id} className="w-full bg-green-50 p-5 rounded-md">
-                                <iframe className="w-full h-56 rounded-lg" src={video.url} title={video.title} allowFullScreen></iframe>
-                                <h3 className="pt-3 text-green-600 text-xl font-bold">{video.title}</h3>
-                                <p className="text-sm text-gray-500 mt-1">{video.description}</p>
+                            <div key={video._id} className="w-full rounded-lg card-bg p-2 relative border-2">
+                                <iframe className="w-full h-56 rounded-lg relative z-10" src={video.url} title={video.title} allowFullScreen></iframe>
+                                <h3 className="pt-3 text-white text-xl font-bold relative z-10 text-shadow text-left">{video.title}</h3>
+                                <p className="text-sm text-white relative z-10 text-shadow text-left">{video.description}</p>
                             </div>
+
                         ))
                     ) : (
-                        <p className="text-center text-gray-500 col-span-3">No videos found.</p>
+                        <p className="text-center text-green-500 col-span-3">No videos found.</p>
                     )}
                 </div>
 
@@ -109,7 +111,7 @@ const AllVideos = () => {
                         <button
                             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                             disabled={currentPage === 1}
-                            className="px-4 py-2 bg-green-600 text-white rounded disabled:opacity-50"
+                            className="px-2 sm:px-4 py-2 bg-green-600 text-white rounded disabled:opacity-50"
                         >
                             Previous
                         </button>
@@ -118,7 +120,7 @@ const AllVideos = () => {
                             <button
                                 key={index}
                                 onClick={() => setCurrentPage(index + 1)}
-                                className={`px-4 py-2 border rounded ${currentPage === index + 1 ? "bg-green-600 text-white" : "bg-green-50 text-green-600 border-green-500"}`}
+                                className={`px-3 sm:px-4 py-2 border rounded ${currentPage === index + 1 ? "bg-green-600 text-white" : "bg-green-50 text-green-600 border-green-500"}`}
                             >
                                 {index + 1}
                             </button>
@@ -127,7 +129,7 @@ const AllVideos = () => {
                         <button
                             onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
                             disabled={currentPage === totalPages}
-                            className="px-4 py-2 bg-green-600 text-white rounded disabled:opacity-50"
+                            className="px-2 sm:px-4 py-2 bg-green-600 text-white rounded disabled:opacity-50"
                         >
                             Next
                         </button>
