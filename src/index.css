@@ -28,4 +28,34 @@ h1, h2, h3, h4, h5, h6, p, ul{
   background-color: white;
 }
 
+.card-bg {
+  position: relative;
+  overflow: hidden; /* Ensures pseudo-element stays within bounds */
+  border: 2px solid #00ff51;
+}
 
+.card-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('./assets/images/plant.gif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(3px);
+  z-index: -1; /* Keeps the background behind the content */
+  opacity: 0.9;
+}
+
+.card-bg:hover {
+  transform: scale(1.05); /* Slightly enlarge the card on hover */
+  transition: transform 0.3s ease;
+  box-shadow: 0 0 10px #00ff51, 0 0 20px #00ff51;
+}
+.text-outline {
+  -webkit-text-stroke: 1px green; /* Outline thickness and color */
+  -webkit-text-fill-color: white; /* Fills text color */
+}
+.text-shadow {
+  text-shadow: 4px 4px 6px black; /* Adjust values for better effect */
+}
