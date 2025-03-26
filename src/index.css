@@ -31,7 +31,6 @@ h1, h2, h3, h4, h5, h6, p, ul{
 .card-bg {
   position: relative;
   overflow: hidden; /* Ensures pseudo-element stays within bounds */
-  border: 2px solid #00ff51;
 }
 
 .card-bg::before {
