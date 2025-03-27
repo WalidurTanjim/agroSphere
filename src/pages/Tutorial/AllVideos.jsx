@@ -13,7 +13,7 @@ const AllVideos = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch("http://localhost:5000/videos")
+        fetch("https://agro-sphere-server-nu.vercel.app/videos")
             .then((res) => res.json())
             .then((data) => {
                 setVideos(data);
@@ -94,10 +94,10 @@ const AllVideos = () => {
                         ))
                     ) : currentVideos.length > 0 ? (
                         currentVideos.map((video) => (
-                            <div key={video._id} className="w-full rounded-lg card-bg p-2 relative border-2">
-                                <iframe className="w-full h-56 rounded-lg relative z-10" src={video.url} title={video.title} allowFullScreen></iframe>
-                                <h3 className="pt-3 text-white text-xl font-bold relative z-10 text-shadow text-left">{video.title}</h3>
-                                <p className="text-sm text-white relative z-10 text-shadow text-left">{video.description}</p>
+                            <div key={video._id} className="w-full rounded-lg card-bg relative dark:border-2 dark:border-green-800">
+                                <iframe className="w-full h-56 rounded-t-lg relative z-10" src={video.url} title={video.title} allowFullScreen></iframe>
+                                <h3 className="pt-3 text-white text-xl font-bold relative z-10 text-shadow text-center">{video.title}</h3>
+                                <p className="pb-3 text-sm text-white relative z-10 text-shadow text-center">{video.description}</p>
                             </div>
 
                         ))

@@ -1,5 +1,4 @@
-import { Camera, Link2, Mail, MessageSquareText, User, Video } from "lucide-react";
-import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
+import { Link2, Mail, MessageSquareText, User, Video, ChartBar } from "lucide-react";
 import useAuth from "../../../../hooks/useAuth";
 import DashboardRoutes from "../../../../router/DashboardRoutes";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic.jsx";
@@ -15,10 +14,11 @@ const VideoUpload = () => {
         e.preventDefault();
 
         const form = e.target;
-        const videoLink = form.video_link.value;
-        const videoTitle = form.video_title.value;
-        const videoDescription = form.video_description.value;
-        const videoInfo= { name: user?.displayName, email: user?.email, videoLink, videoTitle, videoDescription };
+        const title = form.video_title.value;
+        const url = form.video_link.value;
+        const description = form.video_description.value;
+        const category = form.video_category.value;
+        const videoInfo= { name: user?.displayName, email: user?.email, title, url, description, category };
 
         try{
             const res = await axiosPublic.post("/videos", videoInfo);
@@ -73,6 +73,13 @@ const VideoUpload = () => {
                         <input type="text" name="video_title" className="block w-full py-3 text-gray-700 bg-white outline-none border border-gray-300 rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-zinc-400 dark:focus:border-zinc-300 focus:ring-zinc-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Video Title" required />
                     </div>
 
+                    {/* video_category */}
+                    <div className="video_category relative flex items-center mt-4">
+                        <span className="absolute"><ChartBar className="w-5 h-5 mx-3 text-gray-400 dark:text-gray-500" /></span>
+
+                        <input type="text" name="video_category" className="block w-full py-3 text-gray-700 bg-white outline-none border border-gray-300 rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-zinc-400 dark:focus:border-zinc-300 focus:ring-zinc-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Video Category" required />
+                    </div>
+
                     {/* video_description */}
                     <div className="video_description relative flex items-start mt-4">
                         <span className="absolute"><MessageSquareText className="w-5 h-5 mx-3 mt-4 text-gray-400 dark:text-gray-500" /></span>
@@ -81,7 +88,7 @@ const VideoUpload = () => {
                     </div>
 
                     {/* upload button */}
-                    <button type="submit" className="block w-full py-3 mt-4 border border-gray-300 rounded-md outline-none bg-[#222E3C] hover:bg-[#2c394b] text-gray-400 hover:text-gray-200">Upload Video</button>
+                    <button type="submit" className="block w-full py-3 mt-4 border border-gray-300 rounded-md outline-none bg-[#222E3C] hover:bg-[#2c394b] text-gray-400 hover:text-gray-200 cursor-pointer">Upload Video</button>
                 </form>
             </div>
         </section>
