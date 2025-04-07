@@ -18,6 +18,9 @@ import TrainerDashboard from "../pages/Dashboard/Trainer/TrainerDashboard/Traine
 import VideoUpload from "../pages/Dashboard/Admin/VideoUpload/VideoUpload";
 import AllUsers from "../pages/Dashboard/Admin/AllUsers/AllUsers";
 import SuccessStory from "../pages/Dashboard/Farmer/SuccessStory/SuccessStory";
+import ResetPassword from "../pages/Authentication/SignIn/ResetPassword/ResetPassword";
+import OTPInput from "../pages/Authentication/SignIn/ResetPassword/OTPInput";
+import Reset from "../pages/Authentication/SignIn/ResetPassword/Reset";
 
 const router = createBrowserRouter([
   {
@@ -41,7 +44,14 @@ const router = createBrowserRouter([
         path: "signin",
         element: <SignIn />
       },
-      
+      {
+        path: "otp",
+        element: <OTPInput />
+      },
+      {
+        path: "reset",
+        element: <Reset />
+      },
       {
         path: "community",
         element: <Community>co</Community>
