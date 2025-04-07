@@ -1,8 +1,6 @@
 import React from "react";
-import useAuth from "../../hooks/useAuth";
 
 const SuccessCard = ({story}) => {
-  const { user } = useAuth();
 
   return (
     <div className="max-w-sm rounded-lg overflow-hidden z-0 backdrop-blur-3xl bg-slate-50 p-6 m-10 shadow-xl hover:scale-105 transition-transform duration-500 ease-in-out">
@@ -11,7 +9,8 @@ const SuccessCard = ({story}) => {
           <img
             className="w-24 h-24 rounded-full object-cover"
             src={story?.image}
-            alt="Success Story"
+            referrerPolicy="no-referrer"
+            alt="User"
           />
           
         </div>

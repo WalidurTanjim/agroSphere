@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import useAuth from "./useAuth"
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../context/AuthProvider";
 
 const axiosSecure = axios.create({
     baseURL: 'https://agro-sphere-server.vercel.app',
@@ -9,7 +9,7 @@ const axiosSecure = axios.create({
 })
 const useAxiosSecure = () => {
     const navigate = useNavigate();
-    const { logOut } = useAuth();
+    const { logOut } = useContext(AuthContext);
 
     useEffect(() => {
         axiosSecure.interceptors.response.use(
