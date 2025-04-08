@@ -21,6 +21,7 @@ import SuccessStory from "../pages/Dashboard/Farmer/SuccessStory/SuccessStory";
 import ResetPassword from "../pages/Authentication/SignIn/ResetPassword/ResetPassword";
 import OTPInput from "../pages/Authentication/SignIn/ResetPassword/OTPInput";
 import Reset from "../pages/Authentication/SignIn/ResetPassword/Reset";
+import PostDetails from "../components/PostDetails/PostDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -67,8 +68,11 @@ const router = createBrowserRouter([
       {
         path: 'trainer_profile/:id',
         element: <TrainerProfile />
+      },
+      {
+        path: 'community/post-details/:id',
+        element: <PostDetails />
       }
-
     ]
   },{
     path: 'dashboard',
