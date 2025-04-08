@@ -18,6 +18,7 @@ import TrainerDashboard from "../pages/Dashboard/Trainer/TrainerDashboard/Traine
 import VideoUpload from "../pages/Dashboard/Admin/VideoUpload/VideoUpload";
 import AllUsers from "../pages/Dashboard/Admin/AllUsers/AllUsers";
 import SuccessStory from "../pages/Dashboard/Farmer/SuccessStory/SuccessStory";
+import SupportPage from "../pages/SupportPage/SupportPage";
 import ResetPassword from "../pages/Authentication/SignIn/ResetPassword/ResetPassword";
 import OTPInput from "../pages/Authentication/SignIn/ResetPassword/OTPInput";
 import Reset from "../pages/Authentication/SignIn/ResetPassword/Reset";
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: 'events',
         element: <Events />
+      },
+      {
+        path: 'support',
+        element: <SupportPage />
       },
       {
         path: 'trainer_profile/:id',

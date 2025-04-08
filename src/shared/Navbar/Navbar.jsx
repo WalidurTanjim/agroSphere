@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import useUserRole from "../../hooks/useUserRole";
 import { LayoutDashboard } from "lucide-react";
 import LoadingSpinner from "../../secure/LoadingSpinner";
+import { MdOutlineContactSupport } from "react-icons/md";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +30,7 @@ const Navbar = () => {
     { to: "/community", label: "Community", icon: <FaUsers /> },
     { to: "/aboutus", label: "About Us", icon: <FaInfoCircle /> },
     { to: "/events", label: "Events", icon: <FaCalendarAlt /> },
+    { to: "/support", label: "Support", icon: <MdOutlineContactSupport />},
   ];
 
   if (loading) {

@@ -82,7 +82,7 @@ const AddForum = () => {
           <p className="text-sm">{user?.email || "No Email Provided"}</p>
         </div>
       </div>
- 
+
       <DashboardRoutes></DashboardRoutes>
       <h2 className="text-3xl font-bold mb-6 text-center">Share Your Thoughts</h2>
 
@@ -98,7 +98,7 @@ const AddForum = () => {
             placeholder="Enter discussion topic"
           />
         </div>
-        
+
         <div>
           <label className="block text-lg">Review</label>
           <textarea
@@ -115,9 +115,8 @@ const AddForum = () => {
             {[1, 2, 3, 4, 5].map((star) => (
               <FaStar
                 key={star}
-                className={`cursor-pointer text-2xl ${
-                  star <= rating ? "text-yellow-400" : "text-gray-300"
-                }`}
+                className={`cursor-pointer text-2xl ${star <= rating ? "text-yellow-400" : "text-gray-300"
+                  }`}
                 onClick={() => setRating(star)}
               />
             ))}

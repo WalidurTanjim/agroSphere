@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaChevronDown } from "react-icons/fa";
-import SectionTitle from "../SectionTitle/SectionTitle";
 
 const faqData = [
     {
@@ -39,10 +38,7 @@ const FAQSection = () => {
     };
 
     return (
-        <section className="py-16 px-6 md:px-16 mt-10">
-            <div className="max-w-4xl mx-auto text-center">
-                <SectionTitle title="Frequently Asked Questions"></SectionTitle>
-            </div>
+        <section className="py-10 px-6 md:px-16">
             <div className="max-w-4xl mx-auto space-y-4">
                 {faqData.map((faq, index) => (
                     <motion.div
