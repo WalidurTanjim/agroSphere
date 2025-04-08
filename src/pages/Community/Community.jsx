@@ -50,7 +50,7 @@ const Community = () => {
     };
 
     return (
-        <section className="max-w-6xl mx-auto p-6  dark:bg-gray-900 rounded-lg shadow-lg">
+        <section className="max-w-6xl mx-auto p-6  dark:bg-gray-900 rounded-lg">
             {/*<motion.h2*/}
             {/*  initial={{ opacity: 0, y: -30 }}*/}
             {/*  animate={{ opacity: 1, y: 0 }}*/}
@@ -65,7 +65,6 @@ const Community = () => {
             <div className="grid grid-cols-1 gap-5">
                 {currentPosts.map((post) => {
                     const { topic, review, rating, upVote, downVote, email, name } = post;
-                    console.log(post);
                     return (
                         // <motion.div key={post._id} initial={{opacity: 0, y: 50}} animate={{opacity: 1, y: 0}} transition={{duration: 0.5}} className="bg-white dark:bg-gray-800 shadow-md rounded-xl p-5 transform hover:scale-105 transition-all">
                         //     <img src={post.photoURL || "https://via.placeholder.com/150"} alt="User" className="w-full h-40 object-cover rounded-md shadow-sm border-2 border-green-500"/>
