@@ -8,14 +8,14 @@ const Community = () => {
   const postsPerPage = 8;
 
   useEffect(() => {
-    fetch("https://agro-sphere-server.vercel.app/forum")
+    fetch("http://localhost:5000/forum")
       .then((res) => res.json())
       .then((data) => setPosts(data));
   }, []);
 
   const handleVote = async (id, type) => {
     const endpoint = type === "upvote" ? "upvote" : "downvote";
-    const response = await fetch(`https://agro-sphere-server.vercel.app/forum/${endpoint}/${id}`, {
+    const response = await fetch(`http://localhost:5000/forum/${endpoint}/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
     });

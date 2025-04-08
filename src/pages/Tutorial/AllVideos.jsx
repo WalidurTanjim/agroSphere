@@ -12,7 +12,7 @@ const AllVideos = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch("https://agro-sphere-server.vercel.app/videos")
+        fetch("http://localhost:5000/videos")
             .then((res) => res.json())
             .then((data) => {
                 setVideos(data);

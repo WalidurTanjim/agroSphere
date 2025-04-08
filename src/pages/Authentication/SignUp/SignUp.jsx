@@ -80,7 +80,7 @@ const SignUp = () => {
           };
           console.log(userInfo);
           //   post user data backend
-          axios.post("https://agro-sphere-server.vercel.app/users", userInfo).then((res) => {
+          axios.post("http://localhost:5000/users", userInfo).then((res) => {
             Swal.fire({
               position: "center",
               icon: "success",

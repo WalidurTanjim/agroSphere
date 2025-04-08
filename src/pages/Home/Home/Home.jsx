@@ -17,9 +17,7 @@ const Home = () => {
             <AICropAdvisory></AICropAdvisory>
             <LatestForum></LatestForum>
             <SuccessStory></SuccessStory>
-            <FAQSection></FAQSection>
-
-            <NewsLatter></NewsLatter>
+          
         </div>
     );
 };

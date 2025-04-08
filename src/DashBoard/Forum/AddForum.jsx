@@ -27,7 +27,7 @@ const AddForum = () => {
     };
 
     try {
-      const response = await fetch("https://agro-sphere-server.vercel.app/forum", {
+      const response = await fetch("http://localhost:5000/forum", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

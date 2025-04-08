@@ -18,6 +18,7 @@ import TrainerDashboard from "../pages/Dashboard/Trainer/TrainerDashboard/Traine
 import VideoUpload from "../pages/Dashboard/Admin/VideoUpload/VideoUpload";
 import AllUsers from "../pages/Dashboard/Admin/AllUsers/AllUsers";
 import SuccessStory from "../pages/Dashboard/Farmer/SuccessStory/SuccessStory";
+import SupportPage from "../pages/SupportPage/SupportPage";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: 'events',
         element: <Events />
+      },
+      {
+        path: 'support',
+        element: <SupportPage />
       },
       {
         path: 'trainer_profile/:id',

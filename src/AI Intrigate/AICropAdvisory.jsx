@@ -22,7 +22,7 @@ const AICropAdvisory = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post("https://agro-sphere-server.vercel.app/ai-response", { prompt: input });
+      const response = await axios.post("http://localhost:5000/ai-response", { prompt: input });
       setMessages((prev) => [...prev, { text: response.data.answer, sender: "ai" }]);
     } catch (error) {
       setMessages((prev) => [...prev, { text: "AI response failed. Try again.", sender: "ai" }]);
