@@ -4,6 +4,7 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -12,6 +13,10 @@ import {
 import auth from "../firebase/firebase.config";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import axios from "axios";
+import SignIn from "../pages/Authentication/SignIn/SignIn";
+import OTPInput from "../pages/Authentication/SignIn/ResetPassword/OTPInput";
+import Reset from "../pages/Authentication/SignIn/ResetPassword/Reset";
+import Recovered from "../pages/Authentication/SignIn/ResetPassword/Recovered";
 
 export const AuthContext = createContext(null);
 
@@ -21,6 +26,20 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const axiosPublic = useAxiosPublic();
+
+  // reset password state here
+  const [page, setPage] = useState("login");
+  const [email, setEmail] = useState();
+  const [otp, setOTP] = useState();
+
+  function NavigateComponents() {
+    if (page === "login") return <SignIn />;
+    if (page === "otp") return <OTPInput />;
+    if (page === "reset") return <Reset />;
+
+    return <Recovered />;
+  }
+
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -39,16 +58,19 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
     }
   };
+  // reset password
+  // send password reset email
+  const resetPassword = (email) => {
+    setLoading(true);
+    return sendPasswordResetEmail(auth, email);
+  }
 
   const signInWithGoogle = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
-  const signInWithFacebook = () => {
-    setLoading(true);
-    return signInWithPopup(auth, facebookProvider);
-  };
+  // log out
 
   const logOut = () => {
     setLoading(true);
@@ -98,6 +120,8 @@ const AuthProvider = ({ children }) => {
     signInWithGoogle,
     logOut,
     updateUserProfile,
+    resetPassword,
+    page, setPage, otp, setOTP, setEmail, email,
   };
 
   return (
