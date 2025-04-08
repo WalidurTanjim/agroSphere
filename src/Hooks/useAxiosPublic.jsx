@@ -9,4 +9,4 @@ const axiosPublic= axios.create({
 
 
 
-export default useAxiosPublic;
+export default axiosPublic;
