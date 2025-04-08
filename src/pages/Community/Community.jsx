@@ -3,6 +3,7 @@ import {motion} from "framer-motion";
 import {FaThumbsUp, FaThumbsDown, FaStar} from "react-icons/fa";
 import SectionTitle from "../../components/SectionTitle/SectionTitle.jsx";
 import {ArrowBigDown, ArrowBigUp, MessageSquare} from 'lucide-react';
+import {Link} from "react-router-dom";
 
 const Community = () => {
     const [posts, setPosts] = useState([]);
@@ -103,7 +104,7 @@ const Community = () => {
               ))}
 =======
     return (
-        <section className="max-w-6xl mx-auto p-6  dark:bg-gray-900 rounded-lg shadow-lg">
+        <section className="max-w-6xl mx-auto p-6  dark:bg-gray-900 rounded-lg my-10">
             {/*<motion.h2*/}
             {/*  initial={{ opacity: 0, y: -30 }}*/}
             {/*  animate={{ opacity: 1, y: 0 }}*/}
@@ -117,8 +118,8 @@ const Community = () => {
 
             <div className="grid grid-cols-1 gap-5">
                 {currentPosts.map((post) => {
-                    const { topic, review, rating, upVote, downVote, email, name } = post;
-                    console.log(post);
+                    const { _id, topic, review, rating, upVote, downVote, email, name } = post;
+
                     return (
                         // <motion.div key={post._id} initial={{opacity: 0, y: 50}} animate={{opacity: 1, y: 0}} transition={{duration: 0.5}} className="bg-white dark:bg-gray-800 shadow-md rounded-xl p-5 transform hover:scale-105 transition-all">
                         //     <img src={post.photoURL || "https://via.placeholder.com/150"} alt="User" className="w-full h-40 object-cover rounded-md shadow-sm border-2 border-green-500"/>
@@ -147,8 +148,10 @@ const Community = () => {
                         //         </button>
                         //     </div>
                         // </motion.div>
-                        <div className="post group outline-none border border-gray-300 rounded-md p-3 hover:border-green-300 transition ease-in-out duration-100 hover:shadow-md hover:-translate-y-1.5">
-                            <h1 className="text-lg font-medium text-slate-800 group-hover:text-green-600">{topic ? topic : "Topic not available"}</h1>
+                        <div key={_id} className="post group outline-none border border-gray-300 rounded-md p-3 hover:border-green-300 transition ease-in-out duration-100 hover:shadow-md hover:-translate-y-1.5">
+                            <Link to={`/community/post-details/${_id}`}>
+                                <h1 className="text-lg font-medium text-slate-800 group-hover:text-green-600">{topic ? topic : "Topic not available"}</h1>
+                            </Link>
 
                             <div className={`my-3`}>
                                 <div className={`flex items-start gap-3`}>
