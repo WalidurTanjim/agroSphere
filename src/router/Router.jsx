@@ -18,10 +18,11 @@ import TrainerDashboard from "../pages/Dashboard/Trainer/TrainerDashboard/Traine
 import VideoUpload from "../pages/Dashboard/Admin/VideoUpload/VideoUpload";
 import AllUsers from "../pages/Dashboard/Admin/AllUsers/AllUsers";
 import SuccessStory from "../pages/Dashboard/Farmer/SuccessStory/SuccessStory";
+import SupportPage from "../pages/SupportPage/SupportPage";
 import ResetPassword from "../pages/Authentication/SignIn/ResetPassword/ResetPassword";
 import OTPInput from "../pages/Authentication/SignIn/ResetPassword/OTPInput";
 import Reset from "../pages/Authentication/SignIn/ResetPassword/Reset";
-import Recovered from "../pages/Authentication/SignIn/ResetPassword/Recovered";
+import PostDetails from "../components/PostDetails/PostDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -70,10 +71,17 @@ const router = createBrowserRouter([
         element: <Events />
       },
       {
+        path: 'support',
+        element: <SupportPage />
+      },
+      {
         path: 'trainer_profile/:id',
         element: <TrainerProfile />
+      },
+      {
+        path: 'community/post-details/:id',
+        element: <PostDetails />
       }
-
     ]
   },{
     path: 'dashboard',

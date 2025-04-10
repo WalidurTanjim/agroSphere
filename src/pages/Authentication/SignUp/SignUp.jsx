@@ -60,12 +60,11 @@ console.log(  email,name, password, confirmPassword);
 
         // console.log("Uploading photo to ImgBB...");
 
-        // const imgbbResponse = await axios.post(
-        //   `https://api.imgbb.com/1/upload?key=${
-        //     import.meta.env.VITE_IMGBB_API_KEY
-        //   }`,
-        //   photoData
-        // );
+        const imgbbResponse = await axios.post(
+          `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY
+          }`,
+          photoData
+        );
 
         // const photo = imgbbResponse.data.data.display_url;
         // console.log("Photo uploaded to ImgBB:", photo);
