@@ -21,6 +21,7 @@ import SuccessStory from "../pages/Dashboard/Farmer/SuccessStory/SuccessStory";
 import ResetPassword from "../pages/Authentication/SignIn/ResetPassword/ResetPassword";
 import OTPInput from "../pages/Authentication/SignIn/ResetPassword/OTPInput";
 import Reset from "../pages/Authentication/SignIn/ResetPassword/Reset";
+import Recovered from "../pages/Authentication/SignIn/ResetPassword/Recovered";
 
 const router = createBrowserRouter([
   {
@@ -53,8 +54,12 @@ const router = createBrowserRouter([
         element: <Reset />
       },
       {
+        path: "recovered",
+        element: <Recovered />
+      },
+      {
         path: "community",
-        element: <Community>co</Community>
+        element: <Community></Community>
       },
       {
         path: "all-videos",

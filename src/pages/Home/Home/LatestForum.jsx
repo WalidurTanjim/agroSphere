@@ -20,9 +20,9 @@ const LatestForum = () => {
         transition={{ duration: 0.6 }}
         className="text-center py-4 mb-10"
       >
-        <h1 className="text-4xl md:text-5xl font-bold flex items-center justify-center py-2 gap-3 flex-wrap text-green-700 dark:text-green-300">
+        <p className="text-4xl md:text-5xl font-bold flex items-center justify-center py-2 gap-3 flex-wrap text-green-700 dark:text-green-300">
           <FaLeaf className="shrink-0 text-green-600 dark:text-green-800" /> Latest Discussions
-        </h1>
+        </p>
       </motion.h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">

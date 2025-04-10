@@ -8,7 +8,7 @@ const VideoPlaylist = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("https://agro-sphere-server-nu.vercel.app/videos")
+    fetch("http://localhost:5000/videos")
       .then((res) => res.json())
       .then((data) => {
         setVideos(data);
