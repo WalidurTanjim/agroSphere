@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import gif from "../../assets/images/plant.gif"
 
 const AllVideos = () => {
     const [videos, setVideos] = useState([]);
@@ -13,7 +12,7 @@ const AllVideos = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch("http://localhost:5000/videos")
+        fetch("https://agro-sphere-server-ten.vercel.app/videos")
             .then((res) => res.json())
             .then((data) => {
                 setVideos(data);
