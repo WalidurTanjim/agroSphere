@@ -16,13 +16,13 @@ export default function Recovered() {
             <div class="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
               <form>
                 <div class="flex flex-row items-center justify-center lg:justify-start">
-                  <h1 class="text-2xl font-bold mb-0 mr-4">
+                  <h1 class="text-2xl font-bold mb-0 mr-4 dark:text-white">
                     Password succesfully set{" "}
                   </h1>
                 </div>
 
-                <div class="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
-                  <h2>Welcome HOME </h2>
+                <div class="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5 dark:text-white">
+                  <h2> Welcome HOME </h2>
                 </div>
               </form>
             </div>
