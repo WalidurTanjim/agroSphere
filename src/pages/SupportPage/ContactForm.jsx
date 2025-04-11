@@ -64,7 +64,7 @@ const ContactForm = () => {
                     type="submit"
                     className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white py-3 rounded-xl font-semibold transition"
                 >
-                    Send Message
+                    Send Messages
                 </button>
             </form>
         </motion.div>

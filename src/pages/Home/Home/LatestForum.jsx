@@ -7,7 +7,7 @@ const LatestForum = () => {
   const [latestPosts, setLatestPosts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/forum/latest")
+    fetch("https://agro-sphere-server-ten.vercel.app/forum/latest")
       .then((res) => res.json())
       .then((data) => setLatestPosts(data));
   }, []);

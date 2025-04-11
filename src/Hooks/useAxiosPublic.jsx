@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const axiosPublic= axios.create({
+const axiosPublic = axios.create({
     // baseURL: "https://agro-sphere-server.vercel.app",
-    baseURL: "http://localhost:5000",
+    baseURL: "https://agro-sphere-server-ten.vercel.app",
     withCredentials: true
 })
 
