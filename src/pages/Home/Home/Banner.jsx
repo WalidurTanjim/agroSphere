@@ -10,6 +10,7 @@ import img5 from "../../../assets/banner_photo/smart-agriculture-iot-with-hand-p
 import { Link } from "react-router-dom";
 
 const Banner = () => {
+  
   const captions = [
     "Empowering Farmers with Digital Solutions",
     "Real-time Market Insights for Smarter Sales",
@@ -50,10 +51,10 @@ const Banner = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 1 }}
               >
-                Bridging Agriculture and Innovation for a Better Tomorrow
+                Connectin Farmers with Technology for a Sustainable Future
               </motion.p>
 
-             <Link to="/aboutus">
+             {/* <Link to="/aboutus">
              <motion.button
                 className="mt-6 px-6 py-3 bg-green-500 text-white text-lg font-semibold rounded-full shadow-md hover:bg-green-600 transition-all"
                 whileHover={{ scale: 1.1 }}
@@ -61,7 +62,7 @@ const Banner = () => {
               >
                 Explore More
               </motion.button>
-             </Link>
+             </Link> */}
             </div>
           </div>
         ))}

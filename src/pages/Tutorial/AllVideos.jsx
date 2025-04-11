@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import gif from "../../assets/images/plant.gif"
 
 const AllVideos = () => {
     const [videos, setVideos] = useState([]);
