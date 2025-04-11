@@ -50,7 +50,7 @@ const Banner = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 1 }}
               >
-                Connectin Farmers with Technology for a Sustainable Future
+                Bridging Agriculture and Innovation for a Better Tomorrow
               </motion.p>
 
              <Link to="/aboutus">
