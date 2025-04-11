@@ -17,6 +17,7 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAuth from "../../../hooks/useAuth";
 import { ThemeContext } from "../../../context/ThemeProvider";
 import LoadingSpinner from "../../../secure/LoadingSpinner";
+import { useQuery } from "@tanstack/react-query";
 
 const SignIn = () => {
   const {
@@ -25,15 +26,16 @@ const SignIn = () => {
     getValues,
     formState: { errors },
   } = useForm();
+
+
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
   // New state for lockout
   const [failedAttempts, setFailedAttempts] = useState(0);
   const [lockoutUntil, setLockoutUntil] = useState(null);
 
   const navigate = useNavigate();
   const location = useLocation();
-  const { signIn, setEmail, setPage, email, setOTP } = useAuth();
+  const { signIn, setEmail, setPage, email, setOTP, resetPassword, setLoading, loading } = useAuth();
   const axiosPublic = useAxiosPublic();
   const from = location?.state || "/";
   const { theme } = useContext(ThemeContext);
@@ -43,6 +45,18 @@ const SignIn = () => {
   const lockDuration = 30000; // lockout period in milliseconds (30 seconds)
 
   const isLocked = lockoutUntil && new Date() < lockoutUntil;
+
+
+  const { data: users = [], isPending, isError, error, refetch } = useQuery({
+    queryKey: ['users'],
+    queryFn: async() => {
+        const res = await axiosPublic.get('/users');
+        const data = await res.data;
+        return data;
+    },
+});
+  
+
 
   const onSubmit = async (data) => {
     // Check if account is locked
@@ -114,37 +128,55 @@ const SignIn = () => {
   const nagigateToOtp = () => {
     // Use getValues to retrieve the current email value from the form
     const emailInput = getValues("email");
+    console.log(emailInput)
     if (emailInput && emailInput.trim() !== "") {
       // Optionally update context – this depends on your requirements
-      setEmail(emailInput);
-      const OTP = Math.floor(Math.random() * 9000 + 1000);
-      console.log(OTP);
-      setOTP(OTP);
-
-      axiosPublic
-        .post("/send_recovery_email", {
-          OTP,
-          recipient_email: emailInput,
-        })
-        navigate("/otp")
-        .then(() => toast.success("A new OTP has been sent to your email."))
-        .then(() => setPage("otp"))
+      // setEmail(emailInput);
+      // const OTP = Math.floor(Math.random() * 9000 + 1000);
+      // console.log(OTP);
+      // setOTP(OTP);
+      // const user = users.find((user) => user.email === email);
+      // console.log(user)
+      // if (!user) {
+      //   return toast.error("Email not found");
+      // }
+      resetPassword(emailInput)
+      .then(() => {
+        toast.success("Password reset email sent successfully.");
+        // navigate("/otp");
+        setLoading(false);
+      })
+      // axiosPublic
+      //   .post("/send_recovery_email", {
+      //     OTP,
+      //     recipient_email: emailInput,
+      //   })
+      //   navigate("/otp")
+        // .then(() => toast.success("A new OTP has been sent to your email."))
+        // .then(() => setPage("otp"))
         .catch(console.log);
       return;
     }
     return toast.error("Please enter your email");
   };
 
-  console.log(email);
-  if (loading) {
-    return <LoadingSpinner />;
+ const HandleResetPassword = () => {
+    if (!email) return toast.error("Please enter your email");
+    resetPassword(email)
+      .then(() => {
+        toast.success("Password reset email sent successfully.");
+        navigate("/otp");
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error("Failed to send password reset email.");
+      });
   }
 
+ 
   return (
     <div
-      className={`flex flex-col md:flex-row-reverse gap-8 justify-center items-center min-h-[calc(100vh-200px)] overflow-x-hidden ${
-        theme == "light" ? "from-blue-50 to-indigo-50" : "bg-gray-800"
-      } p-4 py-10 `}
+      className={`flex flex-col md:flex-row-reverse gap-8 justify-center items-center min-h-[calc(100vh-200px)] overflow-x-hidden  p-4 py-10 `}
     >
       <div className="flex-1">
         <Lottie
@@ -214,7 +246,7 @@ const SignIn = () => {
             {/* Submit */}
             <button
               type="submit"
-              className={`w-full bg-slate-600 hover:bg-slate-800 hover:transition text-white py-2 rounded-lg mt-3 flex justify-center items-center ${
+              className={`w-full bg-blue-600   text-white py-2 rounded-lg mt-3 flex justify-center items-center ${
                 isLocked ? "cursor-not-allowed opacity-50" : "cursor-pointer"
               }`}
               disabled={loading || isLocked}
@@ -228,7 +260,7 @@ const SignIn = () => {
             <p className="text-center pt-4 cursor-pointer">
               <a
                 onClick={() => nagigateToOtp()}
-                className=" text-gray-500 text-sm mt-4 text-center"
+                className=" text-gray-500 text-sm mt-4 text-cente dark:text-gray-300"
               >
                 Forgot Password?
                 

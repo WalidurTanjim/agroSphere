@@ -26,16 +26,23 @@ const SignUp = () => {
   } = useForm();
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { updateUserProfile, createUser } = useContext(AuthContext);
+  const [error, setError] = useState("");
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigate();
 
   const onSubmit = async (data) => {
     console.log(data);
-    const { email, Name, password } = data;
+    const { email, name, password, confirmPassword } = data;
     setLoading(true);
-
+console.log(  email,name, password, confirmPassword);
     try {
+      if (password !== confirmPassword) {
+        setError("Passwords do not match!");
+        setLoading(false);
+        return;
+      }
       const passwordValidation =
         password.length >= 6 &&
         /[A-Z]/.test(password) &&
@@ -59,12 +66,12 @@ const SignUp = () => {
           photoData
         );
 
-        const photo = imgbbResponse.data.data.display_url;
-        console.log("Photo uploaded to ImgBB:", photo);
+        // const photo = imgbbResponse.data.data.display_url;
+        // console.log("Photo uploaded to ImgBB:", photo);
 
-        if (!imgbbResponse.data.success) {
-          throw new Error("Failed to upload image to ImgBB");
-        }
+        // if (!imgbbResponse.data.success) {
+        //   throw new Error("Failed to upload image to ImgBB");
+        // }
 
         // Rest of the authentication code...
         const userCredential = await createUser(email, password);
@@ -73,9 +80,8 @@ const SignUp = () => {
         updateUserProfile(Name, photo).then((res) => {
           const userInfo = {
             email: email,
-            Name: Name,
+            Name: name,
             password: password,
-            photo: photo,
             role: "farmer",
           };
           console.log(userInfo);
@@ -166,6 +172,8 @@ const SignUp = () => {
                 })}
                 className="w-full p-2 border rounded-lg mb-2"
                 placeholder="••••••••"
+                name="password"
+                id="password"
               />
               <button
                 type="button"
@@ -182,8 +190,43 @@ const SignUp = () => {
             {errors.password && (
               <p className="text-red-500 text-sm">{errors.password.message}</p>
             )}
+            {/* Confirm Password */}
+            <label className="block text-sm">Confirm Password</label>
+            <div className="relative">
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                {...register("confirmPassword", {
+                  required: "Password is required",
+                  minLength: { value: 6, message: "Minimum 6 characters" },
+                })}
+                className="w-full p-2 border rounded-lg mb-2"
+                placeholder="••••••••"
+                name="confirmPassword"
+                id="confirmPassword"
+              />
+              <button
+                type="button"
+                className="absolute right-2 top-3 text-gray-600"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              >
+                {showConfirmPassword ? (
+                  <AiOutlineEyeInvisible className="text-xl" />
+                ) : (
+                  <AiOutlineEye className="text-xl" />
+                )}
+              </button>
+            </div>
+            {errors.password && (
+              <p className="text-red-500 text-sm">{errors.password.message}</p>
+            )}
+            {error && (
+                <div className="text-red-500 text-sm">
+                  {error}
+                </div>
+              )}
+
             {/* Profile Photo */}
-            <div class="space-y-2">
+            {/* <div class="space-y-2">
               <label class="text-sm font-medium text-gray-700">
                 Profile Photo
               </label>
@@ -194,11 +237,11 @@ const SignUp = () => {
                 {...register("image", { required: "Image is required" })}
                 accept="image/*"
               />
-            </div>
+            </div> */}
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-slate-600 hover:bg-slate-800 hover:transition text-white py-2 rounded-lg mt-3 flex justify-center items-center cursor-pointer"
+              className="w-full bg-blue-600 hover:bg-slate-800 hover:transition text-white py-2 rounded-lg mt-3 flex justify-center items-center cursor-pointer"
               disabled={loading}
             >
               {loading ? (

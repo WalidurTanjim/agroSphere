@@ -28,6 +28,9 @@ console.log(email)
   const verfiyOTP = () => {
     if (parseInt(OTPinput.join("")) === otp) {
       setPage("reset");
+      
+
+
       navigate("/reset")
       toast.success("OTP verified successfully, please reset your password.");
       
@@ -150,7 +153,7 @@ console.log(email)
                   </div>
 
                   <div className="flex flex-row items-center justify-center text-center text-sm font-medium space-x-1 text-gray-500">
-                    <p>Didn't recieve code?</p>{" "}
+                    <p>Didn't recieve code? </p>{" "}
                     <a
                       className="flex flex-row items-center"
                       style={{

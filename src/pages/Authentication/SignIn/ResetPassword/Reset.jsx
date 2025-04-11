@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import useAuth from "../../../../hooks/useAuth";
+import {  useNavigate, useNavigation } from "react-router-dom";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import toast from "react-hot-toast";
 
 export default function Reset() {
   const { setPage, email } = useAuth();
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const navigation = useNavigate()
+  const axiosPublic = useAxiosPublic();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,6 +25,17 @@ export default function Reset() {
     // Proceed with password reset logic, then change page
     setError("");
     setPage("recovered");
+    // Call your password reset function here
+    axiosPublic.put(`/users/${email}`, {
+      email: email,
+      password: newPassword,
+    })
+    .then((res) => {
+      if (res.status === 200) {
+        toast.success("Password reset successfully!");
+      }
+    })
+    navigation("/recovered")
     console.log(email, newPassword)
   };
   return (
