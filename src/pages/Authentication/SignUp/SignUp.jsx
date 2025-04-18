@@ -36,7 +36,7 @@ const SignUp = () => {
     console.log(data);
     const { email, name, password, confirmPassword } = data;
     setLoading(true);
-console.log(  email,name, password, confirmPassword);
+    console.log(email, name, password, confirmPassword);
     try {
       if (password !== confirmPassword) {
         setError("Passwords do not match!");
@@ -86,7 +86,7 @@ console.log(  email,name, password, confirmPassword);
           };
           console.log(userInfo);
           //   post user data backend
-          axios.post("https://agro-sphere-server-ten.vercel.app/users", userInfo).then((res) => {
+          axios.post("http://localhost:5000/users", userInfo).then((res) => {
             Swal.fire({
               position: "center",
               icon: "success",
@@ -220,10 +220,10 @@ console.log(  email,name, password, confirmPassword);
               <p className="text-red-500 text-sm">{errors.password.message}</p>
             )}
             {error && (
-                <div className="text-red-500 text-sm">
-                  {error}
-                </div>
-              )}
+              <div className="text-red-500 text-sm">
+                {error}
+              </div>
+            )}
 
             {/* Profile Photo */}
             {/* <div class="space-y-2">

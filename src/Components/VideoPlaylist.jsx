@@ -8,7 +8,7 @@ const VideoPlaylist = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("https://agro-sphere-server-ten.vercel.app/videos")
+    fetch("http://localhost:5000/videos")
       .then((res) => res.json())
       .then((data) => {
         setVideos(data);
@@ -18,50 +18,63 @@ const VideoPlaylist = () => {
   }, []);
 
   return (
-    <div className="w-full min-h-screen py-16">
-      <div className="w-11/12 mx-auto">
-        <h2 className="text-4xl font-bold text-green-700 text-center pb-10">
-          Farming Video Tutorials 🎥
+    <section className="w-full">
+      <div className="w-11/12 max-w-7xl mx-auto text-center">
+        
+        <h2 className="text-4xl sm:text-5xl font-extrabold text-lime-700 dark:text-lime-400 mb-4 tracking-tight py-12">
+          📺 Smart Farming Video Hub
         </h2>
+        
 
-        {/* Video Grid - Showing only 6 videos */}
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
-          {loading ? (
-            Array.from({ length: 6 }).map((_, index) => (
-              <div key={index} className="bg-gray-200 animate-pulse rounded-lg p-4">
-                <div className="w-full h-56 bg-gray-300 rounded-lg"></div>
-                <div className="h-6 bg-gray-400 rounded mt-4 w-3/4"></div>
-                <div className="h-4 bg-gray-400 rounded mt-2 w-5/6"></div>
-              </div>
-            ))
-          ) : videos.slice(0, 6).map((video) => (
-            <div
-              key={video._id}
-              className="w-full bg-green-50 p-5 relative overflow-hidden group cursor-pointer rounded-md before:bg-green-800 before:w-[38px] before:h-[38px] before:absolute before:top-0 before:right-0 before:rounded-bl-[29px] before:z-[-1] hover:before:scale-[38] before:transition-all before:ease-out before:duration-[300ms] z-[0]"
-            >
-              <iframe
-                className="w-full h-56 rounded-lg"
-                src={video.url}
-                title={video.title}
-                allowFullScreen
-              ></iframe>
-              <h3 className="pt-3 text-green-600 text-xl font-bold transition-all duration-500 group-hover:text-white ease-out text-left">{video.title}</h3>
-              <p className="text-sm text-gray-500 transition-all ease-out duration-500 mt-1 group-hover:text-white text-left">{video.description}</p>
-            </div>
-          ))}
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10">
+          {loading
+            ? Array.from({ length: 6 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="bg-white/50 dark:bg-white/10 backdrop-blur-md animate-pulse rounded-xl shadow-md p-5 h-[320px]"
+                >
+                  <div className="w-full h-52 bg-gray-300 dark:bg-gray-700 rounded-lg"></div>
+                  <div className="h-5 bg-gray-400 dark:bg-gray-600 rounded mt-4 w-3/4"></div>
+                  <div className="h-4 bg-gray-400 dark:bg-gray-600 rounded mt-2 w-2/3"></div>
+                </div>
+              ))
+            : videos.slice(0, 6).map((video) => (
+                <div
+                  key={video._id}
+                  className="relative bg-white dark:bg-white/5 backdrop-blur-xl rounded-2xl shadow-lg p-4 group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                >
+               
+                  <div className="relative w-full h-56 overflow-hidden rounded-xl mb-4">
+                    <iframe
+                      className="w-full h-full rounded-xl pointer-events-auto"
+                      src={video.url}
+                      title={video.title}
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+
+                 
+                  <h3 className="text-2xl font-semibold text-left text-lime-700 dark:text-lime-400 group-hover:text-lime-900 dark:group-hover:text-lime-300 transition">
+                    {video.title}
+                  </h3>
+                  <p className="text-sm mt-1 text-left text-gray-600 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition">
+                    {video.description}
+                  </p>
+                </div>
+              ))}
         </div>
 
-        {/* See All Videos Button */}
-        <div className="text-center mt-16">
+       
+        <div className="text-center mt-20">
           <button
             onClick={() => navigate("/all-videos")}
-            className="btn border-none shadow-none bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 transition"
+            className="bg-gradient-to-r from-lime-500 to-green-500 hover:from-green-600 hover:to-lime-600 text-white font-semibold py-3 px-8 rounded-full shadow-xl transition-all duration-300"
           >
-            See All Videos
+            🌟 See All Videos
           </button>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

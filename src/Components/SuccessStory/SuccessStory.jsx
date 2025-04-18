@@ -58,7 +58,7 @@ const SuccessStory = () => {
   return (
     <div className="mb-10 mt-4">
       <h2 className="text-4xl md:text-5xl text-center font-bold py-8 text-green-800 dark:text-green-300">
-        Success Stories
+      Farmer’s Real Success Stories 🌾
       </h2>
       {/* Overlay */}
       {user && (
@@ -90,7 +90,7 @@ const SuccessStory = () => {
       {/* here modal */}
       <div className="mt-20">
         <div
-          className="absolute inset-0 bg-black opacity-50"
+          className="absolute inset-0 opacity-50"
           onClick={() => setShowModal(false)}
         ></div>
 

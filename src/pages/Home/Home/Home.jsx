@@ -4,14 +4,14 @@ import VideoPlaylist from '../../../Components/VideoPlaylist';
 import AICropAdvisory from '../../../AI Intrigate/AICropAdvisory';
 import LatestForum from './LatestForum';
 import SuccessStory from '../../../Components/SuccessStory/SuccessStory';
-import CountdownTimer from '../../../Components/Occation Features/CountdownTimer';
+// import CountdownTimer from '../../../Components/Occation Features/CountdownTimer';
 
 
 
 const Home = () => {
     return (
         <div>
-            <CountdownTimer></CountdownTimer>
+            {/* <CountdownTimer></CountdownTimer> */}
             <Banner></Banner>
             <VideoPlaylist></VideoPlaylist>
             <AICropAdvisory></AICropAdvisory>

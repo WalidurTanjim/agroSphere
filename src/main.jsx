@@ -12,6 +12,7 @@ import {
     QueryClient,
     QueryClientProvider,
 } from "@tanstack/react-query";
+import { TaskProvider } from "./pages/To-Do/TaskContext";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -20,10 +21,12 @@ createRoot(document.getElementById("root")).render(
     <StrictMode>
         <QueryClientProvider client={queryClient}>
             <AuthProvider>
-                <ThemeProvider>
+               <TaskProvider>
+               <ThemeProvider>
                     <RouterProvider router={router}/>
                     <Toaster/>
                 </ThemeProvider>
+               </TaskProvider>
             </AuthProvider>
         </QueryClientProvider>
     </StrictMode>
