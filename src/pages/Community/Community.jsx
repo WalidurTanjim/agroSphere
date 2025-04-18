@@ -37,20 +37,6 @@ const Community = () => {
       );
     }
   };
-        if (response.ok) {
-            setPosts((prevPosts) =>
-                prevPosts.map((post) =>
-                    post._id === id
-                        ? {
-                            ...post,
-                            upVote: type === "upvote" ? (post.upVote || 0) + 1 : post.upVote,
-                            downVote: type === "downvote" ? (post.downVote || 0) + 1 : post.downVote,
-                        }
-                        : post
-                )
-            );
-        }
-    };
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -136,7 +122,7 @@ const Community = () => {
                                 </div>
 
                                 <div className={`flex items-center gap-[2px]`}>
-                                    <ArrowBigDown size={18} className={`hover:text-gray-500 active:text-slate-900`} onClick={() => handleVote(post._id, "downvote")} />
+                                    <ArrowBigDown size={18} className={`hover:text-gray-600 active:text-slate-900`} onClick={() => handleVote(post._id, "downvote")} />
                                     <p className={`text-sm font-medium text-slate-800`}>{downVote ? downVote : 0}</p>
                                 </div>
 

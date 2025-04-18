@@ -2,6 +2,21 @@
 @plugin "daisyui";
 @custom-variant dark (&:where(.dark, .dark *));
 
+@keyframes zoomIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-zoomIn {
+  animation: zoomIn 0.3s forwards;
+}
+
 /* don't touch this css code without "Walidur tanjim's" permission (starting code) */
 *{
   box-sizing: border-box;
