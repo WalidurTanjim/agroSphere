@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
-import {motion} from "framer-motion";
-import {FaThumbsUp, FaThumbsDown, FaStar} from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { FaThumbsUp, FaThumbsDown, FaStar } from "react-icons/fa";
 import SectionTitle from "../../components/SectionTitle/SectionTitle.jsx";
-import {ArrowBigDown, ArrowBigUp, MessageSquare} from 'lucide-react';
-import {Link} from "react-router-dom";
+import { ArrowBigDown, ArrowBigUp, MessageSquare } from 'lucide-react';
+import { Link } from "react-router-dom";
 
 const Community = () => {
     const [posts, setPosts] = useState([]);
@@ -20,7 +20,7 @@ const Community = () => {
         const endpoint = type === "upvote" ? "upvote" : "downvote";
         const response = await fetch(`http://localhost:5000/forum/${endpoint}/${id}`, {
             method: "PATCH",
-            headers: {"Content-Type": "application/json"},
+            headers: { "Content-Type": "application/json" },
         });
 
         if (response.ok) {
@@ -61,7 +61,7 @@ const Community = () => {
             {/*  Community Discussions*/}
             {/*</motion.h2>*/}
 
-            <SectionTitle title={"Community Discussions"}/>
+            <SectionTitle title={"Community Discussions"} />
 
             <div className="grid grid-cols-1 gap-5">
                 {currentPosts.map((post) => {
@@ -132,7 +132,7 @@ const Community = () => {
                                 </div>
                             </div>
                         </div>
-                        )
+                    )
                 })}
             </div>
 
@@ -141,18 +141,16 @@ const Community = () => {
                     <button
                         onClick={prevPage}
                         disabled={currentPage === 1}
-                        className={`px-5 py-2 text-lg font-semibold rounded-lg transition-all ${
-                            currentPage === 1 ? "bg-green-400 cursor-not-allowed" : "bg-green-600 text-white hover:bg-green-700"
-                        }`}
+                        className={`px-5 py-2 text-lg font-semibold rounded-lg transition-all ${currentPage === 1 ? "bg-green-400 cursor-not-allowed" : "bg-green-600 text-white hover:bg-green-700"
+                            }`}
                     >
                         Previous
                     </button>
                     <button
                         onClick={nextPage}
                         disabled={indexOfLastPost >= posts.length}
-                        className={`px-5 py-2 text-lg font-semibold rounded-lg transition-all ${
-                            indexOfLastPost >= posts.length ? "bg-green-400 cursor-not-allowed" : "bg-green-600 text-white hover:bg-green-700"
-                        }`}
+                        className={`px-5 py-2 text-lg font-semibold rounded-lg transition-all ${indexOfLastPost >= posts.length ? "bg-green-400 cursor-not-allowed" : "bg-green-600 text-white hover:bg-green-700"
+                            }`}
                     >
                         Next
                     </button>
