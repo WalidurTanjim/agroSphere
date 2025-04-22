@@ -1,3 +1,4 @@
+import ProductsLoadingSpinner from "../../components/ProductsLoadingSpinner/ProductsLoadingSpinner";
 import useAllProducts from "../../hooks/useAllProducts";
 
 const Market = () => {
@@ -16,7 +17,14 @@ const Market = () => {
                     <p className={`text-sm text-gray-500 font-medium pt-2`}>Discover fresh produce, quality seeds, tools & equipment directly from farmers.</p>
                 </div>
 
-                
+                {/* display all products posted by farmer */}
+                <div className="products-container">
+                    {/* buttons-container div starts */}
+                    <div className="buttons-container"></div>
+
+                    {/* products-container div starts */}
+                    <ProductsLoadingSpinner />
+                </div>
             </div>
         </section>
     );
