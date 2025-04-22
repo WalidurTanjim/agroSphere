@@ -146,7 +146,7 @@ const Navbar = () => {
       <Disclosure as="nav" className="sticky top-0 left-0 z-50 bg-gray-800">
         <div className="container mx-auto px-6 lg:px-48">
           <div className="relative flex h-16 items-center justify-between">
-            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
               {/* Mobile menu button*/}
               <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset">
                 <span className="absolute -inset-0.5" />
@@ -156,12 +156,12 @@ const Navbar = () => {
               </DisclosureButton>
             </div>
 
-            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+            <div className="flex flex-1 items-center justify-center lg:items-stretch lg:justify-start">
               <div className="flex shrink-0 items-center">
                 <img alt="Your Company" src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" className="h-8 w-auto" />
               </div>
 
-              <div className="hidden sm:ml-6 sm:block">
+              <div className="hidden md:ml-6 md:block">
                 <div className="flex space-x-4">
                   {navigation.map((item) => (
                     <Link to={item.href} key={item.name} aria-current={item.current ? 'page' : undefined} className={classNames(
@@ -230,7 +230,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        <DisclosurePanel className="sm:hidden">
+        <DisclosurePanel className="md:hidden">
           <div className="space-y-1 px-2 pt-2 pb-3">
             {navigation.map((item) => (
               <Link to={item?.href}>

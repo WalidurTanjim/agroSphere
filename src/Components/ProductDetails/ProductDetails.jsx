@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import { ChevronsDown, ChevronsUp, MessageCircleMore } from "lucide-react";
+import { Award, ChevronsDown, ChevronsUp, Mail, MessageCircleMore, Phone } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
 
@@ -67,7 +67,7 @@ const ProductDetails = () => {
                     <div className={`mt-5`}>
                         <div className={`flex items-center justify-between`}>
                             <h1 className="text-lg font-medium text-slate-700">{product?.title}</h1>
-                            <p className={`text-xs text-slate-800 px-3 py-[2px] border border-green-300 bg-green-100 rounded-full`}>productType</p>
+                            <p className={`text-xs text-slate-800 px-3 py-[2px] border border-green-300 bg-green-100 rounded-full`}>{product?.productType}</p>
                         </div>
 
                         <p className={`text-sm text-gray-600 py-3`}>{product?.description}</p>
@@ -99,10 +99,20 @@ const ProductDetails = () => {
                     <div className={`flex items-center flex-col mt-5`}>
                         <img src={product?.seller?.image} alt="Author Image" className={`w-[150px] h-[150px] rounded-full border-2 border-gray-200`} />
 
-                        <div className={`mt-3 text-center`}>
-                            <h1 className={`font-medium text-slate-700`}>{product?.seller?.name}</h1>
-                            <p className={`text-sm text-gray-600`}>{product?.seller?.email}</p>
-                            <p className={`text-sm text-gray-600`}>{product?.seller?.contact}</p>
+                        <div className={`mt-3`}>
+                            <h1 className={`font-medium text-slate-700 text-center`}>{product?.seller?.name}</h1>
+                            <p className={`text-sm text-gray-600 flex items-center gap-1`}>
+                                <span className="text-slate-700"><Mail className="w-3 h-3" /></span>
+                                {product?.seller?.email}
+                            </p>
+                            <p className={`text-sm text-gray-600 flex items-center gap-1`}>
+                                <span className="text-slate-700"><Phone className="w-3 h-3" /></span>
+                                {product?.seller?.contact}
+                            </p>
+                            <p className={`text-sm text-gray-600 flex items-center gap-1 capitalize`}>
+                                <span className="text-slate-700"><Award className="w-3 h-3" /></span>
+                                {product?.badge}
+                            </p>
                         </div>
                     </div>
                 </div>
