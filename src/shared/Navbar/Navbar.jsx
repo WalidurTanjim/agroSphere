@@ -15,7 +15,7 @@ import { MdOutlineContactSupport } from "react-icons/md";
 // Tailwind UI navbar created by Walidur Tanjim [*** Before update this navbar please inform Walidur Tanjim]
 // Tailwind ui important resources for navbar. Don't touch this without permission
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, BellIcon, XMarkIcon, SunIcon, MoonIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
   { name: 'Home', href: '/', current: false },
@@ -172,15 +172,17 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-
+            
+            {/* dark & light mood button & profile with dropdown container */}
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-              <button type="button" className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
+              {/* dark & light mood button */}
+              <button type="button" className="relative rounded-full bg-gray-800 p-[2px] text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
                 <span className="absolute -inset-1.5" />
                 <span className="sr-only">View notifications</span>
-                <BellIcon aria-hidden="true" className="size-6" />
+                <MoonIcon aria-hidden="true" className="size-5" />
               </button>
 
-              {/* Profile dropdown */}
+              {/* profile dropdown */}
               <Menu as="div" className="relative ml-3">
                 <div>
                   <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
@@ -225,18 +227,12 @@ const Navbar = () => {
         <DisclosurePanel className="sm:hidden">
           <div className="space-y-1 px-2 pt-2 pb-3">
             {navigation.map((item) => (
-              <DisclosureButton
-                key={item.name}
-                as="a"
-                href={item.href}
-                aria-current={item.current ? 'page' : undefined}
-                className={classNames(
+              <Link to={item?.href}>
+                <DisclosureButton key={item.name} aria-current={item.current ? 'page' : undefined} className={classNames(
                   item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                  'block rounded-md px-3 py-2 text-base font-medium',
-                )}
-              >
-                {item.name}
-              </DisclosureButton>
+                  'block rounded-md px-3 py-2 text-base font-medium w-full text-left',
+                )}>{item.name}</DisclosureButton>
+              </Link>
             ))}
           </div>
         </DisclosurePanel>
