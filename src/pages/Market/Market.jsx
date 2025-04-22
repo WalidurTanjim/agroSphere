@@ -1,3 +1,5 @@
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import ProductCard from "../../components/ProductCard/ProductCard";
 import ProductsLoadingSpinner from "../../components/ProductsLoadingSpinner/ProductsLoadingSpinner";
 import useAllProducts from "../../hooks/useAllProducts";
 
@@ -18,11 +20,21 @@ const Market = () => {
                 </div>
 
                 {/* display all products posted by farmer */}
-                <div className="products-container">
+                <div className="products-container mt-10">
                     {/* buttons-container div starts */}
                     <div className="buttons-container"></div>
 
                     {/* products-container div starts */}
+                    {
+                        isPending ? <ProductsLoadingSpinner /> :
+                        isError ? <ErrorMessage errMsg={error?.message} /> : (
+                            <div className={`grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4`}>
+                                {
+                                    products?.map(product => <ProductCard key={product?._id} product={product} />)
+                                }
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         </section>
