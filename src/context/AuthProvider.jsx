@@ -25,6 +25,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [open, setOpen] = useState(false);
   const axiosPublic = useAxiosPublic();
 
   // reset password state here
@@ -114,6 +115,7 @@ const AuthProvider = ({ children }) => {
     user,
     setUser,
     loading,
+    open, setOpen,
     setLoading,
     createUser,
     signIn,

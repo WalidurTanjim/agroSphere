@@ -7,11 +7,12 @@ import useAuth from "../../hooks/useAuth";
 import ProductsLoadingSpinner from "../ProductsLoadingSpinner/ProductsLoadingSpinner";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import ProductCard from "../ProductCard/ProductCard";
+import ChangeRoleModal from "../ChangeRoleModal/ChangeRoleModal"
 
 const ProductDetails = () => {
     const { id } = useParams();
     const axiosPublic = useAxiosPublic();
-    const { user } = useAuth();
+    const { user, open, setOpen } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -138,7 +139,7 @@ const ProductDetails = () => {
                 <div className="w-full col-span-1 lg:col-span-2">
                     <div className="flex items-center justify-between">
                         <h1 className="text-xl font-medium text-slate-700">Seller info</h1>
-                        <button type="button" className={`text-sm text-[#fff] font-medium px-5 py-1.5 border border-green-300 outline-none rounded-md bg-green-700 hover:bg-green-600 active:bg-green-700`}>Be Seller</button>
+                        <button type="button" className={`text-sm text-[#fff] font-medium px-5 py-1.5 border border-green-300 outline-none rounded-md bg-green-700 hover:bg-green-600 active:bg-green-700`} onClick={() => setOpen(true)}>Be Seller</button>
                     </div>
 
                     <div className={`flex items-center flex-col mt-5`}>
@@ -162,6 +163,8 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div>
+
+            { open ? <ChangeRoleModal /> : undefined }
         </section>
     );
 };
