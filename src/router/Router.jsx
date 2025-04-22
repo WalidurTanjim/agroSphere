@@ -28,6 +28,7 @@ import TaskBoard from "../pages/To-Do/TaskBoard.jsx";
 import WeatherDashboard from "../pages/WeatherUpdate/WeatherDashboard.jsx";
 import Market from "../pages/Market/Market.jsx";
 import ProductDetails from "../components/ProductDetails/ProductDetails.jsx";
+import IncommingRequests from "../pages/Dashboard/Admin/IncommingRequests/IncommingRequests.jsx";
 
 
 const router = createBrowserRouter([
@@ -108,6 +109,10 @@ const router = createBrowserRouter([
       {
         path: 'video-upload',
         element: <VideoUpload />
+      },
+      {
+        path: 'incomming-requests',
+        element: <IncommingRequests />
       },
       {
         path: 'all-users',
