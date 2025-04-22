@@ -23,7 +23,6 @@ const Market = () => {
                     <div className="buttons-container"></div>
 
                     {/* products-container div starts */}
-                    <ProductsLoadingSpinner />
                 </div>
             </div>
         </section>
