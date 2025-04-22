@@ -5,12 +5,12 @@ const ProductCard = ({ product }) => {
     const { _id, imageUrl, title, description, postedDate, upVote, downVote } = product;
 
     return (
-        <Link to={`/products/products-details/${_id}`}>
+        <Link to={`/products/product-details/${_id}`}>
             <div className={`product group border border-gray-200 rounded-lg p-2 hover:shadow-lg hover:border-gray-300`}>
                 <img src={imageUrl} alt="Product Image" className={`w-full h-[125px] rounded-md border border-gray-200`} />
 
                 <div className={`mt-3`}>
-                    <h1 className={`text-lg font-medium text-slate-700 group-hover:text-green-700`}>{title ? title : "Title not available"}</h1>
+                    <h1 className={`text-lg font-medium text-slate-700 group-hover:text-green-700`}>{title && title.length > 14 ? title.slice(0, 14)+"..." : title}</h1>
                     
                     {/* upVote, downVote & comments count with icon */}
                     <div className={`flex gap-1 items-center justify-start mt-3`}>
