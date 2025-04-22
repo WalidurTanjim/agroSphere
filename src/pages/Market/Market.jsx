@@ -1,4 +1,8 @@
+import useAllProducts from "../../hooks/useAllProducts";
+
 const Market = () => {
+    const [ products, isPending, isError, error, refetch ] = useAllProducts();
+
     return (
         <section className={`market`}>
         {/* TODO:
