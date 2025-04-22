@@ -4,6 +4,9 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { Award, ChevronsDown, ChevronsUp, Mail, MessageCircleMore, Phone } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
+import ProductsLoadingSpinner from "../ProductsLoadingSpinner/ProductsLoadingSpinner";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import ProductCard from "../ProductCard/ProductCard";
 
 const ProductDetails = () => {
     const { id } = useParams();
@@ -12,12 +15,33 @@ const ProductDetails = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    // get product by id
     const { data: product = {}, isPending, isError, error, refetch } = useQuery({
         queryKey: ["product", id],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/product/${id}`);
-            const data = await res.data;
-            return data;
+            try {
+                const res = await axiosPublic.get(`/product/${id}`);
+                const data = await res.data;
+                return data || {};
+            } catch (err) {
+                console.error(err);
+                return {};
+            }
+        }
+    })
+
+    // get similar products by seller email address
+    const { data: similar_product = [], similar_isPending = isPending, similar_isError = isError, similar_error = error, similar_refetch = refetch } = useQuery({
+        queryKey: ["similar_product", product?.seller?.email],
+        queryFn: async () => {
+            try {
+                const res = await axiosPublic.get(`/products?email=${product?.seller?.email}`);
+                const data = await res.data;
+                return data || [];
+            } catch (err) {
+                console.error(err);
+                return [];
+            }
         }
     })
 
@@ -29,10 +53,10 @@ const ProductDetails = () => {
             try {
                 const res = await axiosPublic.patch(`/increase-upVote/${id}`);
                 const data = await res.data;
-                if(data?.modifiedCount > 0) {
+                if (data?.modifiedCount > 0) {
                     refetch();
                 }
-            }catch(err){
+            } catch (err) {
                 console.error(err);
             }
         }
@@ -46,10 +70,10 @@ const ProductDetails = () => {
             try {
                 const res = await axiosPublic.patch(`/decrease-downVote/${id}`);
                 const data = await res.data;
-                if(data?.modifiedCount > 0) {
+                if (data?.modifiedCount > 0) {
                     refetch();
                 }
-            }catch(err){
+            } catch (err) {
                 console.error(err);
             }
         }
@@ -64,7 +88,7 @@ const ProductDetails = () => {
                     <img src={product?.imageUrl} alt="Product Image" className={`w-full h-[200px] md:h-[250px] lg:h-[350px] border border-gray-200 rounded-md`} />
 
                     {/* details */}
-                    <div className={`mt-5`}>
+                    <div className={`my-5`}>
                         <div className={`flex items-center justify-between`}>
                             <h1 className="text-lg font-medium text-slate-700">{product?.title}</h1>
                             <p className={`text-xs text-slate-800 px-3 py-[2px] border border-green-300 bg-green-100 rounded-full`}>{product?.productType}</p>
@@ -90,11 +114,29 @@ const ProductDetails = () => {
                             </div>
                         </div>
                     </div>
+
+                    {/* similar products */}
+                    <div className="similar-products">
+                        <h1 className="text-xl font-medium text-slate-700">Similar Products</h1>
+
+                        <div>
+                            {
+                                isPending ? <ProductsLoadingSpinner /> :
+                                    isError ? <ErrorMessage errMsg={error?.message} /> : (
+                                        <div className={`grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-3`}>
+                                            {
+                                                similar_product?.map(product => <ProductCard key={product?._id} product={product} />)
+                                            }
+                                        </div>
+                                    )
+                            }
+                        </div>
+                    </div>
                 </div>
 
-                {/* author details div starts */}
+                {/* seller details div starts */}
                 <div className="w-full col-span-1 lg:col-span-2">
-                    <h1 className="text-lg font-medium text-slate-700">Seller info</h1>
+                    <h1 className="text-xl font-medium text-slate-700">Seller info</h1>
 
                     <div className={`flex items-center flex-col mt-5`}>
                         <img src={product?.seller?.image} alt="Author Image" className={`w-[150px] h-[150px] rounded-full border-2 border-gray-200`} />
