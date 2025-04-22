@@ -123,7 +123,7 @@ const ProductDetails = () => {
                             {
                                 isPending ? <ProductsLoadingSpinner /> :
                                     isError ? <ErrorMessage errMsg={error?.message} /> : (
-                                        <div className={`grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-3`}>
+                                        <div className={`grid gap-5 grid-cols-2 lg:grid-cols-3 mt-3`}>
                                             {
                                                 similar_product?.map(product => <ProductCard key={product?._id} product={product} />)
                                             }
