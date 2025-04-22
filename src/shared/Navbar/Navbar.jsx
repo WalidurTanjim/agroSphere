@@ -165,14 +165,14 @@ const Navbar = () => {
                 <div className="flex space-x-4">
                   {navigation.map((item) => (
                     <Link to={item.href} key={item.name} aria-current={item.current ? 'page' : undefined} className={classNames(
-                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'rounded-md px-3 py-2 text-sm font-medium',
-                      )}>{item.name}</Link>
+                      item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                      'rounded-md px-3 py-2 text-sm font-medium',
+                    )}>{item.name}</Link>
                   ))}
                 </div>
               </div>
             </div>
-            
+
             {/* dark & light mood button & profile with dropdown container */}
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               {/* dark & light mood button */}
@@ -183,43 +183,49 @@ const Navbar = () => {
               </button>
 
               {/* profile dropdown */}
-              <Menu as="div" className="relative ml-3">
-                <div>
-                  <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
-                    <span className="absolute -inset-1.5" />
-                    <span className="sr-only">Open user menu</span>
-                    <img alt="" src={user?.photoURL} className="size-8 rounded-full" />
-                  </MenuButton>
-                </div>
+              {
+                user ?
+                  (
+                    <Menu as="div" className="relative ml-3">
+                      <div>
+                        <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
+                          <span className="absolute -inset-1.5" />
+                          <span className="sr-only">Open user menu</span>
+                          <img alt="" src={user?.photoURL} className="size-8 rounded-full" />
+                        </MenuButton>
+                      </div>
 
-                <MenuItems transition className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
-                  <p className="block px-4 py-2 rounded-t-md text-xs bg-gray-200 text-center cursor-not-allowed text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden">{user ? user?.displayName : "No user"}</p>
+                      <MenuItems transition className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
+                        <p className="block px-4 py-2 rounded-t-md text-xs bg-gray-200 text-center cursor-not-allowed text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden">{user ? user?.displayName : "No user"}</p>
 
-                  <div>
-                    {
-                      userRole.userRole === "admin" ?
-                        <MenuItem>
-                          <Link to="/dashboard/admin-dashboard" className="block px-4 py-2 rounded-t-md text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden">Dashboard</Link>
-                        </MenuItem> :
-                        userRole.userRole === "farmer" ?
-                          <MenuItem>
-                            <Link to="/dashboard/farmer-dashboard" className="block px-4 py-2 rounded-t-md text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden">Dashboard</Link>
-                          </MenuItem> :
-                          userRole.userRole === "seller" ?
-                          <MenuItem>
-                            <Link to="/dashboard/seller-dashboard" className="block px-4 py-2 rounded-t-md text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden">Dashboard</Link>
-                          </MenuItem> :
-                          <MenuItem>
-                            <Link to="/dashboard/trainer-dashboard" className="block px-4 py-2 rounded-t-md text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden">Dashboard</Link>
-                          </MenuItem>
-                    }
-                  </div>
+                        <div>
+                          {
+                            userRole.userRole === "admin" ?
+                              <MenuItem>
+                                <Link to="/dashboard/admin-dashboard" className="block px-4 py-2 rounded-t-md text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden">Dashboard</Link>
+                              </MenuItem> :
+                              userRole.userRole === "farmer" ?
+                                <MenuItem>
+                                  <Link to="/dashboard/farmer-dashboard" className="block px-4 py-2 rounded-t-md text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden">Dashboard</Link>
+                                </MenuItem> :
+                                userRole.userRole === "seller" ?
+                                  <MenuItem>
+                                    <Link to="/dashboard/seller-dashboard" className="block px-4 py-2 rounded-t-md text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden">Dashboard</Link>
+                                  </MenuItem> :
+                                  <MenuItem>
+                                    <Link to="/dashboard/trainer-dashboard" className="block px-4 py-2 rounded-t-md text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden">Dashboard</Link>
+                                  </MenuItem>
+                          }
+                        </div>
 
-                  <MenuItem onClick={handleLogOut}>
-                    <p className="block px-4 py-2 rounded-b-md text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden cursor-pointer">Sign Out</p>
-                  </MenuItem>
-                </MenuItems>
-              </Menu>
+                        <MenuItem onClick={handleLogOut}>
+                          <p className="block px-4 py-2 rounded-b-md text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden cursor-pointer">Sign Out</p>
+                        </MenuItem>
+                      </MenuItems>
+                    </Menu>
+                  ) : 
+                  <Link to={`/signin`}><button className={`px-4 py-1.5 text-sm font-medium text-[#fff] outline-none border border-gray-200 rounded-md bg-green-600 hover:bg-green-400 active:bg-green-600 ms-2 cursor-pointer`}>Sign In</button></Link>
+              }
             </div>
           </div>
         </div>
