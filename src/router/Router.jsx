@@ -26,6 +26,7 @@ import PostDetails from "../components/PostDetails/PostDetails.jsx";
 import Recovered from "../pages/Authentication/SignIn/ResetPassword/Recovered";
 import TaskBoard from "../pages/To-Do/TaskBoard.jsx";
 import WeatherDashboard from "../pages/WeatherUpdate/WeatherDashboard.jsx";
+import Market from "../pages/Market/Market.jsx";
 
 
 const router = createBrowserRouter([
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "aboutus",
         element: <AboutUs />
+      },
+      {
+        path: "market",
+        element: <Market />
       },
       {
         path: "signup",

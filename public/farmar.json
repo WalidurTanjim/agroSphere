@@ -19,7 +19,9 @@
             "contact": "01776******",
             "image": "https://www.shutterstock.com/image-photo/doraemon-600nw-2426094143.jpg"
         },
-        "postedDate": "22-04-2025"
+        "postedDate": "22-04-2025",
+        "upVote": 0,
+        "downVote": 0
     },
     {
         "productId": "tractor-001",
@@ -41,6 +43,8 @@
             "contact": "01776******",
             "image": "https://static.vecteezy.com/system/resources/previews/022/036/297/non_2x/doraemon-cartoon-japanese-free-vector.jpg"
         },
-        "postedDate": "20-04-2025"
+        "postedDate": "20-04-2025",
+        "upVote": 0,
+        "downVote": 0
     } 
 ]
