@@ -80,6 +80,15 @@ const ProductDetails = () => {
         }
     }
 
+    // handleChangeRoleModal
+    const handleChangeRoleModal = () => {
+        if(!user) {
+            return navigate('/signin', { state: { from: location } }, { replace: true });
+        }else{
+            setOpen(true)
+        }
+    }
+
     return (
         <section className={`product-details`}>
             <div className="container mx-auto px-6 lg:px-48 py-14 grid gap-5 grid-cols-1 lg:grid-cols-6">
@@ -139,7 +148,7 @@ const ProductDetails = () => {
                 <div className="w-full col-span-1 lg:col-span-2">
                     <div className="flex gap-y-3 flex-col xl:gap-y-0 xl:flex-row xl:items-center xl:justify-between">
                         <h1 className="text-xl font-medium text-slate-700">Seller info</h1>
-                        <button type="button" className={`text-sm text-[#fff] font-medium px-5 py-1.5 border border-green-300 outline-none rounded-md bg-green-700 hover:bg-green-600 active:bg-green-700`} onClick={() => setOpen(true)}>Change Role</button>
+                        <button type="button" className={`text-sm text-[#fff] font-medium px-5 py-1.5 border border-green-300 outline-none rounded-md bg-green-700 hover:bg-green-600 active:bg-green-700`} onClick={handleChangeRoleModal}>Change Role</button>
                     </div>
 
                     <div className={`flex items-center flex-col mt-5`}>
