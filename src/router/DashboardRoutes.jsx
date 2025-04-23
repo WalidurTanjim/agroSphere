@@ -1,4 +1,4 @@
-import { ArrowDownToDot,File, ArrowLeft, Home, LayoutDashboard, NotebookPen, UserCheck, Users, Video } from "lucide-react";
+import { ArrowDownToDot,File, ArrowLeft, Home, LayoutDashboard, NotebookPen, UserCheck, Users, Video, CloudAlert, CloudRain } from "lucide-react";
 import React, { useState } from "react"
 import { Link, useRouteError } from "react-router-dom";
 import logo from '../assets/logo.png'
@@ -61,6 +61,13 @@ const DashboardRoutes = () => {
                                                 <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">Video Upload</div>
                                             </Link>
                                         </li>
+                                        <li className="px-3">
+                                            <Link to='/dashboard/quiz' className="flex items-center gap-3 rounded p-3 text-gray-400 transition-colors hover:bg-gray-100  hover:text-gray-600 active:bg-gray-100 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-gray-400">
+                                                <div className="flex items-center self-center"><Video size={20} /></div>
+
+                                                <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">Quiz Upload</div>
+                                            </Link>
+                                        </li>
 
                                         <li className="px-3">
                                             <Link to='/dashboard/incomming-requests' className="flex items-center gap-3 rounded p-3 text-gray-400 transition-colors hover:bg-gray-100  hover:text-gray-600 active:bg-gray-100 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-gray-400">
@@ -87,14 +94,30 @@ const DashboardRoutes = () => {
                                                     <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">Farmer Dashboard</div>
                                                 </Link>
                                             </li>
-
                                             <li className="px-3">
-                                                <Link to='/dashboard/success-story' className="flex items-center gap-3 rounded p-3 text-gray-400 transition-colors hover:bg-gray-100  hover:text-gray-600 active:bg-gray-100 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-gray-400">
-                                                    <div className="flex items-center self-center"><NotebookPen size={20} /></div>
+                                                <Link to='/dashboard/farmer-quiz' className="flex items-center gap-3 rounded p-3 text-gray-400 transition-colors hover:bg-gray-100  hover:text-gray-600 active:bg-gray-100 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-gray-400">
+                                                    <div className="flex items-center self-center"><LayoutDashboard size={20} /></div>
 
-                                                    <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">Add Success Story</div>
+                                                    <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">Play Quiz</div>
                                                 </Link>
                                             </li>
+
+                                            
+                                            <li className="px-3">
+                                                <Link to='/dashboard/todoList' className="flex items-center gap-3 rounded p-3 text-gray-400 transition-colors hover:bg-gray-100  hover:text-gray-600 active:bg-gray-100 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-gray-400">
+                                                    <div className="flex items-center self-center"><NotebookPen size={20} /></div>
+
+                                                    <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">TO-DO List</div>
+                                                </Link>
+                                            </li>
+                                            <li className="px-3">
+                                                <Link to='/dashboard/weatherda' className="flex items-center gap-3 rounded p-3 text-gray-400 transition-colors hover:bg-gray-100  hover:text-gray-600 active:bg-gray-100 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-gray-400">
+                                                    <div className="flex items-center self-center"><CloudRain size={20} /></div>
+
+                                                    <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">Weather</div>
+                                                </Link>
+                                            </li>
+                                            
                                             <li className="px-3">
                                                 <Link to='/dashboard/addForum' className="flex items-center gap-3 rounded p-3 text-gray-400 transition-colors hover:bg-gray-100  hover:text-gray-600 active:bg-gray-100 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-gray-400">
                                                     <div className="flex items-center self-center"><File size={20} /></div>

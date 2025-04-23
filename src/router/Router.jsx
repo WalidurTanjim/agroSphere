@@ -24,6 +24,11 @@ import OTPInput from "../pages/Authentication/SignIn/ResetPassword/OTPInput";
 import Reset from "../pages/Authentication/SignIn/ResetPassword/Reset";
 import PostDetails from "../components/PostDetails/PostDetails.jsx";
 import Recovered from "../pages/Authentication/SignIn/ResetPassword/Recovered";
+import TaskBoard from "../pages/To-Do/TaskBoard.jsx";
+import WeatherDashboard from "../pages/WeatherUpdate/WeatherDashboard.jsx";
+import Quiz from "./Quiz/Quiz.jsx";
+import QuizCard from "./Quiz/QuizCard.jsx";
+
 
 const router = createBrowserRouter([
   {
@@ -75,6 +80,7 @@ const router = createBrowserRouter([
         path: 'support',
         element: <SupportPage />
       },
+     
       {
         path: 'trainer_profile/:id',
         element: <TrainerProfile />
@@ -92,10 +98,20 @@ const router = createBrowserRouter([
         path: 'admin-dashboard',
         element: <AdminDashboard />
       },
+      
       {
         path: 'video-upload',
         element: <VideoUpload />
       },
+      {
+        path: 'quiz',
+        element: <Quiz></Quiz>
+      },
+      {
+        path: 'farmer-quiz',
+        element: <QuizCard></QuizCard>
+      },
+      
       {
         path: 'all-users',
         element: <AllUsers />
@@ -114,6 +130,15 @@ const router = createBrowserRouter([
         path: "addForum",
         element: <AddForum></AddForum>
       },
+      {
+        path: "todoList",
+        element: <TaskBoard/>
+      },
+      {
+        path: "weatherda",
+        element: <WeatherDashboard/>
+      },
+    
 
       {
         path: 'seller-dashboard',

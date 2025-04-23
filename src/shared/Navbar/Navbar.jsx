@@ -26,7 +26,7 @@ const Navbar = () => {
 
   const navLinks = [
     { to: "/", label: "Home", icon: <FaHome /> },
-    { to: "/market", label: "Market", icon: <FaStore /> },
+    { to: "/markets", label: "Markets", icon: <FaStore /> },
     { to: "/community", label: "Community", icon: <FaUsers /> },
     { to: "/aboutus", label: "About Us", icon: <FaInfoCircle /> },
     { to: "/events", label: "Events", icon: <FaCalendarAlt /> },
