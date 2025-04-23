@@ -17,7 +17,8 @@ const useSuccessStories = () => {
                 console.error(err);
                 return [];
             }
-        }
+        },
+        refetchInterval: 60000
     })
 
     return [ stories, isPending, isError, error, refetch ];
