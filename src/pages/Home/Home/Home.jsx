@@ -4,6 +4,7 @@ import VideoPlaylist from '../../../Components/VideoPlaylist';
 import AICropAdvisory from '../../../AI Intrigate/AICropAdvisory';
 import LatestForum from './LatestForum';
 import SuccessStory from '../../../Components/SuccessStory/SuccessStory';
+import Questions from '../Questions/Questions';
 // import CountdownTimer from '../../../Components/Occation Features/CountdownTimer';
 
 
@@ -17,7 +18,7 @@ const Home = () => {
             <AICropAdvisory></AICropAdvisory>
             <LatestForum></LatestForum>
             <SuccessStory></SuccessStory>
-          
+            <Questions />
         </div>
     );
 };

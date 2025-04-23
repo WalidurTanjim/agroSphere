@@ -137,7 +137,7 @@ const SuccessStory = () => {
         </div>
 
         {/* here modal */}
-        <div className="mt-20">
+        <div className="mt-0">
           <div className="absolute inset-0 opacity-50" onClick={() => setShowModal(false)}></div>
 
           {showModal && (
