@@ -1,0 +1,102 @@
+[
+    {
+        "productId": "seed-001",
+        "productType": "Seed",
+        "title": "Hybrid Tomato Seed",
+        "description": "Seeds are the foundation of agriculture. They are the starting point for growing any crop and play a crucial role in determining the quality, yield, and resistance of plants. Good quality seeds ensure healthy plant growth, better productivity, and resilience against pests, diseases, and changing climate conditions. In modern agriculture, seeds are often improved through scientific methods to enhance traits like drought tolerance, faster growth, and higher nutritional value.",
+        "category": "Vegetable",
+        "quantity": "500 grams",
+        "price": 1200,
+        "unit": "per pack",
+        "brand": "AgriGrow",
+        "available": true,
+        "location": "Dhaka, Bangladesh",
+        "badge": "seller",
+        "imageUrl": "https://plantura.garden/uk/wp-content/uploads/sites/2/2021/04/save-own-tomato-seeds.jpg",
+        "seller": {
+            "sellerId": "asdfasdf",
+            "name": "Walidur Tanjim",
+            "email": "asdf@gmail.com",
+            "contact": "01776******",
+            "image": "https://www.shutterstock.com/image-photo/doraemon-600nw-2426094143.jpg"
+        },
+        "postedDate": "22-04-2025",
+        "upVote": 0,
+        "downVote": 0
+    },
+    {
+        "productId": "tractor-001",
+        "productType": "Agriculture_Vehicles",
+        "title": "Hybrid Tractor",
+        "description": "A tractor is a powerful vehicle used in agriculture to perform various tasks like plowing, tilling, planting, and hauling heavy loads. It helps farmers save time and labor while increasing productivity. Modern tractors often come with advanced features such as four-wheel drive, hydraulic lifting systems, and attachments for different farming implements, making them essential for efficient and large-scale farming operations.",
+        "category": "Vehicles",
+        "quantity": "1",
+        "price": 1200,
+        "unit": "per pack",
+        "brand": "AgriGrow",
+        "available": true,
+        "location": "Dhaka, Bangladesh",
+        "badge": "seller",
+        "imageUrl": "https://www.profi.co.uk/wp-content/uploads/sites/8/2022/01/8a._jd_7r330_ap.jpg",
+        "seller": {
+            "sellerId": "asdfasdf",
+            "name": "Fazle Azim",
+            "email": "f.azim@gmail.com",
+            "contact": "01776******",
+            "image": "https://static.vecteezy.com/system/resources/previews/022/036/297/non_2x/doraemon-cartoon-japanese-free-vector.jpg"
+        },
+        "postedDate": "20-04-2025",
+        "upVote": 0,
+        "downVote": 0
+    },
+    {
+        "productId": "seed-drill-001",
+        "productType": "Agriculture_Vehicles",
+        "title": "Seed Drill",
+        "description": "A tractor is a powerful vehicle used in agriculture to perform various tasks like plowing, tilling, planting, and hauling heavy loads. It helps farmers save time and labor while increasing productivity. Modern tractors often come with advanced features such as four-wheel drive, hydraulic lifting systems, and attachments for different farming implements, making them essential for efficient and large-scale farming operations.",
+        "category": "Vehicles",
+        "quantity": "3",
+        "price": 1950,
+        "unit": "per pack",
+        "brand": "AgroGrow",
+        "available": true,
+        "location": "Dhaka, Bangladesh",
+        "badge": "seller",
+        "imageUrl": "https://www.vaderstad.com/globalassets/_international/assets/know-how/tillage-practices/direct-drilling/direct-drilling-with-seed-drill-rapid.jpg",
+        "seller": {
+            "sellerId": "asdfasdf",
+            "name": "Fazle Azim",
+            "email": "f.azim@gmail.com",
+            "contact": "01776******",
+            "image": "https://i.redd.it/q4jq5d2rojod1.png"
+        },
+        "postedDate": "23-04-2025",
+        "upVote": 0,
+        "downVote": 0
+    },
+    {
+        "productId": "sprayer-001",
+        "productType": "Agriculture_Equipment",
+        "title": "Sprayer",
+        "description": "A tractor is a powerful vehicle used in agriculture to perform various tasks like plowing, tilling, planting, and hauling heavy loads. It helps farmers save time and labor while increasing productivity. Modern tractors often come with advanced features such as four-wheel drive, hydraulic lifting systems, and attachments for different farming implements, making them essential for efficient and large-scale farming operations.",
+        "category": "Equipment",
+        "quantity": "1",
+        "price": 650,
+        "unit": "per pack",
+        "brand": "AgriGrow",
+        "available": true,
+        "location": "Dhaka, Bangladesh",
+        "badge": "seller",
+        "imageUrl": "https://www.rtcdhaka.com/wp-content/uploads/2023/05/Sprayer.jpeg",
+        "seller": {
+            "sellerId": "asdfasdf",
+            "name": "MD. Walid",
+            "email": "md.walid@gmail.com",
+            "contact": "01776******",
+            "image": "https://variety.com/wp-content/uploads/2014/11/stand-by-me-doraemon.jpg?w=1000&h=667&crop=1"
+        },
+        "postedDate": "20-04-2025",
+        "upVote": 0,
+        "downVote": 0
+    }
+]

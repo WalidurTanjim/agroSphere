@@ -68,33 +68,6 @@ const Community = () => {
                     const { _id, topic, review, rating, upVote, downVote, email, name } = post;
 
                     return (
-                        // <motion.div key={post._id} initial={{opacity: 0, y: 50}} animate={{opacity: 1, y: 0}} transition={{duration: 0.5}} className="bg-white dark:bg-gray-800 shadow-md rounded-xl p-5 transform hover:scale-105 transition-all">
-                        //     <img src={post.photoURL || "https://via.placeholder.com/150"} alt="User" className="w-full h-40 object-cover rounded-md shadow-sm border-2 border-green-500"/>
-                        //     <p className="text-gray-600 dark:text-gray-400 text-sm mt-2 font-semibold">{post.name}</p>
-                        //     <h3 className="text-lg font-semibold text-green-800 dark:text-green-300 mt-2">{post.topic}</h3>
-                        //     <p className="text-gray-700 dark:text-gray-400 text-sm mt-1">
-                        //         {post.review.split(" ").slice(0, 20).join(" ")} {post.review.split(" ").length > 20 ? "..." : ""}
-                        //     </p>
-                        //     <div className="flex justify-center items-center mt-2">
-                        //         {[...Array(post.rating)].map((_, i) => (
-                        //             <FaStar key={i} className="text-yellow-500 text-sm"/>
-                        //         ))}
-                        //     </div>
-                        //     <div className="flex items-center justify-between mt-4">
-                        //         <button
-                        //             onClick={() => handleVote(post._id, "upvote")}
-                        //             className="flex items-center gap-2 bg-green-600 text-white px-3 py-1 rounded-lg hover:bg-green-700 transition-all"
-                        //         >
-                        //             <FaThumbsUp/> {post.upVote || 0}
-                        //         </button>
-                        //         <button
-                        //             onClick={() => handleVote(post._id, "downvote")}
-                        //             className="flex items-center gap-2 bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition-all"
-                        //         >
-                        //             <FaThumbsDown/> {post.downVote || 0}
-                        //         </button>
-                        //     </div>
-                        // </motion.div>
                         <div key={_id} className="post group outline-none border border-gray-300 rounded-md p-3 hover:border-green-300 transition ease-in-out duration-100 hover:shadow-md hover:-translate-y-1.5">
                             <Link to={`/community/post-details/${_id}`}>
                                 <h1 className="text-lg font-medium text-slate-800 group-hover:text-green-600">{topic ? topic : "Topic not available"}</h1>

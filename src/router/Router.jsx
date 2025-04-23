@@ -28,6 +28,10 @@ import TaskBoard from "../pages/To-Do/TaskBoard.jsx";
 import WeatherDashboard from "../pages/WeatherUpdate/WeatherDashboard.jsx";
 import Quiz from "./Quiz/Quiz.jsx";
 import QuizCard from "./Quiz/QuizCard.jsx";
+import Market from "../pages/Market/Market.jsx";
+import ProductDetails from "../components/ProductDetails/ProductDetails.jsx";
+import IncommingRequests from "../pages/Dashboard/Admin/IncommingRequests/IncommingRequests.jsx";
+import Sellers from "../pages/Sellers/Sellers.jsx";
 
 
 const router = createBrowserRouter([
@@ -43,6 +47,18 @@ const router = createBrowserRouter([
       {
         path: "aboutus",
         element: <AboutUs />
+      },
+      {
+        path: "market",
+        element: <Market />
+      },
+      {
+        path: "products/product-details/:id",
+        element: <ProductDetails />
+      },
+      {
+        path: 'sellers',
+        element: <Sellers />
       },
       {
         path: "signup",
@@ -112,6 +128,10 @@ const router = createBrowserRouter([
         element: <QuizCard></QuizCard>
       },
       
+      {
+        path: 'incomming-requests',
+        element: <IncommingRequests />
+      },
       {
         path: 'all-users',
         element: <AllUsers />
