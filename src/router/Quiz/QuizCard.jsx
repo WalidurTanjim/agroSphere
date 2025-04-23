@@ -15,7 +15,7 @@ const QuizCard = ({ quiz, index }) => {
 
   return (
     <div className="bg-white rounded-2xl shadow-md p-6">
-      <h2 className="font-semibold text-lg mb-2">
+      <h2 className="font-semibold text-lg mb-4">
         {index}. {quiz.question}
       </h2>
       <div className="space-y-2">
