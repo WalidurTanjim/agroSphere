@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useSuccessStories from "../../hooks/useSuccessStories";
 import StoryCard from "../StoryCard/StoryCard";
+import SectionTitle from "../SectionTitle/SectionTitle";
 
 const SuccessStory = () => {
   const [showModal, setShowModal] = useState(false);
@@ -76,8 +77,9 @@ const SuccessStory = () => {
 
   return (
     <section className="success-story w-full">
-      <div className="success-story-inner container mx-auto px-6 lg:px-40 py-10">
-        <h2 className="text-4xl md:text-5xl text-center font-bold py-8 text-green-800 dark:text-green-300">Farmer’s Real Success Stories 🌾</h2>
+      <div className="success-story-inner container mx-auto px-6 lg:px-40 py-12">
+        {/* <h2 className="text-4xl md:text-5xl text-center font-bold py-8 text-green-800 dark:text-green-300">Farmer’s Real Success Stories 🌾</h2> */}
+        <SectionTitle title={"Inspiring Agricultural Journeys"} sub_title={"True experiences shared by farmers shaping the future of agriculture"} />
 
         {/* Overlay */}
         {user && (
@@ -87,12 +89,12 @@ const SuccessStory = () => {
         )}
 
         {/* story card container div starts */}
-        <div ref={sliderRef} className="glide-04 relative w-full">
+        <div ref={sliderRef} className="glide-04 relative w-full mt-7">
           {/*    <!-- Controls --> */}
-          <div className="grid grid-cols-6 mb-10">
-            <h1 className="col-span-4 text-[1.6rem] md:text-[2rem] lg:text-[3rem]">Hear it from other not just us!</h1>
+          <div className="grid items-center grid-cols-6 mb-8">
+            <h1 className="col-span-4 text-[1.6rem] md:text-[2rem]">Hear it from other not just us!</h1>
 
-            {/* left & right buttons */}
+            {/* carousel prev & next buttons */}
             <div className="col-span-2 flex w-full items-center justify-center gap-2 p-4" data-glide-el="controls">
               {/* left button */}
               <button className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 bg-white/20 text-slate-700 transition duration-300 hover:border-slate-900 hover:text-slate-900 focus-visible:outline-none lg:h-12 lg:w-12" data-glide-dir="<" aria-label="prev slide">
