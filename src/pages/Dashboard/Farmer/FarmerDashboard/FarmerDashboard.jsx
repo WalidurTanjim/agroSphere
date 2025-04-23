@@ -1,7 +1,7 @@
-import React from 'react';
 import DashboardRoutes from '../../../../router/DashboardRoutes';
-import SuccessStory from '../SuccessStory/SuccessStory';
+
 import WeatherDashboard from '../../../WeatherUpdate/WeatherDashboard';
+
 
 const FarmerDashboard = () => {
     return (
@@ -13,7 +13,7 @@ const FarmerDashboard = () => {
 
                     {/* work here */}
                 <div className='my-10'>
-                    {/* <SuccessStory/> */}
+                  
                     <WeatherDashboard/>
                 </div>
             </div>

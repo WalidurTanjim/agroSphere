@@ -38,27 +38,26 @@ const Banner = () => {
   }, []);
 
   return (
-    <section className="relative w-full min-h-[100vh] bg-[#0d1a13] overflow-hidden px-6 md:px-12 lg:px-24 py-20 flex items-center">
-      
+    <section className="relative w-full min-h-[90vh] bg-[#0d1a13] overflow-hidden px-6 md:px-12 lg:px-24 py-20 flex items-center justify-center">
       <div className="absolute top-[-80px] left-[-80px] w-[400px] h-[400px] bg-lime-500 opacity-20 blur-[120px] rounded-full z-0" />
       <div className="absolute bottom-[-100px] right-[-150px] w-[400px] h-[400px] bg-teal-600 opacity-20 blur-[150px] rounded-full z-0" />
 
-      <div className="z-10 grid md:grid-cols-2 items-center gap-14">
+      <div className="z-10 grid grid-cols-1 md:grid-cols-2 items-center gap-14 w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-white space-y-6"
+          className="text-white space-y-6 w-full"
         >
-          <h2 className="text-xl font-semibold text-lime-400 uppercase">E-Agriculture Platform</h2>
+          <h2 className="text-xl font-semibold text-lime-400 uppercase">
+            E-Agriculture Platform
+          </h2>
           <h1 className="text-4xl md:text-6xl font-extrabold leading-snug tracking-tight">
             AgroSphere: <span className="text-lime-300">Smart Digital Platform for Farmers</span>
           </h1>
-          <p className="text-gray-300 text-base max-w-2xl leading-relaxed">
+          <p className="text-gray-300 text-base md:text-lg max-w-2xl leading-relaxed">
             Empowering farmers with personalized dashboards, real-time crop advisory, weather forecasts, and a smart e-commerce platform. Grow better, trade smarter.
           </p>
-
-  
 
           <div className="flex flex-wrap gap-3 pt-4">
             <Feature icon={<Leaf />} label="Eco-Aware" />
@@ -74,7 +73,9 @@ const Banner = () => {
                 <span className="text-2xl">
                   {weather.condition === "Rain" ? <CloudRain /> : <Sun />}
                 </span>
-                <span className="text-base font-medium">{weather.temp}°C • {weather.condition}</span>
+                <span className="text-base font-medium">
+                  {weather.temp}°C • {weather.condition}
+                </span>
               </motion.div>
             )}
           </div>
@@ -97,16 +98,13 @@ const Banner = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.5 }}
-          className="relative w-full h-[460px] md:h-[560px] lg:h-[600px]"
+          className="relative w-full h-[360px] sm:h-[460px] md:h-[520px] lg:h-[600px]"
         >
           <div
             className="w-full h-full bg-cover bg-center transition-all duration-[1200ms]"
             style={{
               backgroundImage: `url(${images[currentImage]})`,
-              clipPath: `polygon(
-                20% 0%, 80% 0%, 100% 20%, 100% 80%,
-                80% 100%, 20% 100%, 0% 80%, 0% 20%
-              )`,
+              clipPath: `polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%)`,
               borderRadius: "80px",
               boxShadow: "0 0 30px rgba(0,255,150,0.4)",
             }}

@@ -61,16 +61,7 @@ const SuccessStory = () => {
       Farmer’s Real Success Stories 🌾
       </h2>
       {/* Overlay */}
-      {user && (
-        <div className="flex justify-center">
-          <button
-            className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700  transition duration-300"
-            onClick={() => setShowModal(true)}
-          >
-            Share Your Success Story
-          </button>
-        </div>
-      )}
+     
 
       <div className="z-0">
         <Marquee pauseOnHover direction="left" speed={20}>
@@ -86,7 +77,16 @@ const SuccessStory = () => {
           ))}
         </Marquee>
       </div>
-
+      {user && (
+        <div className="flex justify-center">
+          <button
+            className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700  transition duration-300"
+            onClick={() => setShowModal(true)}
+          >
+            Share Your Success Story
+          </button>
+        </div>
+      )}
       {/* here modal */}
       <div className="mt-20">
         <div
