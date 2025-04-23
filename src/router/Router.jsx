@@ -26,6 +26,8 @@ import PostDetails from "../components/PostDetails/PostDetails.jsx";
 import Recovered from "../pages/Authentication/SignIn/ResetPassword/Recovered";
 import TaskBoard from "../pages/To-Do/TaskBoard.jsx";
 import WeatherDashboard from "../pages/WeatherUpdate/WeatherDashboard.jsx";
+import Quiz from "./Quiz/Quiz.jsx";
+import QuizCard from "./Quiz/QuizCard.jsx";
 import Market from "../pages/Market/Market.jsx";
 import ProductDetails from "../components/ProductDetails/ProductDetails.jsx";
 import IncommingRequests from "../pages/Dashboard/Admin/IncommingRequests/IncommingRequests.jsx";
@@ -94,6 +96,7 @@ const router = createBrowserRouter([
         path: 'support',
         element: <SupportPage />
       },
+     
       {
         path: 'trainer_profile/:id',
         element: <TrainerProfile />
@@ -111,10 +114,20 @@ const router = createBrowserRouter([
         path: 'admin-dashboard',
         element: <AdminDashboard />
       },
+      
       {
         path: 'video-upload',
         element: <VideoUpload />
       },
+      {
+        path: 'quiz',
+        element: <Quiz></Quiz>
+      },
+      {
+        path: 'farmer-quiz',
+        element: <QuizCard></QuizCard>
+      },
+      
       {
         path: 'incomming-requests',
         element: <IncommingRequests />
