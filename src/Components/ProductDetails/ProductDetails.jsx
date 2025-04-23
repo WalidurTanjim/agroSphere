@@ -124,7 +124,7 @@ const ProductDetails = () => {
                             {
                                 isPending ? <ProductsLoadingSpinner /> :
                                     isError ? <ErrorMessage errMsg={error?.message} /> : (
-                                        <div className={`grid gap-5 grid-cols-2 lg:grid-cols-3 mt-3`}>
+                                        <div className={`grid gap-5 grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 mt-3`}>
                                             {
                                                 similar_product?.map(product => <ProductCard key={product?._id} product={product} />)
                                             }
@@ -139,7 +139,7 @@ const ProductDetails = () => {
                 <div className="w-full col-span-1 lg:col-span-2">
                     <div className="flex gap-y-3 flex-col xl:gap-y-0 xl:flex-row xl:items-center xl:justify-between">
                         <h1 className="text-xl font-medium text-slate-700">Seller info</h1>
-                        <button type="button" className={`text-sm text-[#fff] font-medium px-5 py-1.5 border border-green-300 outline-none rounded-md bg-green-700 hover:bg-green-600 active:bg-green-700`} onClick={() => setOpen(true)}>Be Seller</button>
+                        <button type="button" className={`text-sm text-[#fff] font-medium px-5 py-1.5 border border-green-300 outline-none rounded-md bg-green-700 hover:bg-green-600 active:bg-green-700`} onClick={() => setOpen(true)}>Change Role</button>
                     </div>
 
                     <div className={`flex items-center flex-col mt-5`}>

@@ -233,8 +233,8 @@ const Navbar = () => {
         <DisclosurePanel className="md:hidden">
           <div className="space-y-1 px-2 pt-2 pb-3">
             {navigation.map((item) => (
-              <Link to={item?.href}>
-                <DisclosureButton key={item.name} aria-current={item.current ? 'page' : undefined} className={classNames(
+              <Link to={item?.href} key={item.name}>
+                <DisclosureButton aria-current={item.current ? 'page' : undefined} className={classNames(
                   item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                   'block rounded-md px-3 py-2 text-base font-medium w-full text-left',
                 )}>{item.name}</DisclosureButton>

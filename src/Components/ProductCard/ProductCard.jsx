@@ -10,7 +10,7 @@ const ProductCard = ({ product }) => {
                 <img src={imageUrl} alt="Product Image" className={`w-full h-[125px] rounded-md border border-gray-200`} />
 
                 <div className={`mt-3`}>
-                    <h1 className={`text-lg font-medium text-slate-700 group-hover:text-green-700`}>{title && title.length > 14 ? title.slice(0, 14)+"..." : title}</h1>
+                    <h1 className={`xl:text-lg font-medium text-slate-700 group-hover:text-green-700`}>{title && title.length > 14 ? title.slice(0, 14)+"..." : title}</h1>
                     
                     {/* upVote, downVote & comments count with icon */}
                     <div className={`flex gap-1 items-center justify-start mt-3`}>
