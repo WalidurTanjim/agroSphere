@@ -16,12 +16,12 @@ const ProductCard = ({ product }) => {
                     <div className={`flex gap-1 items-center justify-start mt-3`}>
                         <div className={`flex items-center`}>
                             <ChevronsUp className={`w-5 h-4 text-slate-700`}></ChevronsUp>
-                            <span className={`text-sm text-gray-600`}>0</span>
+                            <span className={`text-sm text-gray-600`}>{upVote ? upVote : 0}</span>
                         </div>
 
                         <div className={`flex items-center`}>
                             <ChevronsDown className={`w-5 h-4 text-slate-700`}></ChevronsDown>
-                            <span className={`text-sm text-gray-600`}>0</span>
+                            <span className={`text-sm text-gray-600`}>{downVote ? downVote : 0}</span>
                         </div>
 
                         <div className={`flex items-center`}>

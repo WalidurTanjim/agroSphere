@@ -19,8 +19,12 @@ const Market = () => {
                     <p className={`text-sm text-gray-500 font-medium pt-2`}>Discover fresh produce, quality seeds, tools & equipment directly from farmers.</p>
                 </div>
 
+                <div className="my-5 flex justify-end">
+                    <button type="button" className="px-5 py-2 border border-gray-200 outline-none rounded-md text-sm font-medium hover:bg-gray-100 hover:shadow-md active:bg-white">Sellers List</button>
+                </div>
+
                 {/* display all products posted by farmer */}
-                <div className="products-container mt-10">
+                <div className="products-container">
                     {/* buttons-container div starts */}
                     <div className="buttons-container"></div>
 
