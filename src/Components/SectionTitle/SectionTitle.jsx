@@ -1,9 +1,9 @@
 const SectionTitle = ({ title, sub_title }) => {
     return (
-        <div className='w-full flex items-center justify-center mb-10'>
+        <div className='w-full flex flex-col items-center justify-center mb-10'>
 
-            <h1 className='text-4xl sm:text-5xl font-bold text-lime-700 dark:text-lime-400 mb-4 tracking-tight py-10'>{title}</h1>
-            { sub_title ? <p className='pt-3 text-center text-gray-600'>{sub_title}</p> : undefined }
+            <h1 className='text-2xl md:text-3xl xl:text-4xl font-medium text-green-700'>{title}</h1>
+            { sub_title ? <p className='pt-2 text-sm font-medium text-center text-gray-600'>{sub_title}</p> : undefined }
         </div>
     );
 };
