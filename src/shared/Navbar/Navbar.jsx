@@ -1,7 +1,6 @@
 import { useState, useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { FaBars, FaTimes, FaLeaf, FaHome, FaStore, FaUsers, FaInfoCircle, FaCalendarAlt } from "react-icons/fa";
-import { FaSun, FaMoon } from "react-icons/fa";
 import { ThemeContext } from "../../context/ThemeProvider";
 import useAuth from "../../hooks/useAuth";
 import { IoIosLogOut } from "react-icons/io";
@@ -10,6 +9,8 @@ import useUserRole from "../../hooks/useUserRole";
 import { LayoutDashboard } from "lucide-react";
 import LoadingSpinner from "../../secure/LoadingSpinner";
 import { MdOutlineContactSupport } from "react-icons/md";
+
+
 
 
 // Tailwind UI navbar created by Walidur Tanjim [*** Before update this navbar please inform Walidur Tanjim]
@@ -176,11 +177,21 @@ const Navbar = () => {
             {/* dark & light mood button & profile with dropdown container */}
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               {/* dark & light mood button */}
-              <button type="button" className="relative rounded-full bg-gray-800 p-[2px] text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
-                <span className="absolute -inset-1.5" />
-                <span className="sr-only">View notifications</span>
-                <MoonIcon aria-hidden="true" className="size-5" />
-              </button>
+              <button
+  onClick={toggleTheme}
+  type="button"
+  className="relative rounded-full bg-gray-800 p-[6px] text-gray-400 hover:text-white transition duration-300 ease-in-out focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+>
+  <span className="sr-only">Toggle theme</span>
+  {
+    theme === 'dark' ? (
+      <SunIcon className="h-5 w-5 text-yellow-400" aria-hidden="true" />
+    ) : (
+      <MoonIcon className="h-5 w-5 text-blue-400" aria-hidden="true" />
+    )
+  }
+</button>
+
 
               {/* profile dropdown */}
               {
