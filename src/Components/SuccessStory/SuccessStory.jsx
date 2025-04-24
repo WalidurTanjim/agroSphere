@@ -75,121 +75,6 @@ const SuccessStory = () => {
   };
 
   return (
-<<<<<<< HEAD
-    <div className="mb-10 mt-4">
-      <h2 className="text-4xl md:text-5xl text-center font-bold py-8 text-green-800 dark:text-green-300">
-      Farmer’s Real Success Stories 🌾
-      </h2>
-      {/* Overlay */}
-     
-
-      <div className="z-0">
-        <Marquee pauseOnHover direction="left" speed={20}>
-          {success.map((story, index) => (
-            <SuccessCard key={index} story={story}></SuccessCard>
-          ))}
-        </Marquee>
-      </div>
-      <div className="z-0">
-        <Marquee pauseOnHover direction="right" speed={20}>
-          {success.map((story, index) => (
-            <SuccessCard key={index} story={story}></SuccessCard>
-          ))}
-        </Marquee>
-      </div>
-      {user && (
-        <div className="flex justify-center">
-          <button
-            className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700  transition duration-300"
-            onClick={() => setShowModal(true)}
-          >
-            Share Your Success Story
-          </button>
-        </div>
-      )}
-      {/* here modal */}
-      <div className="mt-20">
-        <div
-          className="absolute inset-0 opacity-50"
-          onClick={() => setShowModal(false)}
-        ></div>
-
-        {showModal && (
-          <>
-            <div
-              className="fixed inset-0 z-40 bg-transparent backdrop-blur-xs transition duration-300"
-              onClick={() => setShowModal(false)}
-            ></div>
-
-            <div className="fixed inset-0 flex items-center justify-center z-50">
-              <div className="relative bg-white dark:bg-gray-900 rounded-lg shadow-lg w-full max-w-md p-8 transform transition-all duration-300 ease-in-out animate-zoomIn">
-                <h2 className="text-2xl font-bold text-center mb-6 dark:text-gray-300 ">
-                  Share Your Success Story
-                </h2>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  <div className="my-4">
-                    <label
-                      className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2"
-                      htmlFor="title"
-                    >
-                      Title
-                    </label>
-                    <input
-                      id="title"
-                      type="text"
-                      {...register("title", { required: "Title is required" })}
-                      className="w-full px-3 py-2 border dark:border-amber-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
-                      placeholder="Enter the title"
-                    />
-                    {errors.title && (
-                      <p className="text-red-500 text-sm mt-1">
-                        {errors.title.message}
-                      </p>
-                    )}
-                  </div>
-
-                  <div className="mb-4">
-                    <label
-                      className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2"
-                      htmlFor="description"
-                    >
-                      Description
-                    </label>
-                    <textarea
-                      id="description"
-                      {...register("description", {
-                        required: "Description is required",
-                      })}
-                      className="w-full px-3 py-2 border dark:border-amber-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
-                      placeholder="Enter the description"
-                    />
-                    {errors.description && (
-                      <p className="text-red-500 text-sm mt-1">
-                        {errors.description.message}
-                      </p>
-                    )}
-                  </div>
-
-                  <div className="flex justify-end gap-4">
-                    <button
-                      type="button"
-                      className="bg-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-400 transition duration-300"
-                      onClick={() => setShowModal(false)}
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300"
-                    >
-                      Submit
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </>
-=======
     <section className="success-story w-full">
       <div className="success-story-inner container mx-auto px-6 lg:px-40 py-10">
         <h2 className="text-4xl md:text-5xl text-center font-bold py-8 text-green-800 dark:text-green-300">Farmer’s Real Success Stories 🌾</h2>
@@ -199,7 +84,6 @@ const SuccessStory = () => {
           <div className="flex justify-center">
             <button className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700  transition duration-300" onClick={() => setShowModal(true)}>Share Your Success Story</button>
           </div>
->>>>>>> f845c22cbaea595c13ba685c3cf19da11820de8a
         )}
 
         {/* story card container div starts */}
