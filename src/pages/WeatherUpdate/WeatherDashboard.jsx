@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import {
   Thermometer, Wind, Droplet, RefreshCcw, AlertTriangle, MapPin
 } from "lucide-react";
+import DashboardRoutes from "../../router/DashboardRoutes";
 
 
 const WeatherDashboard = () => {
@@ -96,6 +97,7 @@ const WeatherDashboard = () => {
 
   return (
     <section className="min-h-screen px-6 md:px-16 py-12 bg-gradient-to-br from-green-50 via-white to-lime-100 text-gray-900">
+      <DashboardRoutes/>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}

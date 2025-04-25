@@ -1,33 +1,27 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SectionTitle from "./SectionTitle/SectionTitle";
+import useVideos from "../hooks/useVideos";
+import Spinner from "./Spinner/Spinner";
+import VideoCard from "./VideoCard/VideoCard";
 
 const VideoPlaylist = () => {
-  const [videos, setVideos] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [videos, isPending, isError, error, refetch] = useVideos();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setLoading(true);
-    fetch("https://agro-sphere-server-ten.vercel.app/videos")
-      .then((res) => res.json())
-      .then((data) => {
-        setVideos(data);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, []);
-
   return (
-    <section className="w-full">
-      <div className="w-11/12 max-w-7xl mx-auto text-center">
+    <section className="tutorials w-full">
+      <div className="tutorials-inner container mx-auto px-6 lg:px-40 py-12 text-center">
 
-        <h2 className="text-4xl sm:text-5xl font-extrabold text-lime-700 dark:text-lime-400 mb-4 tracking-tight py-12">
+        {/* <h2 className="text-4xl sm:text-5xl font-extrabold text-lime-700 dark:text-lime-400 mb-4 tracking-tight py-12">
           📺 Smart Farming Video Hub
-        </h2>
+        </h2> */}
+
+        <SectionTitle title={"Smart Farming Video Hub"} sub_title={"Explore educational and inspiring videos on modern and traditional farming"} />
 
 
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10">
-          {loading
+        {/* <div className="grid gap-5 gird-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+          {isPending
             ? Array.from({ length: 6 }).map((_, index) => (
               <div
                 key={index}
@@ -62,16 +56,30 @@ const VideoPlaylist = () => {
                 </p>
               </div>
             ))}
-        </div>
+        </div> */}
 
+        {/* all video container div starts */}
+        {
+          isPending ? (
+            <div className="w-full py-14 flex items-center justify-center">
+              <Spinner />
+            </div>
+          ) : isError ? (
+            <div className="w-full py-14 flex items-center justify-center">
+              <h1 className="text-2xl font-medium text-red-600">{error?.message}</h1>
+            </div>
+          ) : (
+            <div className="grid gap-5 gird-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+              {
+                videos?.slice(0, 8)?.map(video => <VideoCard key={video?._id} video={video} />)
+              }
+            </div>
+          )
+        }
 
-        <div className="text-center mt-20">
-          <button
-            onClick={() => navigate("/all-videos")}
-            className="bg-gradient-to-r from-lime-500 to-green-500 hover:from-green-600 hover:to-lime-600 text-white font-semibold py-3 px-8 rounded-full shadow-xl transition-all duration-300"
-          >
-            🌟 See All Videos
-          </button>
+        {/* see all video button container div */}
+        <div className="text-center mt-10">
+          <button onClick={() => navigate("/all-videos")} className="bg-gradient-to-r from-lime-500 to-green-500 hover:from-green-600 hover:to-lime-600 text-white font-semibold py-3 px-8 rounded-full shadow-xl transition-all duration-300">🌟 See All Videos</button>
         </div>
       </div>
     </section>
