@@ -63,9 +63,9 @@ const Navbar = () => {
           <div className="flex flex-1 items-center justify-center lg:items-stretch lg:justify-start">
             <Link to="/" className="flex items-center gap-3">
               <img src={logo} className="h-10 w-auto" />
-              <span className="text-2xl font-extrabold tracking-wider text-green-400 drop-shadow-sm hidden md:inline">
+              {/* <span className="text-2xl font-extrabold tracking-wider text-green-400 drop-shadow-sm hidden md:inline">
                 AgroSphere
-              </span>
+              </span> */}
             </Link>
 
             {/* Desktop Nav */}
