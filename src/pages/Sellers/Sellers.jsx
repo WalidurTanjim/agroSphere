@@ -3,7 +3,6 @@ import useSellers from "../../hooks/useSellers";
 
 const Sellers = () => {
     const [sellers, isPending, isError, error, refetch] = useSellers();
-    console.log(sellers);
 
     return (
         <section className="sellers w-full min-h-screen">
