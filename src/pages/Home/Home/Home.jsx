@@ -16,7 +16,7 @@ const Home = () => {
             <Banner></Banner>
             <VideoPlaylist></VideoPlaylist>
             <AICropAdvisory></AICropAdvisory>
-            <LatestForum></LatestForum>
+            {/* <LatestForum></LatestForum> */}
             <SuccessStory></SuccessStory>
             <Questions />
         </div>
