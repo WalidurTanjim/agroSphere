@@ -32,6 +32,7 @@ import Market from "../pages/Market/Market.jsx";
 import ProductDetails from "../components/ProductDetails/ProductDetails.jsx";
 import IncommingRequests from "../pages/Dashboard/Admin/IncommingRequests/IncommingRequests.jsx";
 import Sellers from "../pages/Sellers/Sellers.jsx";
+import QuizPage from "./Quiz/quizPage.jsx";
 
 
 const router = createBrowserRouter([
@@ -125,7 +126,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'farmer-quiz',
-        element: <QuizCard></QuizCard>
+        element: <QuizPage></QuizPage>
       },
       
       {
@@ -164,6 +165,7 @@ const router = createBrowserRouter([
         path: 'seller-dashboard',
         element: <SellerDashboard />
       },
+      
 
       {
         path: 'trainer-dashboard',

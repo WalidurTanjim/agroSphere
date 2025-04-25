@@ -1,11 +1,12 @@
-import axios from "axios";
+// Quiz.js (User's side to fetch quizzes)
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import QuizCard from "./QuizCard";
-import AddQuizForm from "./AddQuizForm";
+import AddQuizForm from "./AddQuizForm"; // For admin to add quiz
+import DashboardRoutes from "../DashboardRoutes";
 
 const Quiz = () => {
   const [quizzes, setQuizzes] = useState([]);
-
   const fetchQuizzes = () => {
     axios
       .get("http://localhost:5000/api/quizzes")
@@ -19,17 +20,13 @@ const Quiz = () => {
 
   return (
     <div className="min-h-screen bg-green-50 py-10 px-4">
+      <DashboardRoutes />
       <h1 className="text-3xl font-bold text-center mb-6">🌾 Farming Quiz</h1>
 
       {/* Add Quiz Form (optional: admin only) */}
       <AddQuizForm onAdd={fetchQuizzes} />
 
-      {/* Quiz Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-        {quizzes.map((quiz, index) => (
-          <QuizCard key={quiz._id} quiz={quiz} index={index + 1} />
-        ))}
-      </div>
+      
     </div>
   );
 };
