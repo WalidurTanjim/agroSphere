@@ -1,9 +1,9 @@
 const Questions = () => {
     return (
-        <section className="questions container mx-auto px-6 2xl:px-40 py-12">
+        <section className="questions container mx-auto px-6 2xl:px-40 py-12 mt-5">
             {/* questions_header div starts */}
             <div className="questions_header grid items-center md:grid-cols-5">
-                <h1 className="text-[1.6rem] md:text-[2rem] lg:text-[3rem] font-medium md:col-span-3">Have a question? <br />We are here to answer.</h1>
+                <h1 className="text-[1.6rem] md:text-[2rem] lg:text-[3rem] font-medium md:col-span-3 text-green-800 dark:text-green-300">Have a question? <br />We are here to answer.</h1>
 
                 <div className="hidden md:grid md:col-span-2">
                     <div className="grid gap-3">

@@ -1,5 +1,7 @@
+// AddQuizForm.js
 import { useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2"; // Import SweetAlert
 
 const AddQuizForm = ({ onAdd }) => {
   const [quiz, setQuiz] = useState({
@@ -17,7 +19,7 @@ const AddQuizForm = ({ onAdd }) => {
 
       // reset correctAnswer if it's no longer in options
       if (!newOptions.includes(quiz.correctAnswer)) {
-        setQuiz(q => ({ ...q, correctAnswer: "" }));
+        setQuiz((q) => ({ ...q, correctAnswer: "" }));
       }
     } else {
       setQuiz({ ...quiz, [e.target.name]: e.target.value });
@@ -29,19 +31,37 @@ const AddQuizForm = ({ onAdd }) => {
 
     const { question, options, correctAnswer, explanation } = quiz;
 
-    if (!question || options.some(opt => !opt) || !correctAnswer || !explanation) {
-      return alert("❗ সব ফিল্ড পূরণ করুন!");
+    if (!question || options.some((opt) => !opt) || !correctAnswer || !explanation) {
+      // Show SweetAlert if any field is empty
+      return Swal.fire({
+        title: "❗ সব ফিল্ড পূরণ করুন!",
+        text: "অনুগ্রহ করে সব ফিল্ড সঠিকভাবে পূর্ণ করুন।",
+        icon: "warning",
+        confirmButtonText: "OK",
+      });
     }
 
     if (!options.includes(correctAnswer)) {
-      return alert("❗ সঠিক উত্তর অবশ্যই অপশনগুলোর মধ্যে হতে হবে!");
+      // Show SweetAlert if correctAnswer is not one of the options
+      return Swal.fire({
+        title: "❗ সঠিক উত্তর অবশ্যই অপশনগুলোর মধ্যে হতে হবে!",
+        text: "দয়া করে সঠিক উত্তরটি অপশনগুলোর মধ্যে থেকে নির্বাচন করুন।",
+        icon: "warning",
+        confirmButtonText: "OK",
+      });
     }
 
     try {
       const res = await axios.post("http://localhost:5000/api/quizzes", quiz);
       if (res.data.insertedId) {
-        alert("✅ কুইজ অ্যাড হয়েছে!");
-        onAdd?.();
+        // Show success SweetAlert
+        Swal.fire({
+          title: "✅ কুইজ অ্যাড হয়েছে!",
+          text: "আপনার কুইজ সফলভাবে যোগ করা হয়েছে।",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+        onAdd?.(); // Reload quizzes
         setQuiz({
           question: "",
           options: ["", "", "", ""],
@@ -51,7 +71,13 @@ const AddQuizForm = ({ onAdd }) => {
       }
     } catch (err) {
       console.error(err);
-      alert("❌ কুইজ অ্যাড করতে সমস্যা হয়েছে");
+      // Show error SweetAlert
+      Swal.fire({
+        title: "❌ কুইজ অ্যাড করতে সমস্যা হয়েছে",
+        text: "কিছু ত্রুটি ঘটেছে, দয়া করে আবার চেষ্টা করুন।",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     }
   };
 

@@ -1,8 +1,22 @@
 import React from 'react';
 import DashboardRoutes from '../../../../router/DashboardRoutes';
 import {DollarSign, ShieldUser, StickyNote, Tractor, Truck, Users, Video} from 'lucide-react';
+import useUsersCount from '../../../../hooks/useUsersCount';
+import useFarmersCount from '../../../../hooks/useFarmersCount';
+import useSellersCount from '../../../../hooks/useSellersCount';
+import useTrainersCount from '../../../../hooks/useTrainersCount';
+import usePostsCount from '../../../../hooks/usePostsCount';
+import useVideosCount from '../../../../hooks/useVideosCount';
 
 const AdminDashboard = () => {
+    const [ users ] = useUsersCount();
+    const [ farmers ] = useFarmersCount();
+    const [ sellers ] = useSellersCount();
+    const [ trainers ] = useTrainersCount();
+    const [ posts ] = usePostsCount();
+    const [ videos ] = useVideosCount();
+    console.log(users);
+
     return (
         <section className='admin_dashboard w-full min-h-screen bg-gray-100'>
             <DashboardRoutes />
@@ -17,7 +31,10 @@ const AdminDashboard = () => {
                         <div className='flex items-center justify-between'>
                             <h1 className='text-gray-500 font-medium'>Users</h1>
                             
-                            <div className='p-2 rounded-full bg-blue-100'><Users className='text-blue-600' size={18} /></div>
+                            <div className="flex items-center">
+                                <span className='text-blue-500 text-2xl font-semibold me-2'>{users ? users?.count : 0}</span>
+                                <div className='p-2 rounded-full bg-blue-100'><Users className='text-blue-600' size={18} /></div>
+                            </div>
                         </div>
                     </div>
 
@@ -26,7 +43,10 @@ const AdminDashboard = () => {
                         <div className='flex items-center justify-between'>
                             <h1 className='text-gray-500 font-medium'>Farmers</h1>
                             
-                            <div className='p-2 rounded-full bg-blue-100'><Tractor className='text-blue-600' size={18} /></div>
+                            <div className="flex items-center">
+                                <span className='text-blue-500 text-2xl font-semibold me-2'>{farmers ? farmers?.count : 0}</span>
+                                <div className='p-2 rounded-full bg-blue-100'><Tractor className='text-blue-600' size={18} /></div>
+                            </div>
                         </div>
                     </div>
 
@@ -35,7 +55,10 @@ const AdminDashboard = () => {
                         <div className='flex items-center justify-between'>
                             <h1 className='text-gray-500 font-medium'>Sellers</h1>
                             
-                            <div className='p-2 rounded-full bg-blue-100'><Truck className='text-blue-600' size={18} /></div>
+                            <div className="flex items-center">
+                                <span className='text-blue-500 text-2xl font-semibold me-2'>{sellers ? sellers?.count : 0}</span>
+                                <div className='p-2 rounded-full bg-blue-100'><Truck className='text-blue-600' size={18} /></div>
+                            </div>
                         </div>
                     </div>
 
@@ -44,7 +67,10 @@ const AdminDashboard = () => {
                         <div className='flex items-center justify-between'>
                             <h1 className='text-gray-500 font-medium'>Trainers</h1>
                             
-                            <div className='p-2 rounded-full bg-blue-100'><ShieldUser className='text-blue-600' size={18} /></div>
+                            <div className="flex items-center">
+                                <span className='text-blue-500 text-2xl font-semibold me-2'>{trainers ? trainers?.count : 0}</span>
+                                <div className='p-2 rounded-full bg-blue-100'><ShieldUser className='text-blue-600' size={18} /></div>
+                            </div>
                         </div>
                     </div>
 
@@ -53,7 +79,10 @@ const AdminDashboard = () => {
                         <div className='flex items-center justify-between'>
                             <h1 className='text-gray-500 font-medium'>Posts</h1>
                             
-                            <div className='p-2 rounded-full bg-blue-100'><StickyNote className='text-blue-600' size={18} /></div>
+                            <div className="flex items-center">
+                                <span className='text-blue-500 text-2xl font-semibold me-2'>{posts ? posts?.count : 0}</span>
+                                <div className='p-2 rounded-full bg-blue-100'><StickyNote className='text-blue-600' size={18} /></div>
+                            </div>
                         </div>
                     </div>
 
@@ -62,7 +91,10 @@ const AdminDashboard = () => {
                         <div className='flex items-center justify-between'>
                             <h1 className='text-gray-500 font-medium'>Videos</h1>
 
-                            <div className='p-2 rounded-full bg-blue-100'><Video className='text-blue-600' size={18} /></div>
+                            <div className="flex items-center">
+                                <span className='text-blue-500 text-2xl font-semibold me-2'>{videos ? videos?.count : 0}</span>
+                                <div className='p-2 rounded-full bg-blue-100'><Video className='text-blue-600' size={18} /></div>
+                            </div>
                         </div>
                     </div>
 
