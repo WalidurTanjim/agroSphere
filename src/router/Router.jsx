@@ -33,6 +33,7 @@ import ProductDetails from "../components/ProductDetails/ProductDetails.jsx";
 import IncommingRequests from "../pages/Dashboard/Admin/IncommingRequests/IncommingRequests.jsx";
 import Sellers from "../pages/Sellers/Sellers.jsx";
 import QuizPage from "./Quiz/quizPage.jsx";
+import SellerProfile from "../components/Prodile/SellerProfile/SellerProfile.jsx";
 
 
 const router = createBrowserRouter([
@@ -105,6 +106,10 @@ const router = createBrowserRouter([
       {
         path: 'community/post-details/:id',
         element: <PostDetails />
+      },
+      {
+        path: 'seller-profile/:email',
+        element: <SellerProfile />
       }
     ]
   },{

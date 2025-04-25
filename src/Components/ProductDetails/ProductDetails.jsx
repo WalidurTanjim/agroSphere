@@ -89,6 +89,11 @@ const ProductDetails = () => {
         }
     }
 
+    // viewProfileHandler
+    const viewProfileHandler = email => {
+        navigate(`/seller-profile/${email}`, { replace: true });
+    }
+
     return (
         <section className={`product-details`}>
             <div className="container mx-auto px-6 lg:px-48 py-14 grid gap-5 grid-cols-1 lg:grid-cols-6">
@@ -168,6 +173,8 @@ const ProductDetails = () => {
                                 <span className="text-slate-700"><Award className="w-3 h-3" /></span>
                                 {product?.badge}
                             </p>
+
+                            <button type="button" className={`text-sm text-[#fff] font-medium px-5 py-1.5 border border-green-300 outline-none rounded-md bg-green-700 hover:bg-green-600 active:bg-green-700 inline-block mx-auto mt-2`} onClick={() => viewProfileHandler(product?.seller?.email)}>View Profile</button>
                         </div>
                     </div>
                 </div>

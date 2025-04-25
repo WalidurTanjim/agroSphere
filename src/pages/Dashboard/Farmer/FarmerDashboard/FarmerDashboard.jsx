@@ -1,5 +1,5 @@
 import DashboardRoutes from '../../../../router/DashboardRoutes';
-import SuccessStory from '../SuccessStory/SuccessStory';
+
 import WeatherDashboard from '../../../WeatherUpdate/WeatherDashboard';
 
 // Tailwind UI resources for modal

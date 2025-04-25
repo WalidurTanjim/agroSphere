@@ -1,6 +1,37 @@
 import { Check, X } from "lucide-react";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
-const RoleReqUserRow = ({ user }) => {
+const RoleReqUserRow = ({ user, refetch }) => {
+    const axiosPublic = useAxiosPublic();
+
+    // handleRejectRequest
+    const handleRejectRequest = async(email) => {
+        try{
+            const res = await axiosPublic.patch(`/reject_req?email=${email}`);
+            const data = await res.data;
+
+            if(data?.modifiedCount > 0){
+                refetch();
+            }
+        }catch(err){
+            console.log(err);
+        }
+    }
+
+    // handleApproveRequest
+    const handleApproveRequest = async(email) => {
+        try{
+            const res = await axiosPublic.patch(`/approve_req?email=${email}`);
+            const data = await res.data;
+
+            if(data?.modifiedCount > 0){
+                refetch();
+            }
+        }catch(err){
+            console.error(err);
+        }
+    }
+
     return (
         <tr className="hover:bg-gray-100">
             <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
@@ -38,11 +69,11 @@ const RoleReqUserRow = ({ user }) => {
 
             <td className="px-4 py-4 text-sm whitespace-nowrap">
                 <div className="flex items-center gap-x-6">
-                    <button className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
+                    <button className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none" onClick={() => handleRejectRequest(user?.email)}>
                         <X className="w-5 h-5" />
                     </button>
 
-                    <button className="text-gray-500 transition-colors duration-200 dark:hover:text-green-500 dark:text-gray-300 hover:text-green-500 focus:outline-none">
+                    <button className="text-gray-500 transition-colors duration-200 dark:hover:text-green-500 dark:text-gray-300 hover:text-green-500 focus:outline-none" onClick={() => handleApproveRequest(user?.email)}>
                         <Check className="w-5 h-5" />
                     </button>
                 </div>

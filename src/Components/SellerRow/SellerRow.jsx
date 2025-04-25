@@ -1,6 +1,14 @@
 import { Eye, ShieldCheck, Trash2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const SellerRow = ({ seller }) => {
+    const navigate = useNavigate();
+
+    // viewProfileHandler
+    const viewProfileHandler = email => {
+        navigate(`/seller-profile/${email}`, { replace: true });
+    }
+
     return (
         <tr className="hover:bg-gray-100">
             <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
@@ -34,7 +42,7 @@ const SellerRow = ({ seller }) => {
                         <Trash2 className="w-5 h-5" />
                     </button> */}
 
-                    <button className="text-gray-500 transition-colors duration-200 dark:hover:text-green-500 dark:text-gray-300 hover:text-green-500 focus:outline-none">
+                    <button className="text-gray-500 transition-colors duration-200 dark:hover:text-green-500 dark:text-gray-300 hover:text-green-500 focus:outline-none" onClick={() => viewProfileHandler(seller?.email)} >
                         <Eye className="w-5 h-5" />
                     </button>
                 </div>

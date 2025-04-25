@@ -25,7 +25,7 @@ const AICropAdvisory = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:5000/ai-response", {
+      const response = await axios.post("https://agro-sphere-server-ten.vercel.app/ai-response", {
         prompt: input,
       });
       setMessages((prev) => [
@@ -78,11 +78,10 @@ const AICropAdvisory = () => {
                 transition={{ duration: 0.3 }}
                 className={`flex items-end ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
                 <div
-                  className={`px-5 py-3 max-w-[75%] text-sm shadow-md rounded-xl font-medium tracking-wide ${
-                    msg.sender === "user"
+                  className={`px-5 py-3 max-w-[75%] text-sm shadow-md rounded-xl font-medium tracking-wide ${msg.sender === "user"
                       ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white"
                       : "bg-white text-gray-800 border border-green-200"
-                  }`}>
+                    }`}>
                   {msg.text}
                 </div>
                 {msg.sender === "user" ? (
