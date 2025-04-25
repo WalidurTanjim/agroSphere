@@ -11,7 +11,8 @@ import AgricultureHighlight from '../../../Components/optional/AgricultureHighli
 
 const Home = () => {
     return (
-        <div>
+        <div className='agrospere'>
+            
             <ScrollReveal direction="up" delay={0.2} duration={0.9} blur={true}>
                 <Banner />
             </ScrollReveal>
