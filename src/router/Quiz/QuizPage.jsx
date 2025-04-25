@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import QuizCard from "./QuizCard";
 import Swal from "sweetalert2";
+import DashboardRoutes from "../DashboardRoutes";
 
 const QuizPage = () => {
   const [quizzes, setQuizzes] = useState([]);
@@ -53,6 +54,7 @@ const QuizPage = () => {
 
   return (
     <div className="min-h-screen bg-green-50 py-10 px-4">
+        <DashboardRoutes></DashboardRoutes>
       <h1 className="text-3xl font-bold text-center mb-6">🌾 Farming Quiz</h1>
 
       {/* Quiz Cards */}
