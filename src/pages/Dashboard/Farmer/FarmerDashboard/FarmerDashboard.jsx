@@ -6,6 +6,7 @@ import WeatherDashboard from '../../../WeatherUpdate/WeatherDashboard';
 import { useState } from 'react';
 import useAuth from '../../../../hooks/useAuth';
 import ChangeRoleModal from '../../../../components/ChangeRoleModal/ChangeRoleModal';
+import WasteList from '../../../../Components/WasteList/WasteList';
 
 const FarmerDashboard = () => {
     const { user, open, setOpen } = useAuth();
@@ -23,6 +24,7 @@ const FarmerDashboard = () => {
                     {/* <WeatherDashboard/> */}
                     <button type="button" className='px-5 py-2 text-sm font-medium text-slate-200 bg-green-700 hover:bg-green-600 active:bg-green-700 border outline-none border-gray-200 rounded-md' onClick={() => setOpen(true)}>Change Role</button>
                 </div>
+                <WasteList></WasteList>
             </div>
 
 
