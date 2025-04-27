@@ -44,16 +44,14 @@ const SocialLogin = () => {
     })
        
     }
-    if(loading){
-        return <LoadingSpinner />
-    }
+    
     
    
     return (
         <div>
              <div  className="space-y-4">
-                 <button onClick={handleGoogleSignin} type="button" className="w-full bg-red-600 text-white py-2 rounded-lg flex justify-center items-center gap-2 cursor-pointer">
-                     <FaGoogle /> Sign up with Google
+                 <button onClick={handleGoogleSignin} type="button" className="flex  w-full rounded-lg py-2 border border-blue-600  justify-center items-center gap-2 cursor-pointer">
+                     <img src="https://i.ibb.co.com/5hTQjqwW/images-removebg-preview.png" alt="" className="w-6 h-6" /> Login with Google
                   </button>
                 
              </div>

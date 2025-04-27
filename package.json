@@ -44,8 +44,8 @@
     "react-router-dom": "^6.30.0",
     "react-spinners": "^0.15.0",
     "recharts": "^2.15.2",
-    "sort-by": "^1.2.0",
-    "sweetalert2": "^11.17.2",
+    "sort-by": "^0.0.2",
+    "sweetalert2": "^11.6.13",
     "tailwindcss": "^4.0.13"
   },
   "devDependencies": {
