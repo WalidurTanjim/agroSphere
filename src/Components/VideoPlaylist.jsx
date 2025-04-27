@@ -1,117 +1,88 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import SectionTitle from "./SectionTitle/SectionTitle";
+import useVideos from "../hooks/useVideos";
+import Spinner from "./Spinner/Spinner";
+import VideoCard from "./VideoCard/VideoCard";
 
 const VideoPlaylist = () => {
-  const [videos, setVideos] = useState([]);
-  const [filteredVideos, setFilteredVideos] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [showSuggestions, setShowSuggestions] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(true);
-    fetch("http://localhost:5000/videos")
-      .then((res) => res.json())
-      .then((data) => {
-        setVideos(data);
-        setFilteredVideos(data);
-        setCategories(["All", ...new Set(data.map((video) => video.category))]);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, []);
-
-  // Search & filter function
-  const handleSearchChange = (e) => {
-    const value = e.target.value;
-    setSearchTerm(value);
-    setShowSuggestions(value.trim() !== "");
-
-    // Live filtering videos based on category name match
-    if (value === "") {
-      setFilteredVideos(videos);
-    } else {
-      const matchedVideos = videos.filter((video) =>
-        video.category.toLowerCase().includes(value.toLowerCase())
-      );
-      setFilteredVideos(matchedVideos);
-    }
-  };
-
-  // Apply filter when selecting a suggestion
-  const handleSuggestionClick = (category) => {
-    setSearchTerm(category);
-    setFilteredVideos(videos.filter((video) => video.category === category));
-    setShowSuggestions(false);
-  };
+  const [videos, isPending, isError, error, refetch] = useVideos();
+  const navigate = useNavigate();
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-green-50 to-green-100 py-10">
-      <div className="w-11/12 mx-auto">
-        <h2 className="text-3xl font-bold text-green-700 text-center pb-6">
-          Farming Video Tutorials 🎥
-        </h2>
+    <section className="tutorials w-full">
+      <div className="tutorials-inner container mx-auto px-6 lg:px-40 py-12 text-center">
 
-        {/* Search Box */}
-        <div className="relative w-full md:w-1/3 mx-auto mb-6">
-          <input
-            type="text"
-            placeholder="Search category..."
-            value={searchTerm}
-            onChange={handleSearchChange}
-            onFocus={() => setShowSuggestions(true)}
-            onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
-          />
-          {showSuggestions && (
-            <ul className="absolute left-0 w-full bg-white shadow-lg rounded-lg mt-1 z-10">
-              {categories
-                .filter((cat) => cat.toLowerCase().includes(searchTerm.toLowerCase()))
-                .map((suggestion) => (
-                  <li
-                    key={suggestion}
-                    onClick={() => handleSuggestionClick(suggestion)}
-                    className="px-4 py-2 cursor-pointer hover:bg-green-100"
-                  >
-                    {suggestion}
-                  </li>
-                ))}
-            </ul>
-          )}
-        </div>
+        {/* <h2 className="text-4xl sm:text-5xl font-extrabold text-lime-700 dark:text-lime-400 mb-4 tracking-tight py-12">
+          📺 Smart Farming Video Hub
+        </h2> */}
 
-        {/* Video Grid */}
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
-          {loading ? (
-            Array.from({ length: 6 }).map((_, index) => (
-              <div key={index} className="bg-gray-200 animate-pulse rounded-lg p-4">
-                <div className="w-full h-56 bg-gray-300 rounded-lg"></div>
-                <div className="h-6 bg-gray-400 rounded mt-4 w-3/4"></div>
-                <div className="h-4 bg-gray-400 rounded mt-2 w-5/6"></div>
+        <SectionTitle title={"Smart Farming Video Hub"} sub_title={"Explore educational and inspiring videos on modern and traditional farming"} />
+
+
+        {/* <div className="grid gap-5 gird-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+          {isPending
+            ? Array.from({ length: 6 }).map((_, index) => (
+              <div
+                key={index}
+                className="bg-white/50 dark:bg-white/10 backdrop-blur-md animate-pulse rounded-xl shadow-md p-5 h-[320px]"
+              >
+                <div className="w-full h-52 bg-gray-300 dark:bg-gray-700 rounded-lg"></div>
+                <div className="h-5 bg-gray-400 dark:bg-gray-600 rounded mt-4 w-3/4"></div>
+                <div className="h-4 bg-gray-400 dark:bg-gray-600 rounded mt-2 w-2/3"></div>
               </div>
             ))
-          ) : filteredVideos.length > 0 ? (
-            filteredVideos.map((video) => (
+            : videos.slice(0, 6).map((video) => (
               <div
                 key={video._id}
-                className="bg-green-50 shadow-md border border-green-300 rounded-lg p-4 transition hover:shadow-lg"
+                className="relative bg-white dark:bg-white/5 backdrop-blur-xl rounded-2xl shadow-lg p-4 group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
               >
-                <iframe
-                  className="w-full h-56 rounded-lg"
-                  src={video.url}
-                  title={video.title}
-                  allowFullScreen
-                ></iframe>
-                <h3 className="text-xl font-semibold mt-3 text-green-800">{video.title}</h3>
-                <p className="text-gray-600">{video.description}</p>
+
+                <div className="relative w-full h-56 overflow-hidden rounded-xl mb-4">
+                  <iframe
+                    className="w-full h-full rounded-xl pointer-events-auto"
+                    src={video.url}
+                    title={video.title}
+                    allowFullScreen
+                  ></iframe>
+                </div>
+
+
+                <h3 className="text-2xl font-semibold text-left text-lime-700 dark:text-lime-400 group-hover:text-lime-900 dark:group-hover:text-lime-300 transition">
+                  {video.title}
+                </h3>
+                <p className="text-sm mt-1 text-left text-gray-600 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition">
+                  {video.description}
+                </p>
               </div>
-            ))
+            ))}
+        </div> */}
+
+        {/* all video container div starts */}
+        {
+          isPending ? (
+            <div className="w-full py-14 flex items-center justify-center">
+              <Spinner />
+            </div>
+          ) : isError ? (
+            <div className="w-full py-14 flex items-center justify-center">
+              <h1 className="text-2xl font-medium text-red-600">{error?.message}</h1>
+            </div>
           ) : (
-            <p className="text-center text-gray-600 col-span-3">No videos found.</p>
-          )}
+            <div className="grid gap-5 gird-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+              {
+                videos?.slice(0, 8)?.map(video => <VideoCard key={video?._id} video={video} />)
+              }
+            </div>
+          )
+        }
+
+        {/* see all video button container div */}
+        <div className="text-center mt-10">
+          <button onClick={() => navigate("/all-videos")} className="bg-gradient-to-r from-lime-500 to-green-500 hover:from-green-600 hover:to-lime-600 text-white font-semibold py-3 px-8 rounded-full shadow-xl transition-all duration-300">🌟 See All Videos</button>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
