@@ -8,6 +8,9 @@ import UseAllForum from "../../hooks/useAllForum.jsx";
 import useAuth from "../../hooks/useAuth.jsx";
 import moment from "moment/moment.js";
 import useCommunityReview from "../../hooks/useCommunityReview.jsx";
+import Spinner from "../Spinner/Spinner.jsx";
+import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
+import CommunityReview from "../CommunityReview/CommunityReview.jsx";
 
 const PostDetails = () => {
     const [errMsg, setErrMsg] = useState('');
@@ -18,34 +21,34 @@ const PostDetails = () => {
     const axiosPublic = useAxiosPublic();
     const existData = forum?.find(post => post._id === id);
     // const [ reviews, isPending, isError, error, refetch ] = useCommunityReview();
-    const [ communityReviews, communityIsPending, communityIsError, communityError, communityRefetch ] = useCommunityReview(existData?._id);
+    const [communityReviews, communityIsPending, communityIsError, communityError, communityRefetch] = useCommunityReview(existData?._id);
     console.log(communityReviews)
 
 
     // increaseUpVote
     const increaseUpVote = async (id) => {
-        try{
+        try {
             const res = await axiosPublic.patch(`/forum/upvote/${id}`);
             const data = await res.data || {};
-            if(data?.modifiedCount > 0){
+            if (data?.modifiedCount > 0) {
                 toast.success('Successfully toasted!')
                 refetch();
             }
-        }catch(err){
+        } catch (err) {
             console.error(err);
         }
     }
 
     // increaseDownVote
     const increaseDownVote = async (id) => {
-        try{
+        try {
             const res = await axiosPublic.patch(`/forum/downvote/${id}`);
             const data = await res.data || {};
-            if(data?.modifiedCount > 0){
+            if (data?.modifiedCount > 0) {
                 toast.success('Successfully toasted!')
                 refetch();
             }
-        }catch(err){
+        } catch (err) {
             console.error(err);
         }
     }
@@ -57,7 +60,7 @@ const PostDetails = () => {
 
         const form = e.target;
         const review = form.review.value;
-        if(review.length < 20){
+        if (review.length < 20) {
             return setErrMsg('Review must be more then 20 characters')
         }
 
@@ -70,15 +73,15 @@ const PostDetails = () => {
             review_date: moment().format("DD-MM-YYYY")
         }
 
-        try{
+        try {
             const res = await axiosPublic.post(`/community-review`, reviewData);
             const data = await res.data || {};
-            if(data?.insertedId){
+            if (data?.insertedId) {
                 toast.success('Review added successfully');
                 communityRefetch();
                 form.reset();
             }
-        }catch(err){
+        } catch (err) {
             console.error(err);
             toast.error(error?.message)
         }
@@ -115,7 +118,7 @@ const PostDetails = () => {
                     <p className={`text-sm font-medium text-slate-800`}>{existData?.upVote ? existData?.upVote : 0}</p>
                 </div>
 
-                <div className={`flex items-center gap-[2px]`}  onClick={() => increaseDownVote(existData?._id)}>
+                <div className={`flex items-center gap-[2px]`} onClick={() => increaseDownVote(existData?._id)}>
                     <ArrowBigDown size={18} className={`hover:text-gray-600 active:text-slate-900`} />
                     <p className={`text-sm font-medium text-slate-800`}>{existData?.downVote ? existData?.downVote : 0}</p>
                 </div>
@@ -128,14 +131,31 @@ const PostDetails = () => {
 
             {/* add a review */}
             <div className="mt-10">
-                <h1 className="text-lg text-slate-800 font-medium">Add a review:</h1>
+                <h1 className="text-lg text-slate-800 font-medium">Add a comment:</h1>
 
                 <form className="mt-3" onSubmit={handleAddReview}>
                     <textarea name="review" rows={4} className="w-full p-3 outline-none border border-gray-300 focus:border-gray-400 rounded-md text-sm text-gray-600" placeholder="Write your review here..."></textarea>
                     {errMsg ? <p className="mt-1 text-xs font-medium text-red-600">{errMsg}</p> : undefined}
 
-                    <button type="submit" className={`w-full text-[#fff] mt-1 px-5 py-1.5 border border-green-300 outline-none rounded-md bg-green-700 hover:bg-green-600 active:bg-green-700`}>Add Review</button>
+                    <button type="submit" className={`w-full text-[#fff] mt-1 px-5 py-1.5 border border-green-300 outline-none rounded-md bg-green-700 hover:bg-green-600 active:bg-green-700`}>Add Comment</button>
                 </form>
+            </div>
+
+            {/* reviews */}
+            <div className="mt-10">
+                <h1 className="text-lg text-slate-800 font-medium">All reviews:</h1>
+
+                <div className="mt-2">
+                    {
+                        communityIsPending ? <Spinner /> : communityIsError ? (
+                            <ErrorMessage errMsg={communityError?.message} />
+                        ) : (
+                            communityReviews.length > 0 ? (
+                                communityReviews?.map(review => <CommunityReview key={review?._id} review={review} />)
+                            ) : <ErrorMessage errMsg={"No data available"} />
+                        )
+                    }
+                </div>
             </div>
         </section>
     );
