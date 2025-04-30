@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useAllForum from "../../hooks/useAllForum.jsx";
 import React, { useState } from "react";
 import { ArrowBigDown, ArrowBigUp, MessageSquare } from 'lucide-react';
@@ -22,6 +22,8 @@ const PostDetails = () => {
     const existData = forum?.find(post => post._id === id);
     // const [ reviews, isPending, isError, error, refetch ] = useCommunityReview();
     const [communityReviews, communityIsPending, communityIsError, communityError, communityRefetch] = useCommunityReview(existData?._id);
+    const navigate = useNavigate();
+    const location = useLocation();
 
 
     // increaseUpVote
@@ -72,17 +74,21 @@ const PostDetails = () => {
             review_date: moment().format("DD-MM-YYYY")
         }
 
-        try {
-            const res = await axiosPublic.post(`/community-review`, reviewData);
-            const data = await res.data || {};
-            if (data?.insertedId) {
-                toast.success('Review added successfully');
-                communityRefetch();
-                form.reset();
+        if(user){
+            try {
+                const res = await axiosPublic.post(`/community-review`, reviewData);
+                const data = await res.data || {};
+                if (data?.insertedId) {
+                    toast.success('Review added successfully');
+                    communityRefetch();
+                    form.reset();
+                }
+            } catch (err) {
+                console.error(err);
+                toast.error(error?.message)
             }
-        } catch (err) {
-            console.error(err);
-            toast.error(error?.message)
+        }else{
+            navigate('/signin', {state: {from: location}}, {replace: true})
         }
     }
 
