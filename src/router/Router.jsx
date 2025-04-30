@@ -34,6 +34,7 @@ import IncommingRequests from "../pages/Dashboard/Admin/IncommingRequests/Incomm
 import Sellers from "../pages/Sellers/Sellers.jsx";
 import QuizPage from "./Quiz/quizPage.jsx";
 import SellerProfile from "../components/Prodile/SellerProfile/SellerProfile.jsx";
+import ProfileUpdate from "../Components/UpdateProfie/ProfileUpdate.jsx";
 
 
 const router = createBrowserRouter([
@@ -120,7 +121,10 @@ const router = createBrowserRouter([
         path: 'admin-dashboard',
         element: <AdminDashboard />
       },
-      
+      {
+        path: 'myProfile',
+        element: <ProfileUpdate></ProfileUpdate>
+      },
       {
         path: 'video-upload',
         element: <VideoUpload />
