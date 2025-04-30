@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import toast from 'react-hot-toast';
 
 const CommunityReview = ({ review, communityRefetch }) => {
     const [showItems, setShowItems] = useState(false);
@@ -22,10 +23,12 @@ const CommunityReview = ({ review, communityRefetch }) => {
             confirmButtonText: "Yes, delete it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
+                const toastId = toast.loading('Deleting...');
                 try {
                     const res = await axiosPublic.delete(`/community-review-delete?id=${_id}`);
                     const data = res?.data || {};
                     if (data.deletedCount > 0) {
+                        toast.dismiss(toastId);
                         Swal.fire({
                             title: "Deleted!",
                             text: "Your comment has been deleted.",
