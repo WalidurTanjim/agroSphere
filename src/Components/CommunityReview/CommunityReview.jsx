@@ -47,7 +47,7 @@ const CommunityReview = ({ review, communityRefetch }) => {
         <div className="review group relative w-full border border-gray-200 hover:border-gray-300 rounded-lg p-3 mb-4 hover:shadow-md">
             {/* 3 dots */}
             {
-                user ?
+                user?.email === user_email ?
                     <div className="absolute top-3 right-3 flex gap-2 items-center" onClick={() => setShowItems(!showItems)}>
                         {
                             showItems ? (
