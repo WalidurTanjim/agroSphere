@@ -49,8 +49,7 @@ const Navbar = () => {
     <Disclosure as="nav" className="sticky top-0 left-0 w-full z-50 shadow-md backdrop-blur-md bg-[#1a3327] text-[#e7f2ec]"
 
 >
-      <div className="container mx-auto px-6 lg:px-48
-      ">
+      <div className="container mx-auto px-6 lg:px-48">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-green-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-none focus:ring-inset">

@@ -7,6 +7,7 @@ import useAuth from "../../hooks/useAuth";
 import useSuccessStories from "../../hooks/useSuccessStories";
 import StoryCard from "../StoryCard/StoryCard";
 import SectionTitle from "../SectionTitle/SectionTitle";
+import AgroButton from "../../shared/Button/AgroButton";
 
 const SuccessStory = () => {
   const [showModal, setShowModal] = useState(false);
@@ -65,7 +66,7 @@ const SuccessStory = () => {
   };
 
   return (
-    <section className="success-story w-full mt-5">
+    <section className="success-story w-full mt-10">
       <div className="container mx-auto px-6 lg:px-40 py-12">
         <SectionTitle
           title={"Inspiring Agricultural Journeys"}
@@ -121,12 +122,9 @@ const SuccessStory = () => {
 
           {user && (
             <div className="flex justify-center mt-10">
-              <button
-                onClick={() => setShowModal(true)}
-                className="bg-gradient-to-r from-lime-500 to-green-500 hover:from-green-600 hover:to-lime-600 text-white font-semibold py-3 px-8 rounded-full shadow-xl transition-all duration-300"
-              >
+              <AgroButton variant="solid" onClick={() => setShowModal(true)}>
                 Share Your Success Story
-              </button>
+              </AgroButton>
             </div>
           )}
         </div>

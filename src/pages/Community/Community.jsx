@@ -23,20 +23,20 @@ const Community = () => {
             headers: { "Content-Type": "application/json" },
         });
 
-    if (response.ok) {
-      setPosts((prevPosts) =>
-        prevPosts.map((post) =>
-          post._id === id
-            ? {
-              ...post,
-              upVote: type === "upvote" ? (post.upVote || 0) + 1 : post.upVote,
-              downVote: type === "downvote" ? (post.downVote || 0) + 1 : post.downVote,
-            }
-            : post
-        )
-      );
-    }
-  };
+        if (response.ok) {
+            setPosts((prevPosts) =>
+                prevPosts.map((post) =>
+                    post._id === id
+                        ? {
+                            ...post,
+                            upVote: type === "upvote" ? (post.upVote || 0) + 1 : post.upVote,
+                            downVote: type === "downvote" ? (post.downVote || 0) + 1 : post.downVote,
+                        }
+                        : post
+                )
+            );
+        }
+    };
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;

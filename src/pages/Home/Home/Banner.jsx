@@ -84,7 +84,7 @@ const Banner = () => {
             )}
           </div>
 
-          {/* CTA buttons */}
+     
           <div className="flex gap-3 flex-wrap pt-6">
             <Link to="/events">
               <button className="px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 rounded-full bg-lime-500 hover:bg-lime-600 text-sm sm:text-base md:text-lg font-semibold shadow-lg transition-all">
@@ -110,7 +110,7 @@ const Banner = () => {
             className="w-full h-full bg-cover bg-center transition-all duration-[1200ms]"
             style={{
               backgroundImage: `url(${images[currentImage]})`,
-              clipPath: `polygon(30% 0%, 100% 0%, 100% 70%, 80% 100%, 0% 100%, 0% 30%)`,
+              clipPath:`polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%)`,
               borderRadius: "60px",
               boxShadow: "0 0 30px rgba(0,255,150,0.4)",
             }}
