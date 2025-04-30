@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import AgroButton from "../../shared/Button/AgroButton";
 
 const ContactForm = () => {
 
@@ -60,12 +61,16 @@ const ContactForm = () => {
                     className="w-full px-4 py-3 border border-green-300 dark:border-green-600 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-white"
                     required
                 />
-                <button
+                {/* <button
                     type="submit"
                     className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white py-3 rounded-xl font-semibold transition"
                 >
-                    Send Messages
-                </button>
+                    
+                </button> */}
+
+                <AgroButton variant="solid" fullWidth>
+                Send Messages
+                </AgroButton>
             </form>
         </motion.div>
     );

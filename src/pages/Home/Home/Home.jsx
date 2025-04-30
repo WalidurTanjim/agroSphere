@@ -7,6 +7,7 @@ import Questions from '../Questions/Questions';
 import FeatureShowcase from '../../../Components/optional/FeatureShowcase';
 import ScrollReveal from '../../../Components/optional/ScrollReveal ';
 import AgricultureHighlight from '../../../Components/optional/AgricultureHighlight ';
+import AppPromoSection from '../../../Components/optional/AppPromoSection';
 
 
 const Home = () => {
@@ -22,6 +23,7 @@ const Home = () => {
             <AgricultureHighlight />
             <ScrollReveal delay={0.4}><SuccessStory /></ScrollReveal>
             <ScrollReveal delay={0.5}><Questions /></ScrollReveal>
+            <AppPromoSection></AppPromoSection>
         </div>
     );
 };

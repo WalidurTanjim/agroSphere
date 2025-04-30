@@ -38,7 +38,7 @@ const features = [
 
 const FeatureShowcase = () => {
   return (
-    <section className="w-full mt-5 mb-5">
+    <section className="w-full mt-10 mb-10">
       <div className='container mx-auto px-6 lg:px-40 py-12'>
         <div className="text-center mb-20">
 

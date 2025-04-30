@@ -10,7 +10,7 @@ const MyOrders = () => {
     useEffect(() => {
         // Check if user is available before making the fetch request
         if (user && user.email) {
-            fetch(`http://localhost:5000/orders/${user.email}`)
+            fetch(`https://agro-sphere-server-ten.vercel.app/orders/${user.email}`)
                 .then(res => {
                     if (!res.ok) {
                         throw new Error('Failed to fetch orders');

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaLeaf } from "react-icons/fa";
+import AgroButton from "../../../shared/Button/AgroButton";
 
 const NewsLatter = () => {
     const [email, setEmail] = useState("");
@@ -42,14 +43,18 @@ const NewsLatter = () => {
                         focus:outline-none focus:ring-2 focus:ring-green-600 dark:border-green-500 
                         bg-white dark:text-white dark:placeholder-gray-400 transition-all duration-300"
                     />
-                    <button
+                    {/* <button
                         onClick={handleSubscribe}
                         className="bg-green-600 text-white px-6 py-3 rounded-xl text-lg 
                         hover:bg-green-700 transition-all w-full md:w-auto dark:bg-green-500 
                         dark:hover:bg-green-600"
                     >
                         Subscribe
-                    </button>
+                    </button> */}
+
+                    <AgroButton onClick={handleSubscribe} variant="solid">
+                    Subscribe
+                    </AgroButton>
                 </div>
             </motion.div>
         </section>

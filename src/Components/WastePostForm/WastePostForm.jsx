@@ -18,7 +18,7 @@ const WastePostForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch("http://localhost:5000/waste", {
+        fetch("https://agro-sphere-server-ten.vercel.app/waste", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const WastePostForm = () => {
                     onChange={handleChange}
                     required
                 />
-                
+
                 <input
                     name="image"
                     placeholder="Image URL"

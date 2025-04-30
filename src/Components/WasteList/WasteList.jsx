@@ -6,7 +6,7 @@ const WasteList = () => {
     const [selectedWaste, setSelectedWaste] = useState(null);
 
     useEffect(() => {
-        fetch("http://localhost:5000/waste")
+        fetch("https://agro-sphere-server-ten.vercel.app/waste")
             .then(res => res.json())
             .then(data => setWastes(data));
     }, []);

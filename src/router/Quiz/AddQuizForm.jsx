@@ -52,7 +52,7 @@ const AddQuizForm = ({ onAdd }) => {
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/api/quizzes", quiz);
+      const res = await axios.post("https://agro-sphere-server-ten.vercel.app/api/quizzes", quiz);
       if (res.data.insertedId) {
         // Show success SweetAlert
         Swal.fire({

@@ -9,7 +9,7 @@ const Quiz = () => {
   const [quizzes, setQuizzes] = useState([]);
   const fetchQuizzes = () => {
     axios
-      .get("http://localhost:5000/api/quizzes")
+      .get("https://agro-sphere-server-ten.vercel.app/api/quizzes")
       .then((res) => setQuizzes(res.data))
       .catch((err) => console.error(err));
   };
@@ -26,7 +26,7 @@ const Quiz = () => {
       {/* Add Quiz Form (optional: admin only) */}
       <AddQuizForm onAdd={fetchQuizzes} />
 
-      
+
     </div>
   );
 };

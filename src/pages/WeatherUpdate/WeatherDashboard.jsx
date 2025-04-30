@@ -8,6 +8,8 @@ import {
 } from "lucide-react";
 import DashboardRoutes from "../../router/DashboardRoutes";
 
+import weatherclock from '../../assets/SignIn/SignUp_Json/weather.json'; 
+import Lottie from "lottie-react";
 
 const WeatherDashboard = () => {
   const [forecast, setForecast] = useState([]);
@@ -27,6 +29,8 @@ const WeatherDashboard = () => {
 
       const forecastData = await forecastRes.json();
       const currentData = await currentRes.json();
+
+      console.log(forecastData, currentData)
 
       const daily = [];
       const usedDates = new Set();
@@ -96,7 +100,7 @@ const WeatherDashboard = () => {
   const alert = getAlert();
 
   return (
-    <section className="min-h-screen px-6 md:px-16 py-12 bg-gradient-to-br from-green-50 via-white to-lime-100 text-gray-900">
+    <section className="min-h-screen px-6 md:px-16 py-12 bg-gradient-to-br from-green-50  to-lime-100 text-gray-900">
       <DashboardRoutes/>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -104,6 +108,13 @@ const WeatherDashboard = () => {
         transition={{ duration: 1 }}
         className="max-w-7xl mx-auto"
       >
+     
+<div className="flex justify-center">
+  <Lottie animationData={weatherclock} loop={true} className="h-56 w-56" />
+</div>
+
+
+
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
           <h1 className="text-3xl md:text-5xl font-extrabold text-lime-700 flex items-center gap-2">
             <MapPin className="w-6 h-6 text-lime-600" /> Dhaka Weather
@@ -171,6 +182,11 @@ const WeatherDashboard = () => {
                   <Area type="monotone" dataKey="rain" stroke="#0ea5e9" fillOpacity={1} fill="url(#rainColor)" name="Rain (%)" />
                 </AreaChart>
               </ResponsiveContainer>
+            </div>
+
+            <div className="bg-white/90 p-6 rounded-xl shadow-xl mb-12">
+              <h2 className="text-2xl font-bold text-lime-700 mb-4">🌾 Seasonal Crop Suggestions</h2>
+              <p className="text-lg text-gray-700 mt-4">{seasonalCropSuggestions()}</p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-6 mb-12">
