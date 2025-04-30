@@ -22,7 +22,6 @@ const PostDetails = () => {
     const existData = forum?.find(post => post._id === id);
     // const [ reviews, isPending, isError, error, refetch ] = useCommunityReview();
     const [communityReviews, communityIsPending, communityIsError, communityError, communityRefetch] = useCommunityReview(existData?._id);
-    console.log(communityReviews)
 
 
     // increaseUpVote
@@ -141,9 +140,9 @@ const PostDetails = () => {
                 </form>
             </div>
 
-            {/* reviews */}
+            {/* comments */}
             <div className="mt-10">
-                <h1 className="text-lg text-slate-800 font-medium">All reviews:</h1>
+                <h1 className="text-lg text-slate-800 font-medium">All comments:</h1>
 
                 <div className="mt-2">
                     {
@@ -151,7 +150,7 @@ const PostDetails = () => {
                             <ErrorMessage errMsg={communityError?.message} />
                         ) : (
                             communityReviews.length > 0 ? (
-                                communityReviews?.map(review => <CommunityReview key={review?._id} review={review} />)
+                                communityReviews?.map(review => <CommunityReview key={review?._id} review={review} communityRefetch={communityRefetch} />)
                             ) : <ErrorMessage errMsg={"No data available"} />
                         )
                     }
