@@ -32,7 +32,7 @@ const SignUp = () => {
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigate();
 
-  const onSubmit = async (data) => {
+   const onSubmit = async (data) => {
     console.log(data);
     const { email, name, password, confirmPassword } = data;
     setLoading(true);
@@ -47,61 +47,64 @@ const SignUp = () => {
         password.length >= 6 &&
         /[A-Z]/.test(password) &&
         /[!@#$%^&*(),.?":{}|<>]/.test(password);
-
+  
       if (!passwordValidation) {
+        setLoading(false);
         return toast.error(
           "Password must be 6 characters, include a capital letter, and a special character."
         );
       }
-      // Upload photo to imgbb
-      if (data.image[0]) {
-        const photoData = new FormData();
-        photoData.append("image", data.image[0]);
-
-        // console.log("Uploading photo to ImgBB...");
-
-        const imgbbResponse = await axios.post(
-          `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY
-          }`,
-          photoData
-        );
-
-        // const photo = imgbbResponse.data.data.display_url;
-        // console.log("Photo uploaded to ImgBB:", photo);
-
-        // if (!imgbbResponse.data.success) {
-        //   throw new Error("Failed to upload image to ImgBB");
-        // }
-
-        // Rest of the authentication code...
-        const userCredential = await createUser(email, password);
-        const user = userCredential.user;
-
-        updateUserProfile(Name, photo).then((res) => {
-          const userInfo = {
-            email: email,
-            Name: name,
-            password: password,
-            role: "farmer",
-          };
-          console.log(userInfo);
-          //   post user data backend
-          axios.post("https://agro-sphere-server-ten.vercel.app/users", userInfo).then((res) => {
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: "Registered successfully",
-              showConfirmButton: false,
-              timer: 2000,
-            });
-            reset();
-            navigation("/");
-          });
-        });
-      } else {
-        toast.error("Please select a photo");
-        return;
-      }
+  
+      // Upload photo to ImgBB
+      // let photo = "";
+      // if (data.image && data.image[0]) {
+      //   const photoData = new FormData();
+      //   photoData.append("image", data.image[0]);
+  
+      //   console.log("Uploading photo to ImgBB...");
+  
+      //   const imgbbResponse = await axios.post(
+      //     `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,
+      //     photoData
+      //   );
+  
+      //   if (imgbbResponse.data.success) {
+      //     photo = imgbbResponse.data.data.display_url;
+      //     console.log("Photo uploaded to ImgBB:", photo);
+      //   } else {
+      //     throw new Error("Failed to upload image to ImgBB");
+      //   }
+      // } else {
+      //   setLoading(false);
+      //   return toast.error("Please select a photo");
+      // }
+  
+      // Create user and update profile
+      const userCredential = await createUser(email, password);
+      const user = userCredential.user;
+  
+      await updateUserProfile(name);
+      const userInfo = {
+        email: email,
+        Name: name,
+        password: password,
+        role: "farmer",
+      };
+      console.log(userInfo);
+  
+      // Post user data to the backend
+      await axios.post("https://agro-sphere-server-ten.vercel.app/users", userInfo);
+  
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Registered successfully",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+  
+      reset();
+      navigation("/");
     } catch (error) {
       Swal.fire({
         position: "top-end",
@@ -110,7 +113,7 @@ const SignUp = () => {
         showConfirmButton: false,
         timer: 2000,
       });
-      console.log(error.message);
+      console.log(error);
     } finally {
       setLoading(false);
     }
