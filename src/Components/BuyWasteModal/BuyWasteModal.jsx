@@ -14,7 +14,7 @@ const BuyWasteModal = ({ waste, onClose }) => {
       totalPrice: quantity * waste.pricePerUnit,  // Assuming you have pricePerUnit
     };
 
-    fetch("http://localhost:5000/orders", {
+    fetch("https://agro-sphere-server-ten.vercel.app/orders", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -12,7 +12,7 @@ const QuizPage = () => {
   // Fetch quizzes from the backend
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/quizzes")
+      .get("https://agro-sphere-server-ten.vercel.app/api/quizzes")
       .then((res) => setQuizzes(res.data))
       .catch((err) => console.error("Error fetching quizzes: ", err));
   }, []);
@@ -20,7 +20,7 @@ const QuizPage = () => {
   const handleAnswerSubmission = async () => {
     try {
       const userId = "some_user_id"; // Replace with actual userId logic
-      await axios.post("http://localhost:5000/api/answers", {
+      await axios.post("https://agro-sphere-server-ten.vercel.app/api/answers", {
         userId,
         answers: userAnswers,
       });
@@ -54,7 +54,7 @@ const QuizPage = () => {
 
   return (
     <div className="min-h-screen bg-green-50 py-10 px-4">
-        <DashboardRoutes></DashboardRoutes>
+      <DashboardRoutes></DashboardRoutes>
       <h1 className="text-3xl font-bold text-center mb-6">🌾 Farming Quiz</h1>
 
       {/* Quiz Cards */}

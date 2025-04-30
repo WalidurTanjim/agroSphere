@@ -3,6 +3,8 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import ProductsLoadingSpinner from "../../components/ProductsLoadingSpinner/ProductsLoadingSpinner";
 import useAllProducts from "../../hooks/useAllProducts";
+import AgroButton from "../../shared/Button/AgroButton";
+import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 
 const Market = () => {
     const [ products, isPending, isError, error, refetch ] = useAllProducts();
@@ -16,13 +18,21 @@ const Market = () => {
             <div className="market-inner container mx-auto px-6 lg:px-48 py-12">
                 {/* page title container div starts */}
                 <div className={`text-center`}>
-                    <h1 className={`text-2xl md:text-3xl lg:text-4xl font-medium text-green-800`}>AgroMarket</h1>
-                    <p className={`text-sm text-gray-500 font-medium pt-2`}>Discover fresh produce, quality seeds, tools & equipment directly from farmers.</p>
+                    {/* <h1 className={`text-2xl md:text-3xl lg:text-4xl font-medium text-green-800`}>AgroMarket</h1>
+                    <p className={`text-sm text-gray-500 font-medium pt-2`}>Discover fresh produce, quality seeds, tools & equipment directly from farmers.</p> */}
+
+                    <SectionTitle title="AgroMarket" sub_title="Discover fresh produce, quality seeds, tools & equipment directly from farmers." />
                 </div>
 
                 <div className="my-5 flex justify-end">
-                    <Link to={`/sellers`}><button type="button" className="px-5 py-2 border border-gray-200 outline-none rounded-md text-sm font-medium hover:bg-gray-100 hover:shadow-md active:bg-white">Sellers List</button></Link>
+                    <Link to={`/sellers`}>
+                    <AgroButton variant="outline">
+                    Sellers List
+                    </AgroButton>
+                    </Link>
                 </div>
+
+                {/* <button type="button" className="px-5 py-2 border border-gray-200 outline-none rounded-md text-sm font-medium hover:bg-gray-100 hover:shadow-md active:bg-white">Sellers List</button> */}
 
                 {/* display all products posted by farmer */}
                 <div className="products-container">

@@ -4,6 +4,7 @@ import SectionTitle from "./SectionTitle/SectionTitle";
 import useVideos from "../hooks/useVideos";
 import Spinner from "./Spinner/Spinner";
 import VideoCard from "./VideoCard/VideoCard";
+import AgroButton from "../shared/Button/AgroButton";
 
 const VideoPlaylist = () => {
   const [videos, isPending, isError, error, refetch] = useVideos();
@@ -79,7 +80,11 @@ const VideoPlaylist = () => {
 
         {/* see all video button container div */}
         <div className="text-center mt-10">
-          <button onClick={() => navigate("/all-videos")} className="bg-gradient-to-r from-lime-500 to-green-500 hover:from-green-600 hover:to-lime-600 text-white font-semibold py-3 px-8 rounded-full shadow-xl transition-all duration-300">🌟 See All Videos</button>
+          {/* <button onClick={() => navigate("/all-videos")} className="bg-gradient-to-r from-lime-500 to-green-500 hover:from-green-600 hover:to-lime-600 text-white font-semibold py-3 px-8 rounded-full shadow-xl transition-all duration-300">🌟 See All Videos</button> */}
+
+          <AgroButton size="lg" onClick={() => navigate("/all-videos")}>
+          See All Videos
+          </AgroButton>
         </div>
       </div>
     </section>

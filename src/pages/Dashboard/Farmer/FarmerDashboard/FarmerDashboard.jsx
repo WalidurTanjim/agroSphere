@@ -1,9 +1,6 @@
 import DashboardRoutes from '../../../../router/DashboardRoutes';
 
-import WeatherDashboard from '../../../WeatherUpdate/WeatherDashboard';
-
 // Tailwind UI resources for modal
-import { useState } from 'react';
 import useAuth from '../../../../hooks/useAuth';
 import ChangeRoleModal from '../../../../components/ChangeRoleModal/ChangeRoleModal';
 import WasteList from '../../../../Components/WasteList/WasteList';
@@ -20,8 +17,7 @@ const FarmerDashboard = () => {
 
                 {/* work here */}
                 <div className='my-10'>
-                    {/* <SuccessStory/> */}
-                    {/* <WeatherDashboard/> */}
+               
                     <button type="button" className='px-5 py-2 text-sm font-medium text-slate-200 bg-green-700 hover:bg-green-600 active:bg-green-700 border outline-none border-gray-200 rounded-md' onClick={() => setOpen(true)}>Change Role</button>
                 </div>
                 <WasteList></WasteList>
