@@ -1,405 +1,160 @@
-
-
-// import React, { useEffect, useState } from "react";
-// import {
-//   AreaChart, Area, XAxis, Tooltip, ResponsiveContainer, YAxis, CartesianGrid
-// } from "recharts";
-// import { motion } from "framer-motion";
-// import {
-//   Thermometer, Wind, Droplet, RefreshCcw, AlertTriangle, MapPin, Mic
-// } from "lucide-react";
-// import DashboardRoutes from "../../router/DashboardRoutes";
-// import Lottie from "lottie-react";
-// import weatherclock from '../../assets/SignIn/SignUp_Json/weather.json';
-// import clearSky from '../../assets/SignIn/SignUp_Json/clearsky.json';
-// import rainy from '../../assets/SignIn/SignUp_Json/rainy.json';
-// import thunder from '../../assets/SignIn/SignUp_Json/thunder.json';
-// import cloud from '../../assets/SignIn/SignUp_Json/cloud .json';
-// import snow from '../../assets/SignIn/SignUp_Json/snow .json';
-
-// const WeatherDashboard = () => {
-//   const [forecast, setForecast] = useState([]);
-//   const [current, setCurrent] = useState(null);
-//   const [loading, setLoading] = useState(true);
-//   const [city, setCity] = useState('Dhaka');
-//   const [lat, setLat] = useState(23.8103);
-//   const [lon, setLon] = useState(90.4125);
-//   const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
-
-//   const fetchWeather = async () => {
-//     setLoading(true);
-//     try {
-//       const [forecastRes, currentRes] = await Promise.all([
-//         fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`),
-//         fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`)
-//       ]);
-//       const forecastData = await forecastRes.json();
-//       const currentData = await currentRes.json();
-
-//       console.log(forecastData, currentData)
-
-//       const daily = [];
-//       const usedDates = new Set();
-//       for (let item of forecastData.list) {
-//         const date = new Date(item.dt_txt);
-//         const day = date.toDateString();
-//         if (!usedDates.has(day) && (date.getHours() === 12 || date.getHours() === 15)) {
-//           usedDates.add(day);
-//           daily.push(item);
-//         }
-//         if (daily.length === 5) break;
-//       }
-
-//       setForecast(daily);
-//       setCurrent(currentData);
-//     } catch (err) {
-//       console.error("Weather fetch failed", err);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   const handleSpeak = () => {
-//     if (!current) return;
-//     const message = `Current weather in ${city}: ${Math.round(current.main.temp)} degrees Celsius, ${current.weather[0].description}.`;
-//     const speech = new SpeechSynthesisUtterance(message);
-//     window.speechSynthesis.speak(speech);
-//   };
-
-//   const seasonalCropSuggestions = () => {
-//     if (!current) return null;
-//     const temp = current.main.temp;
-//     if (temp > 30) return "🌾 Consider planting heat-resistant crops like corn or rice.";
-//     if (temp < 20) return "🌱 Perfect for wheat, barley, and peas.";
-//     return "🌻 Great weather for crops like tomatoes, cucumbers, and beans.";
-//   };
-
-
-//   const formatDate = (dateString) => {
-//     const options = { weekday: 'short', month: 'short', day: 'numeric' };
-//     return new Date(dateString).toLocaleDateString('en-US', options);
-//   };
-  
-
-//   const getSuggestion = (day) => {
-//     if (day.pop > 0.5) return "🌧️ Rainy – Delay pesticide spraying.";
-//     if (day.main.temp > 35) return "🔥 Hot – Water crops early morning.";
-//     if (day.wind.speed > 10) return "💨 Windy – Secure tall plants.";
-//     return "✅ Good weather for field work.";
-//   };
-
-//   const getWeatherAnimation = (weather) => {
-//     switch (weather) {
-//       case 'Clear': return clearSky;
-//       case 'Rain': return rainy;
-//       case 'Thunderstorm': return thunder;
-//       case 'Snow': return snow;
-//       default: return cloud;
-//     }
-//   };
-
-//   const handleCityChange = (e) => {
-//     const selected = e.target.value;
-//     if (selected === 'Dhaka') {
-//       setLat(23.8103); setLon(90.4125); setCity('Dhaka');
-//     } else if (selected === 'Chittagong') {
-//       setLat(22.3569); setLon(91.7832); setCity('Chittagong');
-//     } else if (selected === 'Rajshahi') {
-//       setLat(24.3636); setLon(88.6241); setCity('Rajshahi');
-//     }
-//     fetchWeather();
-//   };
-
-//   useEffect(() => {
-//     fetchWeather();
-//   }, []);
-
-//   const chartData = forecast.map(day => ({
-//     name: new Date(day.dt_txt).toLocaleDateString('en-US', { weekday: 'short' }),
-//     temp: day.main.temp,
-//     rain: day.pop * 100,
-//   }));
-
-//   return (
-//     <>
-//     <section className="min-h-screen px-6 md:px-16 py-12 bg-gradient-to-br from-green-50 to-lime-100 text-gray-900">
-//       <DashboardRoutes />
-//       <motion.div
-//         initial={{ opacity: 0, y: 30 }}
-//         animate={{ opacity: 1, y: 0 }}
-//         transition={{ duration: 1 }}
-//         className="max-w-7xl mx-auto"
-//       >
-//         {/* Lottie Weather Clock */}
-//         <div className="flex justify-center">
-//           <Lottie animationData={weatherclock} loop={true} className="h-64 w-64" />
-//         </div>
-
-//         {/* City Switcher */}
-//         <div className="flex justify-between items-center mb-6">
-//           <h1 className="text-3xl md:text-5xl font-extrabold text-lime-700 flex items-center gap-2">
-//             <MapPin className="w-7 h-7" /> {city} Weather
-//           </h1>
-//           <div className="flex items-center gap-4">
-//             <select onChange={handleCityChange} className="px-3 py-2 rounded-lg border border-gray-300 shadow">
-//               <option value="Dhaka">Dhaka</option>
-//               <option value="Chittagong">Chittagong</option>
-//               <option value="Rajshahi">Rajshahi</option>
-//             </select>
-//             <button onClick={fetchWeather} className="bg-lime-600 hover:bg-lime-700 text-white px-4 py-2 rounded-full shadow-md flex items-center gap-2">
-//               <RefreshCcw size={18} /> Refresh
-//             </button>
-//             <button onClick={handleSpeak} className="bg-emerald-500 hover:bg-emerald-600 text-white p-2 rounded-full shadow-md">
-//               <Mic size={20} />
-//             </button>
-//           </div>
-//         </div>
-
-//         {/* Current Weather */}
-//         {current && (
-//           <div className="grid md:grid-cols-4 gap-6 mb-10">
-//             <div className="bg-white/90 p-6 rounded-xl shadow-xl text-center">
-//               <Lottie animationData={getWeatherAnimation(current.weather[0].main)} loop={true} className="h-32 mx-auto" />
-//               <h3 className="text-xl font-semibold text-lime-600 mt-2">Now</h3>
-//               <p className="text-4xl font-bold">{Math.round(current.main.temp)}°C</p>
-//               <p className="text-gray-500 capitalize">{current.weather[0].description}</p>
-//             </div>
-//             <div className="bg-white/90 p-6 rounded-xl shadow-xl text-center">
-//               <Droplet className="w-6 h-6 mx-auto text-lime-500" />
-//               <p className="text-xl font-semibold mt-1">{current.main.humidity}%</p>
-//               <p className="text-sm text-gray-600">Humidity</p>
-//             </div>
-//             <div className="bg-white/90 p-6 rounded-xl shadow-xl text-center">
-//               <Wind className="w-6 h-6 mx-auto text-lime-500" />
-//               <p className="text-xl font-semibold mt-1">{current.wind.speed} m/s</p>
-//               <p className="text-sm text-gray-600">Wind</p>
-//             </div>
-//             <div className="bg-white/90 p-6 rounded-xl shadow-xl text-center">
-//               <Thermometer className="w-6 h-6 mx-auto text-lime-500" />
-//               <p className="text-xl font-semibold mt-1">{Math.round(current.main.feels_like)}°C</p>
-//               <p className="text-sm text-gray-600">Feels Like</p>
-//             </div>
-//           </div>
-//         )}
-
-//         {/* Chart */}
-//         {!loading && (
-//           <div className="bg-white/90 p-6 rounded-xl shadow-xl mb-12">
-//             <h2 className="text-2xl font-bold text-lime-700 mb-4">📊 5-Day Forecast</h2>
-//             <ResponsiveContainer width="100%" height={300}>
-//               <AreaChart data={chartData}>
-//                 <defs>
-//                   <linearGradient id="tempColor" x1="0" y1="0" x2="0" y2="1">
-//                     <stop offset="5%" stopColor="#84cc16" stopOpacity={0.8} />
-//                     <stop offset="95%" stopColor="#84cc16" stopOpacity={0} />
-//                   </linearGradient>
-//                   <linearGradient id="rainColor" x1="0" y1="0" x2="0" y2="1">
-//                     <stop offset="5%" stopColor="#38bdf8" stopOpacity={0.6} />
-//                     <stop offset="95%" stopColor="#38bdf8" stopOpacity={0} />
-//                   </linearGradient>
-//                 </defs>
-//                 <XAxis dataKey="name" />
-//                 <YAxis />
-//                 <CartesianGrid strokeDasharray="3 3" />
-//                 <Tooltip />
-//                 <Area type="monotone" dataKey="temp" stroke="#65a30d" fillOpacity={1} fill="url(#tempColor)" name="Temp (°C)" />
-//                 <Area type="monotone" dataKey="rain" stroke="#0ea5e9" fillOpacity={1} fill="url(#rainColor)" name="Rain (%)" />
-//               </AreaChart>
-//             </ResponsiveContainer>
-//           </div>
-//         )}
-
-        // {/* Seasonal Crop Suggestion */}
-        // <div className="bg-white/90 p-6 rounded-xl shadow-xl mb-12">
-        //   <h2 className="text-2xl font-bold text-lime-700 mb-4">🌾 Seasonal Crop Suggestions</h2>
-        //   <p className="text-lg text-gray-700">{seasonalCropSuggestions()}</p>
-        // </div>
-
-//         {/* 5 Days Weather and Farmer Tips */}
-        {/* <div className="grid md:grid-cols-3 gap-8">
-          {forecast.map((day) => (
-            <div key={day.dt} className="bg-white/90 p-6 rounded-xl shadow-xl">
-              <h3 className="text-xl font-semibold text-lime-600 mb-2">{new Date(day.dt_txt).toLocaleDateString('en-US', { weekday: 'long' })}</h3>
-              <p className="text-gray-700 text-lg">🌡️ {Math.round(day.main.temp)}°C</p>
-              <p className="capitalize text-gray-600">{day.weather[0].description}</p>
-              <div className="mt-4 text-sm text-emerald-600 font-medium">
-                {farmerAdvice(day.weather[0].main, day.main.temp)}
-              </div>
-            </div>
-          ))}
-        </div> */}
-
-        // <div className="grid md:grid-cols-3 gap-6 mb-12">
-        //       {forecast.map((day) => (
-        //         <div key={day.dt} className="bg-white/90 backdrop-blur-md p-6 rounded-xl shadow-xl hover:scale-[1.02] transition duration-300">
-        //           <h3 className="text-lg font-bold text-lime-700 mb-2">{formatDate(day.dt_txt)}</h3>
-        //           <div className="text-gray-700 text-sm space-y-1">
-        //             <p><Thermometer className="inline w-4 h-4 mr-1" /> {day.main.temp}°C</p>
-        //             <p><Droplet className="inline w-4 h-4 mr-1" /> {Math.round(day.main.humidity)}% Humidity</p>
-        //             <p><Wind className="inline w-4 h-4 mr-1" /> {day.wind.speed} m/s Wind</p>
-        //           </div>
-        //           <p className="text-sm mt-3 italic text-gray-500">{getSuggestion(day)}</p>
-        //         </div>
-        //       ))}
-        //     </div>
-//       </motion.div>
-//     </section>
-//         </>
-//   );
-// };
-
-// export default WeatherDashboard;
-
-
-
-
 import React, { useState } from "react";
 import {
-  AreaChart, Area, XAxis, Tooltip, ResponsiveContainer, YAxis, CartesianGrid
+  AreaChart, Area, XAxis, Tooltip, ResponsiveContainer,
+  YAxis, CartesianGrid
 } from "recharts";
 import { motion } from "framer-motion";
-import {
-  Thermometer, Wind, Droplet, RefreshCcw, AlertTriangle, MapPin, Mic
-} from "lucide-react";
+import { RefreshCcw, MapPin, Mic, Sun, Moon } from "lucide-react";
 import DashboardRoutes from "../../router/DashboardRoutes";
 import Lottie from "lottie-react";
+import { useWeather } from "../../hooks/useWeather";
+
+
 import weatherclock from '../../assets/SignIn/SignUp_Json/weather.json';
 import clearSky from '../../assets/SignIn/SignUp_Json/clearsky.json';
 import rainy from '../../assets/SignIn/SignUp_Json/rainy.json';
 import thunder from '../../assets/SignIn/SignUp_Json/thunder.json';
 import cloud from '../../assets/SignIn/SignUp_Json/cloud .json';
 import snow from '../../assets/SignIn/SignUp_Json/snow .json';
-import humidityAnimation from '../../assets/SignIn/SignUp_Json/humidity.json'; 
-import windAnimation from '../../assets/SignIn/SignUp_Json/wind.json'; 
-import feelsLikeAnimation from '../../assets/SignIn/SignUp_Json/feelslike.json'; 
-import { useWeather } from "../../hooks/useWeather";
-import LoadingSpinner from "../../secure/LoadingSpinner";
+import humidityAnimation from '../../assets/SignIn/SignUp_Json/humidity.json';
+import windAnimation from '../../assets/SignIn/SignUp_Json/wind.json';
+import feelsLikeAnimation from '../../assets/SignIn/SignUp_Json/feelslike.json';
 
 const WeatherDashboard = () => {
-  const [city, setCity] = useState('Dhaka');
-  const [lat, setLat] = useState(23.8103);
-  const [lon, setLon] = useState(90.4125);
+  const [city] = useState('Dhaka');
+  const [lat] = useState(23.8103);
+  const [lon] = useState(90.4125);
+  const { data, isLoading, refetch } = useWeather({ lat, lon });
 
-  const { data, isLoading, isPending, refetch } = useWeather({ lat, lon });
-  const forecast = data?.forecast || [];
   const current = data?.current || null;
+  const forecast = data?.forecast || [];
 
-  const handleSpeak = () => {
-    if (!current) return;
-    const message = `Current weather in ${city}: ${Math.round(current.main.temp)} degrees Celsius, ${current.weather[0].description}.`;
-    const speech = new SpeechSynthesisUtterance(message);
-    window.speechSynthesis.speak(speech);
+  const animationMap = {
+    Clear: clearSky,
+    Rain: rainy,
+    Thunderstorm: thunder,
+    Snow: snow,
+    Default: cloud
   };
 
-  const seasonalCropSuggestions = () => {
-    if (!current) return null;
-    const temp = current.main.temp;
+  const speakWeather = () => {
+    if (!current) return;
+    const message = `Current weather in ${city}: ${Math.round(current.main.temp)}°C, ${current.weather[0].description}.`;
+    window.speechSynthesis.speak(new SpeechSynthesisUtterance(message));
+  };
+
+  const seasonalSuggestion = () => {
+    const temp = current?.main?.temp;
     if (temp > 30) return "🌾 Consider planting heat-resistant crops like corn or rice.";
     if (temp < 20) return "🌱 Perfect for wheat, barley, and peas.";
-    return "🌻 Great weather for crops like tomatoes, cucumbers, and beans.";
+    return "🌻 Great weather for tomatoes, cucumbers, and beans.";
   };
 
-
-
-  const farmerAdvice = (weather, temp) => {
-    if (weather === 'Clear') {
-      return "🌞 Great weather for sowing seeds!";
-    } else if (weather === 'Rain') {
-      return "🌧️ Ideal weather for water-intensive crops.";
-    } else if (weather === 'Thunderstorm') {
-      return "⚡ Avoid fieldwork during thunderstorms.";
-    } else if (temp > 30) {
-      return "🔥 Keep crops hydrated during this hot weather.";
-    } else if (temp < 20) {
-      return "❄️ Ensure crops are protected from the cold.";
-    }
+  const getFarmerAdvice = (weather, temp) => {
+    if (weather === 'Clear') return "🌞 Great weather for sowing seeds!";
+    if (weather === 'Rain') return "🌧️ Ideal weather for water-intensive crops.";
+    if (weather === 'Thunderstorm') return "⚡ Avoid fieldwork during thunderstorms.";
+    if (temp > 30) return "🔥 Keep crops hydrated during hot weather.";
+    if (temp < 20) return "❄️ Ensure crops are protected from the cold.";
     return "🌻 Ideal for most crops today!";
   };
 
-  const getWeatherAnimation = (weather) => {
-    switch (weather) {
-      case 'Clear': return clearSky;
-      case 'Rain': return rainy;
-      case 'Thunderstorm': return thunder;
-      case 'Snow': return snow;
-      default: return cloud;
-    }
-  };
-
+  const getTime = (timestamp) =>
+    new Date(timestamp * 1000).toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit'
+    });
 
   const chartData = forecast.map(day => ({
     name: new Date(day.dt_txt).toLocaleDateString('en-US', { weekday: 'short' }),
     temp: day.main.temp,
-    rain: day.pop * 100,
+    rain: day.pop * 100
   }));
-
-  const handleRefech = () =>{
-    refetch()
-  }
-
-
 
   return (
     <section className="min-h-screen px-6 md:px-16 py-12 bg-gradient-to-br from-green-50 to-lime-100 text-gray-900">
       <DashboardRoutes />
+
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
         className="max-w-7xl mx-auto"
       >
+
         <div className="flex justify-center">
-          <Lottie animationData={weatherclock} loop={true} className="h-64 w-64" />
+          <Lottie animationData={weatherclock} loop className="h-64 w-64" />
         </div>
+
+     
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl md:text-5xl font-extrabold text-lime-700 flex items-center gap-2">
             <MapPin className="w-7 h-7" /> {city} Weather
           </h1>
           <div className="flex items-center gap-4">
-            {/* Removed city switcher */}
-            <button onClick={handleRefech} className="bg-lime-600 hover:bg-lime-700 text-white px-4 py-2 rounded-full shadow-md flex items-center gap-2">
+            <button onClick={refetch} className="bg-lime-600 hover:bg-lime-700 text-white px-4 py-2 rounded-full shadow-md flex items-center gap-2">
               <RefreshCcw size={18} /> Refresh
             </button>
-            <button onClick={handleSpeak} className="bg-emerald-500 hover:bg-emerald-600 text-white p-2 rounded-full shadow-md">
+            <button onClick={speakWeather} className="bg-emerald-500 hover:bg-emerald-600 text-white p-2 rounded-full shadow-md">
               <Mic size={20} />
             </button>
           </div>
         </div>
 
+        {/* Sunrise/Sunset */}
         {current && (
-          <div className="grid md:grid-cols-4 gap-6 mb-10">
-            <div className="bg-white/90 p-6 rounded-xl shadow-xl text-center">
-              <Lottie animationData={getWeatherAnimation(current.weather[0].main)} loop={true} className="h-32 mx-auto" />
-              <h3 className="text-xl font-semibold text-lime-600 mt-2">Now</h3>
-              <p className="text-4xl font-bold">{Math.round(current.main.temp)}°C</p>
-              <p className="text-gray-500 capitalize">{current.weather[0].description}</p>
+          <>
+            <div className="flex gap-6 justify-end mb-6 text-sm text-gray-700">
+              {[
+                { label: "Sunrise", time: getTime(current.sys.sunrise), icon: <Sun className="w-4 h-4 text-yellow-500" /> },
+                { label: "Sunset", time: getTime(current.sys.sunset), icon: <Moon className="w-4 h-4 text-indigo-500" /> }
+              ].map((item, idx) => (
+                <div key={idx} className="flex items-center gap-2 bg-white/70 px-3 py-1.5 rounded-full shadow-sm border border-gray-200">
+                  {item.icon}
+                  <span className="font-medium text-gray-800">{item.label}:</span>
+                  <span className="text-gray-600">{item.time}</span>
+                </div>
+              ))}
             </div>
 
-              {/* Humidity Lottie Animation */}
-              <div className="bg-white/90 p-6 rounded-xl shadow-xl text-center">
-                <Lottie animationData={humidityAnimation} loop={true} className="h-32 mx-auto" />
-                <p className="text-xl font-semibold mt-1">{current.main.humidity}%</p>
-                <p className="text-sm text-gray-600">Humidity</p>
-              </div>
-
-              {/* Wind Lottie Animation */}
-              <div className="bg-white/90 p-6 rounded-xl shadow-xl text-center">
-                <Lottie animationData={windAnimation} loop={true} className="h-32 mx-auto" />
-                <p className="text-xl font-semibold mt-1">{current.wind.speed} m/s</p>
-                <p className="text-sm text-gray-600">Wind</p>
-              </div>
-
-              {/* Feels Like Lottie Animation */}
-              <div className="bg-white/90 p-6 rounded-xl shadow-xl text-center">
-                <Lottie animationData={feelsLikeAnimation} loop={true} className="h-32 mx-auto" />
-                <p className="text-xl font-semibold mt-1">{Math.round(current.main.feels_like)}°C</p>
-                <p className="text-sm text-gray-600">Feels Like</p>
-              </div>
-          
-          </div>
+     
+            <div className="grid md:grid-cols-4 gap-6 mb-10">
+              {[
+                {
+                  label: "Now",
+                  value: `${Math.round(current.main.temp)}°C`,
+                  description: current.weather[0].description,
+                  animation: animationMap[current.weather[0].main] || animationMap.Default
+                },
+                {
+                  label: "Humidity",
+                  value: `${current.main.humidity}%`,
+                  animation: humidityAnimation
+                },
+                {
+                  label: "Wind",
+                  value: `${current.wind.speed} m/s`,
+                  animation: windAnimation
+                },
+                {
+                  label: "Feels Like",
+                  value: `${Math.round(current.main.feels_like)}°C`,
+                  animation: feelsLikeAnimation
+                }
+              ].map((item, idx) => (
+                <div key={idx} className="bg-white/90 p-6 rounded-2xl shadow-xl text-center hover:shadow-2xl transition-all duration-300">
+                  <Lottie animationData={item.animation} loop className="h-28 mx-auto" />
+                  <p className="text-xl font-bold mt-2 text-lime-700">{item.value}</p>
+                  <p className="text-sm text-gray-600">{item.label}</p>
+                  {item.description && <p className="text-xs text-gray-500 capitalize">{item.description}</p>}
+                </div>
+              ))}
+            </div>
+          </>
         )}
 
-        {/* Forecast Chart and Seasonal Crop Suggestion */}
+        
+
         {!isLoading && (
           <>
             <div className="bg-white/90 p-6 rounded-xl shadow-xl mb-12">
@@ -420,25 +175,29 @@ const WeatherDashboard = () => {
                   <YAxis />
                   <CartesianGrid strokeDasharray="3 3" />
                   <Tooltip />
-                  <Area type="monotone" dataKey="temp" stroke="#65a30d" fillOpacity={1} fill="url(#tempColor)" name="Temp (°C)" />
-                  <Area type="monotone" dataKey="rain" stroke="#0ea5e9" fillOpacity={1} fill="url(#rainColor)" name="Rain (%)" />
+                  <Area type="monotone" dataKey="temp" stroke="#65a30d" fill="url(#tempColor)" name="Temp (°C)" />
+                  <Area type="monotone" dataKey="rain" stroke="#0ea5e9" fill="url(#rainColor)" name="Rain (%)" />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
 
+            
             <div className="bg-gradient-to-r from-lime-100 to-green-100 p-6 rounded-xl shadow-xl mb-12 border border-lime-200">
               <h2 className="text-2xl font-bold text-lime-700 mb-4">🌾 Seasonal Crop Suggestions</h2>
-              <p className="text-lg text-gray-800 font-medium">{seasonalCropSuggestions()}</p>
+              <p className="text-lg text-gray-800 font-medium">{seasonalSuggestion()}</p>
             </div>
 
+        
             <div className="grid md:grid-cols-3 gap-8">
               {forecast.map((day) => (
                 <div key={day.dt} className="bg-white/90 p-6 rounded-xl shadow-xl">
-                  <h3 className="text-xl font-semibold text-lime-600 mb-2">{new Date(day.dt_txt).toLocaleDateString('en-US', { weekday: 'long' })}</h3>
+                  <h3 className="text-xl font-semibold text-lime-600 mb-2">
+                    {new Date(day.dt_txt).toLocaleDateString('en-US', { weekday: 'long' })}
+                  </h3>
                   <p className="text-gray-700 text-lg">🌡️ {Math.round(day.main.temp)}°C</p>
                   <p className="capitalize text-gray-600">{day.weather[0].description}</p>
                   <div className="mt-4 text-sm text-emerald-600 font-medium">
-                    {farmerAdvice(day.weather[0].main, day.main.temp)}
+                    {getFarmerAdvice(day.weather[0].main, day.main.temp)}
                   </div>
                 </div>
               ))}
@@ -451,5 +210,3 @@ const WeatherDashboard = () => {
 };
 
 export default WeatherDashboard;
-
-
