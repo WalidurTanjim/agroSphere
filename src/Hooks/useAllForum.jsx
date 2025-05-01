@@ -1,5 +1,5 @@
 import {useQuery} from "@tanstack/react-query";
-import useAxiosPublic from "./useAxiosPublic.jsx";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const UseAllForum = () => {
     const axiosPublic = useAxiosPublic();
