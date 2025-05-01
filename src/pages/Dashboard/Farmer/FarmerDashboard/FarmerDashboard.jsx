@@ -2,7 +2,7 @@ import DashboardRoutes from '../../../../router/DashboardRoutes';
 
 // Tailwind UI resources for modal
 import useAuth from '../../../../hooks/useAuth';
-import ChangeRoleModal from '../../../../components/ChangeRoleModal/ChangeRoleModal';
+import ChangeRoleModal from '../../../../Components/ChangeRoleModal/ChangeRoleModal';
 
 const FarmerDashboard = () => {
     const { user, open, setOpen } = useAuth();

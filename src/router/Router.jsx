@@ -36,6 +36,7 @@ import QuizPage from "./Quiz/quizPage.jsx";
 import SellerProfile from "../components/Prodile/SellerProfile/SellerProfile.jsx";
 import ProfileUpdate from "../Components/UpdateProfie/ProfileUpdate.jsx";
 import WasteList from "../Components/WasteList/WasteList.jsx"
+import WasteIncome from "../Components/Extra Income/WasteIncome.jsx";
 
 
 const router = createBrowserRouter([
@@ -175,7 +176,7 @@ const router = createBrowserRouter([
       },
       {
         path: "generate-income",
-        element: <WasteList></WasteList>
+        element: <WasteIncome></WasteIncome>
       },
       {
         path: 'seller-dashboard',
