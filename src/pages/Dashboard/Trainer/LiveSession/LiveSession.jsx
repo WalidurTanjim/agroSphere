@@ -1,12 +1,15 @@
 import moment from "moment/moment";
 import useAuth from "../../../../hooks/useAuth";
 import DashboardRoutes from "../../../../router/DashboardRoutes";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const LiveSession = () => {
     const { user } = useAuth();
+    const axiosPublic = useAxiosPublic();
 
     // handleSubmit
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
         const form = e.target;
         const s_link = form.session_link.value;
@@ -18,7 +21,23 @@ const LiveSession = () => {
         const s_time = form.session_time.value;
         const s_timePeriod = form.timePeriod.value;
         const session_info = { s_link, s_name, s_desc, m_name, m_image, s_date, s_time, s_timePeriod, release_date: moment().format("DD-MM-YYYY"), author_name: user?.displayName, author_email: user?.email, author_image: user?.photoURL };
-        
+
+
+        try {
+            const res = await axiosPublic.post('/post-session', session_info);
+            const data = await res.data;
+            console.log(data);
+            if (data?.insertedId) {
+                Swal.fire({
+                    title: "Good job!",
+                    text: "You've added a session successfully!",
+                    icon: "success"
+                });
+                form.reset();
+            }
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     return (
