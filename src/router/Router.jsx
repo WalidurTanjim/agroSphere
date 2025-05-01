@@ -35,6 +35,7 @@ import Sellers from "../pages/Sellers/Sellers.jsx";
 import QuizPage from "./Quiz/quizPage.jsx";
 import SellerProfile from "../components/Prodile/SellerProfile/SellerProfile.jsx";
 import ProfileUpdate from "../Components/UpdateProfie/ProfileUpdate.jsx";
+import LiveSession from "../pages/Dashboard/Trainer/LiveSession/LiveSession.jsx";
 
 
 const router = createBrowserRouter([
@@ -117,6 +118,7 @@ const router = createBrowserRouter([
     path: 'dashboard',
     element: <DashboardLayout />,
     children: [
+      // admin dashboard routes
       {
         path: 'admin-dashboard',
         element: <AdminDashboard />
@@ -147,6 +149,7 @@ const router = createBrowserRouter([
         element: <AllUsers />
       },
 
+      // farmer dashboard routes
       {
         path: 'farmer-dashboard',
         element: <FarmerDashboard />
@@ -169,16 +172,20 @@ const router = createBrowserRouter([
         element: <WeatherDashboard/>
       },
     
-
+      // seller dashboard routes
       {
         path: 'seller-dashboard',
         element: <SellerDashboard />
       },
       
-
+      // trainer dashboard routes
       {
         path: 'trainer-dashboard',
         element: <TrainerDashboard />
+      },
+      {
+        path: 'live-session',
+        element: <LiveSession />
       }
     ]
   },
