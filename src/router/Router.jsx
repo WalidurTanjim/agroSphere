@@ -118,7 +118,7 @@ const router = createBrowserRouter([
     path: 'dashboard',
     element: <DashboardLayout />,
     children: [
-      // admin dashboard routes
+      
       {
         path: 'admin-dashboard',
         element: <AdminDashboard />
@@ -149,7 +149,7 @@ const router = createBrowserRouter([
         element: <AllUsers />
       },
 
-      // farmer dashboard routes
+      
       {
         path: 'farmer-dashboard',
         element: <FarmerDashboard />
@@ -172,13 +172,13 @@ const router = createBrowserRouter([
         element: <WeatherDashboard/>
       },
     
-      // seller dashboard routes
+      
       {
         path: 'seller-dashboard',
         element: <SellerDashboard />
       },
       
-      // trainer dashboard routes
+
       {
         path: 'trainer-dashboard',
         element: <TrainerDashboard />
