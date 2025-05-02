@@ -1,4 +1,4 @@
-import { ArrowDownToDot, File, ArrowLeft, Home, LayoutDashboard, NotebookPen, UserCheck, Users, Video, CloudAlert, CloudRain, FilePenLine, UserPen, Lightbulb } from "lucide-react";
+import { ArrowDownToDot, File, ArrowLeft, Home, LayoutDashboard, NotebookPen, UserCheck, Users, Video, CloudAlert, CloudRain, FilePenLine, UserPen, Lightbulb, BadgeDollarSign, ShoppingBag } from "lucide-react";
 import React, { useState } from "react"
 import { Link, useRouteError } from "react-router-dom";
 import logo from '../assets/logo.png'
@@ -136,8 +136,23 @@ const DashboardRoutes = () => {
                                                 <Link to='/dashboard/addForum' className="flex items-center gap-3 rounded p-3 text-gray-400 transition-colors hover:bg-gray-100  hover:text-gray-600 active:bg-gray-100 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-gray-400">
                                                     <div className="flex items-center self-center"><File size={20} /></div>
 
-
                                                     <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">Add Forum</div>
+                                                </Link>
+                                            </li>
+                                            
+                                            <li className="px-3">
+                                                <Link to='/dashboard/generate-income' className="flex items-center gap-3 rounded p-3 text-gray-400 transition-colors hover:bg-gray-100  hover:text-gray-600 active:bg-gray-100 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-gray-400">
+                                                    <div className="flex items-center self-center"><BadgeDollarSign size={20} /></div>
+
+                                                    <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">Extra Income</div>
+                                                </Link>
+                                            </li>
+
+                                            <li className="px-3">
+                                                <Link to='/dashboard/waste-market' className="flex items-center gap-3 rounded p-3 text-gray-400 transition-colors hover:bg-gray-100  hover:text-gray-600 active:bg-gray-100 focus:bg-gray-100 aria-[current=page]:bg-gray-100 aria-[current=page]:text-gray-400">
+                                                    <div className="flex items-center self-center"><ShoppingBag size={20} /></div>
+
+                                                    <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">Waste Market</div>
                                                 </Link>
                                             </li>
 

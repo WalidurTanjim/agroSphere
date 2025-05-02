@@ -36,6 +36,8 @@ import QuizPage from "./Quiz/quizPage.jsx";
 import SellerProfile from "../components/Prodile/SellerProfile/SellerProfile.jsx";
 import ProfileUpdate from "../Components/UpdateProfie/ProfileUpdate.jsx";
 import LiveSession from "../pages/Dashboard/Trainer/LiveSession/LiveSession.jsx";
+import WasteList from "../Components/WasteList/WasteList.jsx"
+import WasteIncome from "../Components/Extra Income/WasteIncome.jsx";
 
 
 const router = createBrowserRouter([
@@ -100,7 +102,7 @@ const router = createBrowserRouter([
         path: 'support',
         element: <SupportPage />
       },
-     
+
       {
         path: 'trainer_profile/:id',
         element: <TrainerProfile />
@@ -114,7 +116,7 @@ const router = createBrowserRouter([
         element: <SellerProfile />
       }
     ]
-  },{
+  }, {
     path: 'dashboard',
     element: <DashboardLayout />,
     children: [
@@ -139,7 +141,7 @@ const router = createBrowserRouter([
         path: 'farmer-quiz',
         element: <QuizPage></QuizPage>
       },
-      
+
       {
         path: 'incomming-requests',
         element: <IncommingRequests />
@@ -153,7 +155,7 @@ const router = createBrowserRouter([
       {
         path: 'farmer-dashboard',
         element: <FarmerDashboard />
-              
+
       },
       {
         path: 'success-story',
@@ -165,11 +167,19 @@ const router = createBrowserRouter([
       },
       {
         path: "todoList",
-        element: <TaskBoard/>
+        element: <TaskBoard />
       },
       {
         path: "weatherda",
-        element: <WeatherDashboard/>
+        element: <WeatherDashboard />
+      },
+      {
+        path: "waste-market",
+        element: <WasteList></WasteList>
+      },
+      {
+        path: "generate-income",
+        element: <WasteIncome></WasteIncome>
       },
     
       
@@ -177,7 +187,7 @@ const router = createBrowserRouter([
         path: 'seller-dashboard',
         element: <SellerDashboard />
       },
-      
+
 
       {
         path: 'trainer-dashboard',
