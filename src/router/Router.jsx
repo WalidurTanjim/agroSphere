@@ -35,6 +35,7 @@ import Sellers from "../pages/Sellers/Sellers.jsx";
 import QuizPage from "./Quiz/quizPage.jsx";
 import SellerProfile from "../components/Prodile/SellerProfile/SellerProfile.jsx";
 import ProfileUpdate from "../Components/UpdateProfie/ProfileUpdate.jsx";
+import LiveSession from "../pages/Dashboard/Trainer/LiveSession/LiveSession.jsx";
 import WasteList from "../Components/WasteList/WasteList.jsx"
 import WasteIncome from "../Components/Extra Income/WasteIncome.jsx";
 
@@ -119,6 +120,7 @@ const router = createBrowserRouter([
     path: 'dashboard',
     element: <DashboardLayout />,
     children: [
+      
       {
         path: 'admin-dashboard',
         element: <AdminDashboard />
@@ -149,6 +151,7 @@ const router = createBrowserRouter([
         element: <AllUsers />
       },
 
+      
       {
         path: 'farmer-dashboard',
         element: <FarmerDashboard />
@@ -178,6 +181,8 @@ const router = createBrowserRouter([
         path: "generate-income",
         element: <WasteIncome></WasteIncome>
       },
+    
+      
       {
         path: 'seller-dashboard',
         element: <SellerDashboard />
@@ -187,6 +192,10 @@ const router = createBrowserRouter([
       {
         path: 'trainer-dashboard',
         element: <TrainerDashboard />
+      },
+      {
+        path: 'live-session',
+        element: <LiveSession />
       }
     ]
   },
